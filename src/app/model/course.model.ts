@@ -4,4 +4,6 @@ export interface Course{
   name:string;
   description:string;
   instructorId:number;
+  creationDate:Date;
+  creationDateFormatted?:string;
 }

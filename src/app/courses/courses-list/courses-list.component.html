@@ -1,15 +1,7 @@
-<!-- <p>recipe-list works!</p> -->
 <!-- <div class="row">
   <div class="col-xs-12">
-    <button class="btn btn-success">New Course</button>
-  </div>
-</div>
-<hr> -->
-
-<div class="row">
-  <div class="col-xs-12">
-    <ng-container *ngIf="(courses$|async) as coursesObs">
-      <div *ngFor="let course of coursesObs;let i = index">
+    <ng-container>
+      <div *ngFor="let course of courses;let i = index">
         <span>{{course.id}}</span>
         <span>{{course.name}}</span>
         <span>{{course.description}}</span>
@@ -17,4 +9,15 @@
       </div>
     </ng-container>
   </div>
+</div> -->
+<br>
+<div class="list-group ms-3" *ngFor="let course of courses;let i = index">
+  <a href="#" class="list-group-item list-group-item-action mb-2" aria-current="true">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1">{{course.name}}</h5>
+      <small>{{course.creationDateFormatted}}</small>
+    </div>
+    <p class="mb-1">{{course.description}}</p>
+    <small>{{course.instructorId}}</small>
+  </a>
 </div>

@@ -11,13 +11,24 @@ import { CoursesService } from 'src/app/service/courses.service';
   styleUrls: ['./courses-list.component.css'],
 })
 export class CoursesListComponent {
-  courses$: Observable<Course []>;
-  // subscription: Subscription;
+  courses: Course[];
+  subscription: Subscription;
 
   constructor(
     private coursesService: CoursesService,private router: Router,private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.courses$ = this.coursesService.servers$;
+    const currDate = new Date()
+    this.subscription = this.coursesService.servers$.subscribe(courses =>{
+      this.courses = courses;
+      this.courses.forEach(course => {
+        const creationDate = new Date(course.creationDate);
+        course.creationDateFormatted = Math.ceil((currDate.getTime() - creationDate.getTime()) / (1000 * 3600 * 24)) + ' days ago';
+      });
+    });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }
