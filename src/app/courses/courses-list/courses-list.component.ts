@@ -12,13 +12,16 @@ import { CoursesService } from 'src/app/service/courses.service';
 export class CoursesListComponent {
   courses: Course[];
   subscription: Subscription;
+  isLoading = false;
 
   constructor(
     private coursesService: CoursesService,private router: Router,private route: ActivatedRoute) {}
 
   ngOnInit() {
+    this.isLoading=true
     this.subscription = this.coursesService.servers$.subscribe(courses =>{
       this.courses = courses;
+      this.isLoading = false;
     });
   }
 
