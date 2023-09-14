@@ -1,27 +1,23 @@
-<!-- <div class="row">
-  <div class="col-xs-12">
-    <ng-container>
-      <div *ngFor="let course of courses;let i = index">
-        <span>{{course.id}}</span>
-        <span>{{course.name}}</span>
-        <span>{{course.description}}</span>
-        <span>{{course.instructorId}}</span>
-      </div>
-    </ng-container>
-  </div>
-</div> -->
-<br>
-<div *ngIf="isLoading" style="text-align: center;">
+<div *ngIf="isLoading" class="text-center mt-5">
   <app-loading-spinner></app-loading-spinner>
 </div>
 
-<div class="list-group ms-3" *ngFor="let course of courses;let i = index">
-  <a href="#" class="list-group-item list-group-item-action mb-2" aria-current="true">
-    <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1">{{course.name}}</h5>
-      <small>{{course.creationDateFormatted}}</small>
+<div class="list-group ms-3 mt-3" *ngFor="let course of courses;let i = index">
+  <a class="list-group-item list-group-item-action mb-2" aria-current="true">
+    <div class="row">
+      <div class="col-5 p-0">
+        <img [src]="course.imagePath">
+      </div>
+      <div class="col-7">
+        <div class="d-flex w-100 justify-content-between">
+          <h4 class="mb-1">{{course.name}}</h4>
+          <small>{{course.creationDateFormatted}}</small>
+        </div>
+        <!-- <p class="mb-1">{{course.description}}</p> -->
+        <p class="mb-1">{{course.headline}}</p>
+        <strong>{{course.instructorId}}</strong><br>
+        <small>{{course.totalHours}} total hours</small>
+      </div>
     </div>
-    <p class="mb-1">{{course.description}}</p>
-    <small>{{course.instructorId}}</small>
   </a>
 </div>

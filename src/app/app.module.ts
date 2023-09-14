@@ -7,7 +7,6 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { CoursesComponent } from './courses/courses.component';
 import { CoursesListComponent } from './courses/courses-list/courses-list.component';
-import { CourseItemComponent } from './courses/courses-list/course-item/course-item.component';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 
 @NgModule({
@@ -16,7 +15,6 @@ import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinne
     HeaderComponent,
     CoursesComponent,
     CoursesListComponent,
-    CourseItemComponent,
     LoadingSpinnerComponent
   ],
   imports: [
