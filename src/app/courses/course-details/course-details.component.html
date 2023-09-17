@@ -1,0 +1,17 @@
+<!-- <p>course-details works!</p> -->
+
+<div class="row">
+  <div class="col-5 p-0">
+    <img [src]="courseDetails.imagePath">
+  </div>
+  <div class="col-7">
+    <div class="d-flex w-100 justify-content-between">
+      <h4 class="mb-1">{{courseDetails.name}}</h4>
+      <small>{{courseDetails.creationDateFormatted}}</small>
+    </div>
+    <!-- <p class="mb-1">{{course.description}}</p> -->
+    <p class="mb-1">{{courseDetails.headline}}</p>
+    <strong>{{courseDetails.instructorId}}</strong><br>
+    <small>{{courseDetails.totalHours}} total hours</small>
+  </div>
+</div>

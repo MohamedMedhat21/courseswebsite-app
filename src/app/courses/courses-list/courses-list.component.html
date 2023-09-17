@@ -3,7 +3,7 @@
 </div>
 
 <div class="list-group ms-3 mt-3" *ngFor="let course of courses;let i = index">
-  <a class="list-group-item list-group-item-action mb-2" aria-current="true">
+  <a class="list-group-item list-group-item-action mb-2" aria-current="true" [routerLink]="[i]">
     <div class="row">
       <div class="col-5 p-0">
         <img [src]="course.imagePath">

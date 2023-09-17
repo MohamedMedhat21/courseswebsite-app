@@ -8,6 +8,7 @@ import { HeaderComponent } from './header/header.component';
 import { CoursesComponent } from './courses/courses.component';
 import { CoursesListComponent } from './courses/courses-list/courses-list.component';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
+import { CourseDetailsComponent } from './courses/course-details/course-details.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinne
     HeaderComponent,
     CoursesComponent,
     CoursesListComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    CourseDetailsComponent
   ],
   imports: [
     BrowserModule,
