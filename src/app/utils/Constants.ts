@@ -3,7 +3,7 @@ export class Constants {
   static readonly apiUrl = 'http://localhost:8080/api';
 
   static readonly jwtToken =
-  'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtb2hhIiwiaWF0IjoxNjk0OTQ3MTM0LCJleHAiOjE2OTQ5NjE1MzR9.X8_1-1IJm2OCuqNTx33RIbyGCBX1wEZCCISMr4mmg10';
+  'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtb2hhIiwiaWF0IjoxNjk0OTc3MjQzLCJleHAiOjE2OTQ5OTE2NDN9.uZ9MDJ-WwH2e5yxlWRiUBhILe1PAHe-lwQycQ9dFTgU';
 
   static readonly coursePageSize=10;
 

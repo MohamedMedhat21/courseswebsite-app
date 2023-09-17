@@ -11,6 +11,7 @@ import { CoursesService } from 'src/app/service/courses.service';
 export class CourseDetailsComponent {
   courseDetails: Course;
   id: number;
+  courseVideosNumber:number;
 
   constructor( private coursesService: CoursesService,private route: ActivatedRoute,
     private router: Router,
@@ -21,6 +22,7 @@ export class CourseDetailsComponent {
       this.id = +params['id'];
       console.log(this.id)
       this.courseDetails = this.coursesService.getCourse(this.id);
+      this.courseVideosNumber = Math.floor(Math.random()*(100-11+1)+11)
     });
 
   }
