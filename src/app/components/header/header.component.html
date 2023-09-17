@@ -8,17 +8,21 @@
           <a class="nav-link" routerLink="/courses">Browse courses</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" >My learning</a>
+          <a class="nav-link" routerLink="/enrollments">My learning</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" >My courses</a>
+          <a class="nav-link" routerLink="/publishedCourses">My courses</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" >Settings</a>
+          <a class="nav-link" routerLink="/settings">Settings</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/aboutUs">About Us</a>
         </li>
         <li>
           <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" style="width: 500px;">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+              style="width: 500px;">
             <button class="btn btn-outline-success" type="submit">Search</button>
           </form>
         </li>
@@ -36,7 +40,7 @@
       </ul>
       <div class="d-flex">
         <!-- <button class="btn btn-outline-success me-2" type="button">Search</button> -->
-        <button class="btn btn-outline-success" type="button">Join Us</button>
+        <button class="btn btn-outline-success" type="button" routerLink="/auth">Join Us</button>
       </div>
     </div>
   </div>

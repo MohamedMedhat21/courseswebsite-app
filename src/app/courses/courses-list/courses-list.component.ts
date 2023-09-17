@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs/internal/Subscription';
 import { Course } from 'src/app/model/course.model';
 import { CoursesService } from 'src/app/service/courses.service';
 
