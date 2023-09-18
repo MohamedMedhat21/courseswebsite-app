@@ -15,18 +15,18 @@
       </tr>
     </thead>
     <tbody  class="table-group-divider">
-      <tr>
-        <td>5</td>
+      <tr *ngFor="let user of users; let i=index">
+        <td>{{user.id}}</td>
         <td>
           <i class="material-icons me-2">&#xe853;</i>
-          <span style="vertical-align:super;">Martin Sommer</span>
+          <span style="vertical-align:super;">{{user.username}}</span>
         </td>
-        <td>12/08/2017</td>
-        <td>Moderator</td>
-        <td><span class="text-warning">&bull;</span> Inactive</td>
+        <td>{{user.email}}</td>
+        <td>{{user.role.name | lowercase}}</td>
+        <td><span [ngClass]="{'text-success': user.enabled == '1','text-warning': user.enabled == '0'}">&bull;</span> <span *ngIf="user.enabled == '1'" > Active</span> <span *ngIf="user.enabled == '0'" > Inactive</span> </td>
         <td>
-          <a href="#" title="Settings" data-toggle="tooltip"><i class="material-icons me-1">&#xE8B8;</i></a>
-          <a href="#" title="Delete" data-toggle="tooltip"><i class="material-icons" style="color: #F44336;">&#xE5C9;</i></a>
+          <a style="color: blue;" title="Settings" data-toggle="tooltip" type="button" (click)="onEdit(user.id)"><i class="material-icons me-2">&#xE8B8;</i></a>
+          <a title="Delete" data-toggle="tooltip" type="button" (click)="onDelete(user.id)"><i class="material-icons" style="color: #F44336;">&#xE5C9;</i></a>
         </td>
       </tr>
     </tbody>

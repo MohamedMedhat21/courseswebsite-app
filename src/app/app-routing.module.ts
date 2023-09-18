@@ -6,6 +6,7 @@ import { CoursesResolverService } from './components/courses/courses-resolver.se
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { AuthComponent } from './components/auth/auth.component';
 import { AdminPanelComponent } from './components/admin-panel/admin-panel.component';
+import { UsersResolverService } from './resolver/users-resolver.service';
 
 const routes: Routes = [
   {path: 'courses',component:CoursesComponent,resolve:[CoursesResolverService],children:[
@@ -15,7 +16,7 @@ const routes: Routes = [
     // {path:':id/edit',component:RecipeEditComponent},
   ]},
   // {path: 'enrollments',component:CoursesComponent},
-  {path: 'adminPanel',component:AdminPanelComponent},
+  {path: 'adminPanel',component:AdminPanelComponent,resolve:[UsersResolverService]},
   {path: 'aboutUs',component:AboutUsComponent},
   {path: 'auth',component:AuthComponent},
 ];
