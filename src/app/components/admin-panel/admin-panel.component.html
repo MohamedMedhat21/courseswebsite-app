@@ -18,8 +18,10 @@
       <tr *ngFor="let user of users; let i=index">
         <td>{{user.id}}</td>
         <td>
-          <i class="material-icons me-2">&#xe853;</i>
-          <span style="vertical-align:super;">{{user.username}}</span>
+          <div class="d-flex">
+            <i class="material-icons me-2">&#xe853;</i>
+            <span>{{user.username}}</span>
+          </div>
         </td>
         <td>{{user.email}}</td>
         <td>{{user.role.name | lowercase}}</td>
@@ -31,4 +33,8 @@
       </tr>
     </tbody>
   </table>
+
+  <div class="row">
+    <app-user-add-edit></app-user-add-edit>
+  </div>
 </div>

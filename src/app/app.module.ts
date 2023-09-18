@@ -13,6 +13,9 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
 import { AuthComponent } from './components/auth/auth.component';
 import { AdminPanelComponent } from './components/admin-panel/admin-panel.component';
 import { SettingsComponent } from './components/settings/settings.component';
+import { FormsModule } from '@angular/forms';
+import { UserAddEditComponent } from './components/admin-panel/user-add-edit/user-add-edit.component';
+import { UserPopupComponent } from './components/admin-panel/user-add-edit/user-popup/user-popup.component';
 
 @NgModule({
   declarations: [
@@ -25,12 +28,15 @@ import { SettingsComponent } from './components/settings/settings.component';
     AboutUsComponent,
     AuthComponent,
     AdminPanelComponent,
-    SettingsComponent
+    SettingsComponent,
+    UserAddEditComponent,
+    UserPopupComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -30,9 +30,11 @@ export class UsersService {
     return this.users[index];
   }
 
-  addUser(user: User) {
-    this.users.push(user);
-    this.usersChanged.next(this.users.slice());
+  addUser(user:any) {
+    this.addUserApi(user).subscribe(user=>{
+      this.users.push(user);
+      this.usersChanged.next(this.users.slice());
+    });
   }
 
   updateUser(index: number, newUser: User) {
@@ -55,6 +57,15 @@ export class UsersService {
         tap((users) => {
           this.setUsers(users);
         })
+      )
+    );
+  }
+
+  private addUserApi(user:any){
+    return <Observable<User>>(
+      this.http.post(`${Constants.apiUrl}/users`,user,Constants.options).pipe(
+        tap(console.log),
+        catchError(this.handleError)
       )
     );
   }
