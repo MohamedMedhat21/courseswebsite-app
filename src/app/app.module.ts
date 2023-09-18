@@ -9,9 +9,10 @@ import { CoursesComponent } from './courses/courses.component';
 import { CoursesListComponent } from './courses/courses-list/courses-list.component';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 import { CourseDetailsComponent } from './courses/course-details/course-details.component';
-import { SettingsComponent } from './components/settings/settings.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { AuthComponent } from './components/auth/auth.component';
+import { AdminPanelComponent } from './components/admin-panel/admin-panel.component';
+import { SettingsComponent } from './components/settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -21,9 +22,10 @@ import { AuthComponent } from './components/auth/auth.component';
     CoursesListComponent,
     LoadingSpinnerComponent,
     CourseDetailsComponent,
-    SettingsComponent,
     AboutUsComponent,
-    AuthComponent
+    AuthComponent,
+    AdminPanelComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,

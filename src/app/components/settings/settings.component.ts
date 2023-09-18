@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./settings.component.css']
 })
 export class SettingsComponent {
+  showMySidebar = true;
 
+  toggleSidebar(){
+    this.showMySidebar = !this.showMySidebar;
+  }
 }
