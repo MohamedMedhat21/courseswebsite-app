@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { User } from 'src/app/model/user.model';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { UsersService } from 'src/app/service/users.service';
 
 @Component({
@@ -9,41 +9,78 @@ import { UsersService } from 'src/app/service/users.service';
   styleUrls: ['./user-add-edit.component.css'],
 })
 export class UserAddEditComponent {
-  id: number;
-  editMode = false;
+  error: any;
+  id:number;
+  username : string;
+  password : string;
+  email :string;
+  enabled :string;
+  roleName :string;
 
-  constructor(private userService:UsersService){
+  constructor(
+    private userService: UsersService,
+    public dialogRef: MatDialogRef<UserAddEditComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) {}
 
+  ngOnInit() {
+    if (this.data){
+      this.id
+      this.username = this.data.userDetails.username;
+      this.email = this.data.userDetails.email;
+      this.enabled = this.data.userDetails.enabled;
+      this.roleName = this.data.userDetails.role.name;
+    }
+  }
+
+  closeDialog() {
+    this.dialogRef.close();
   }
 
   onSubmit(userForm: NgForm) {
+    this.error = null;
 
     if (!userForm.valid) return;
 
-    const username = userForm.value.username;
-    const password = userForm.value.password;
-    const email = userForm.value.email;
-    let enabled = userForm.value.enabled;
-    const roleName = userForm.value.roleName;
-    enabled = true;
-    const enabledString = enabled == true ? '1':'0';
+    this.username = userForm.value.username;
+    this.email = userForm.value.email;
+    this.enabled = userForm.value.enabled;
+    this.roleName = userForm.value.roleName;
 
-    const user = {
-      'id':0,
-      'username':username,
-      'password':password,
-      'email':email,
-      'enabled':enabledString,
-      'rolename':roleName
-    }
+    this.enabled = "true";
 
-    if(this.editMode){
+    const enabledString = this.enabled == "true" ? 1 : 0;
 
+    if (this.data.userDetails){
+      this.id = this.data.userDetails.id;
     }
     else{
-      this.userService.addUser(user)
+      this.id = 0
+      this.password = userForm.value.password;
     }
 
+    const user = {
+      id: this.id,
+      username: this.username,
+      password: this.password,
+      email: this.email,
+      enabled: enabledString,
+      rolename: this.roleName,
+    };
+
+    if (this.data.userDetails){
+      this.userService.updateUser(this.data.localIndex,user);
+    }
+    else{
+      this.userService.addUser(user);
+    }
+
+
     userForm.reset();
+    this.closeDialog();
   }
+
+  // onErrorCloseBtn(){
+  //   this.error=null;
+  // }
 }

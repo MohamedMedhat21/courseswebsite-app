@@ -11,6 +11,7 @@ export class UsersService {
 
   private users: User[] = [];
   usersChanged = new Subject<User[]>();
+  // errorMessage:string
 
   constructor(private http: HttpClient){
 
@@ -35,11 +36,19 @@ export class UsersService {
       this.users.push(user);
       this.usersChanged.next(this.users.slice());
     });
+    // console.log(this.errorMessage)
   }
 
-  updateUser(index: number, newUser: User) {
-    this.users[index] = newUser;
-    this.usersChanged.next(this.users.slice());
+  updateUser(index: number, editedUser:any) {
+    this.updateUserApi(editedUser).subscribe(res=>{
+      this.users[index].email = editedUser.email;
+      this.users[index].enabled = editedUser.enabled;
+      this.users[index].role.name = editedUser.rolename
+      console.log(editedUser)
+      console.log(this.users[2])
+      this.usersChanged.next(this.users.slice());
+    });
+
   }
 
   deleteUser(index: number) {
@@ -65,7 +74,16 @@ export class UsersService {
     return <Observable<User>>(
       this.http.post(`${Constants.apiUrl}/users`,user,Constants.options).pipe(
         tap(console.log),
-        catchError(this.handleError)
+        // catchError(this.handleError)
+      )
+    );
+  }
+
+  private updateUserApi(user:any){
+    return <Observable<never>>(
+      this.http.put(`${Constants.apiUrl}/users`,user,Constants.options).pipe(
+        // tap(console.log),
+        // catchError(this.handleError)
       )
     );
   }
@@ -79,9 +97,10 @@ export class UsersService {
   }
 
   handleError(error: HttpErrorResponse): Observable<never> {
-    console.log(error);
+    // console.log(error);
+    // this.error = error;
     return throwError(
-      () => new Error(`An error occurred, Error code: ${error.status}`)
+      () => error
     );
   }
 }

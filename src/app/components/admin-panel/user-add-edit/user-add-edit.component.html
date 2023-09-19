@@ -1,15 +1,12 @@
 <div class="row">
   <div class="col-xs-12 col-md-6 col-md-offset-3">
 
-    <!-- <div class="alert alert-danger" *ngIf="error">
+    <!-- <div class="alert alert-danger" >
       <button type="button" class="close" aria-label="Close" (click)="onErrorCloseBtn()">
         <span aria-hidden="true">&times;</span>
       </button>
       <p>{{error}}</p>
     </div> -->
-
-    <!-- <app-alert [message]="error" *ngIf="error" (close)="onHandleError()"></app-alert> -->
-
 
     <!-- <div class="alert alert-success" *ngIf="globalMSg">
       <button type="button" class="close" aria-label="Close" (click)="onSuccessCloseBtn()">
@@ -18,33 +15,50 @@
       <p>{{globalMSg}}</p>
     </div> -->
 
-    <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
-      <div class="mb-3">
-        <label for="username" class="form-label">User name <span class="text-danger">*</span></label>
-        <input type="text" class="form-control" id="username" aria-describedby="usernameHelp" ngModel name="username" required>
-        <div id="usernameHelp" class="form-text text-danger">this username must be unique</div>
+    <div class="modal" style="display: block;" tabindex="-1" data-toggle="modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title">Add new user</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="closeDialog()"></button>
+          </div>
+          <div class="modal-body">
+            <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
+              <div class="mb-3">
+                <label for="username" class="form-label">User name <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" id="username" aria-describedby="usernameHelp" ngModel name="username" required [(ngModel)]="username">
+                <div id="usernameHelp" class="form-text text-secondary">username must be unique</div>
+              </div>
+              <div class="mb-3" *ngIf="!this.data">
+                <label for="password" class="form-label">Password <span class="text-danger">*</span></label>
+                <input type="password" class="form-control" id="password"
+                ngModel name="password" required minlength="6" [(ngModel)]="password">
+              </div>
+              <div class="mb-3">
+                <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+                <input type="email" id="email" class="form-control"
+                ngModel name="email" required email [(ngModel)]="email"/>
+              </div>
+              <div class="mb-3">
+                <label for="roleName" class="form-label">Role name</label>
+                <input type="text" id="roleName" class="form-control"
+                ngModel name="roleName" required [(ngModel)]="roleName"/>
+              </div>
+              <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="enabled"
+                ngModel name="enabledCheckbox" checked="true" [(ngModel)]="enabled"/> <!-- TODO check box is not working-->
+                <label class="form-check-label" for="enabled">Enable this user</label>
+              </div>
+              <!-- <button type="submit" class="btn btn-primary" [disabled]="!authForm.valid">Add user</button> -->
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeDialog()">Close</button>
+            <button type="submit" form="authForm" class="btn btn-primary" [disabled]="!authForm.valid" (click)="onSubmit(authForm)">Add user</button>
+          </div>
+        </div>
       </div>
-      <div class="mb-3">
-        <label for="password" class="form-label">Password <span class="text-danger">*</span></label>
-        <input type="password" class="form-control" id="password"
-        ngModel name="password" required minlength="6">
-      </div>
-      <div class="mb-3">
-        <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
-        <input type="email" id="email" class="form-control"
-        ngModel name="email" required email/>
-      </div>
-      <div class="mb-3">
-        <label for="roleName" class="form-label">Role name</label>
-        <input type="text" id="roleName" class="form-control"
-        ngModel name="roleName" required/>
-      </div>
-      <div class="mb-3 form-check">
-        <input type="checkbox" class="form-check-input" id="enabled"
-        ngModel name="enabledCheckbox" checked="true"/> <!-- TODO check box is not working-->
-        <label class="form-check-label" for="enabled">Enable this user</label>
-      </div>
-      <button type="submit" class="btn btn-primary" [disabled]="!authForm.valid">Add user</button>
-    </form>
+    </div>
+
   </div>
 </div>

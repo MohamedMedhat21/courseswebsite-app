@@ -15,7 +15,8 @@ import { AdminPanelComponent } from './components/admin-panel/admin-panel.compon
 import { SettingsComponent } from './components/settings/settings.component';
 import { FormsModule } from '@angular/forms';
 import { UserAddEditComponent } from './components/admin-panel/user-add-edit/user-add-edit.component';
-import { UserPopupComponent } from './components/admin-panel/user-add-edit/user-popup/user-popup.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import {MatDialogModule} from '@angular/material/dialog'
 
 @NgModule({
   declarations: [
@@ -29,14 +30,15 @@ import { UserPopupComponent } from './components/admin-panel/user-add-edit/user-
     AuthComponent,
     AdminPanelComponent,
     SettingsComponent,
-    UserAddEditComponent,
-    UserPopupComponent,
+    UserAddEditComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NoopAnimationsModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,6 +1,6 @@
 <div class="mb-3 mt-3 ms-3 d-flex align-items-start justify-content-between">
-  <h3 class="section-title">User management</h3>
-  <button class="btn btn-primary me-3" type="submit">Add new user</button>
+  <h1 class="section-title fw-medium">User management</h1>
+  <button class="btn btn-primary me-3" type="button" (click)="openUserDialog()">Add new user</button>
 </div>
 <div class="p-4">
   <table class="table table-striped table-hover">
@@ -27,14 +27,11 @@
         <td>{{user.role.name | lowercase}}</td>
         <td><span [ngClass]="{'text-success': user.enabled == '1','text-warning': user.enabled == '0'}">&bull;</span> <span *ngIf="user.enabled == '1'" > Active</span> <span *ngIf="user.enabled == '0'" > Inactive</span> </td>
         <td>
-          <a style="color: blue;" title="Settings" data-toggle="tooltip" type="button" (click)="onEdit(user.id)"><i class="material-icons me-2">&#xE8B8;</i></a>
+          <a style="color: blue;" title="Settings" data-toggle="tooltip" type="button" (click)="onEdit(i,user.id)"><i class="material-icons me-2">&#xE8B8;</i></a>
           <a title="Delete" data-toggle="tooltip" type="button" (click)="onDelete(user.id)"><i class="material-icons" style="color: #F44336;">&#xE5C9;</i></a>
         </td>
       </tr>
     </tbody>
   </table>
 
-  <div class="row">
-    <app-user-add-edit></app-user-add-edit>
-  </div>
 </div>
