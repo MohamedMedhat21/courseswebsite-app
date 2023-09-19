@@ -47,8 +47,6 @@ export class UserAddEditComponent {
     this.enabled = userForm.value.enabled;
     this.roleName = userForm.value.roleName;
 
-    this.enabled = "true";
-
     const enabledString = this.enabled == "true" ? 1 : 0;
 
     if (this.data.userDetails){
@@ -69,6 +67,7 @@ export class UserAddEditComponent {
     };
 
     if (this.data.userDetails){
+      console.log(user.enabled)
       this.userService.updateUser(this.data.localIndex,user);
     }
     else{
