@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { CourseAddEditComponent } from './course-add-edit/course-add-edit.component';
 
 @Component({
   selector: 'app-courses',
@@ -6,4 +8,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./courses.component.css']
 })
 export class CoursesComponent {
+
 }

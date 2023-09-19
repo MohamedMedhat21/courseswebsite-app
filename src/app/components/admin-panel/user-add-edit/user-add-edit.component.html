@@ -23,7 +23,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="closeDialog()"></button>
           </div>
           <div class="modal-body">
-            <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
+            <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
               <div class="mb-3">
                 <label for="username" class="form-label">User name <span class="text-danger">*</span></label>
                 <input type="text" class="form-control" id="username" aria-describedby="usernameHelp" ngModel name="username" required [(ngModel)]="username">
@@ -46,15 +46,15 @@
               </div>
               <div class="mb-3 form-check">
                 <input type="checkbox" class="form-check-input" id="enabled"
-                ngModel name="enabledCheckbox" checked="true" [(ngModel)]="enabled"/> <!-- TODO check box is not working-->
+                ngModel name="enabledCheckbox" checked=true [(ngModel)]="enabled"/> <!-- TODO check box is not working-->
                 <label class="form-check-label" for="enabled">Enable this user</label>
               </div>
-              <!-- <button type="submit" class="btn btn-primary" [disabled]="!authForm.valid">Add user</button> -->
+              <!-- <button type="submit" class="btn btn-primary" [disabled]="!userForm.valid">Add user</button> -->
             </form>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeDialog()">Close</button>
-            <button type="submit" form="authForm" class="btn btn-primary" [disabled]="!authForm.valid" (click)="onSubmit(authForm)">
+            <button type="submit" form="userForm" class="btn btn-primary" [disabled]="!userForm.valid" (click)="onSubmit(userForm)">
               <span *ngIf="!this.data">Add user</span>
               <span *ngIf="this.data">Update user</span>
             </button>

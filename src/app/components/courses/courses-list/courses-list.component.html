@@ -2,6 +2,11 @@
   <app-loading-spinner></app-loading-spinner>
 </div>
 
+<div class="mt-2 mb-3" style="text-align: right;">
+  <button class="btn btn-primary me-3" type="button" (click)="openCourseDialog()">Add new course</button>
+</div>
+
+
 <div class="list-group ms-3 mt-3" *ngFor="let course of courses;let i = index">
   <a class="list-group-item list-group-item-action mb-2" aria-current="true" [routerLink]="[i]">
     <div class="row">

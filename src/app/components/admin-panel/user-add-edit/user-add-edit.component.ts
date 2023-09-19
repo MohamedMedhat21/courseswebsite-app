@@ -14,7 +14,7 @@ export class UserAddEditComponent {
   username : string;
   password : string;
   email :string;
-  enabled :string;
+  enabled :boolean;
   roleName :string;
 
   constructor(
@@ -25,7 +25,6 @@ export class UserAddEditComponent {
 
   ngOnInit() {
     if (this.data){
-      this.id
       this.username = this.data.userDetails.username;
       this.email = this.data.userDetails.email;
       this.enabled = this.data.userDetails.enabled;
@@ -44,12 +43,12 @@ export class UserAddEditComponent {
 
     this.username = userForm.value.username;
     this.email = userForm.value.email;
-    this.enabled = userForm.value.enabled;
+    this.enabled = userForm.value.enabledCheckbox;
     this.roleName = userForm.value.roleName;
 
-    const enabledString = this.enabled == "true" ? 1 : 0;
-
-    if (this.data.userDetails){
+    const enabledString = this.enabled === true ? 1 : 0;
+    
+    if (this.data){
       this.id = this.data.userDetails.id;
     }
     else{
@@ -66,8 +65,7 @@ export class UserAddEditComponent {
       rolename: this.roleName,
     };
 
-    if (this.data.userDetails){
-      console.log(user.enabled)
+    if (this.data){
       this.userService.updateUser(this.data.localIndex,user);
     }
     else{
