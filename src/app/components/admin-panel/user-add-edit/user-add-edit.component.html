@@ -54,7 +54,10 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeDialog()">Close</button>
-            <button type="submit" form="authForm" class="btn btn-primary" [disabled]="!authForm.valid" (click)="onSubmit(authForm)">Add user</button>
+            <button type="submit" form="authForm" class="btn btn-primary" [disabled]="!authForm.valid" (click)="onSubmit(authForm)">
+              <span *ngIf="!this.data">Add user</span>
+              <span *ngIf="this.data">Update user</span>
+            </button>
           </div>
         </div>
       </div>

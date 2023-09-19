@@ -44,8 +44,7 @@ export class UsersService {
       this.users[index].email = editedUser.email;
       this.users[index].enabled = editedUser.enabled;
       this.users[index].role.name = editedUser.rolename
-      console.log(editedUser)
-      console.log(this.users[2])
+
       this.usersChanged.next(this.users.slice());
     });
 
