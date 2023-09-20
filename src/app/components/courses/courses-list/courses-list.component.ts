@@ -16,7 +16,11 @@ export class CoursesListComponent {
   currID: number;
 
   constructor( private coursesService: CoursesService,private router: Router,private route: ActivatedRoute,
-    private courseDialog:MatDialog) {}
+    private courseDialog:MatDialog) {
+      coursesService.coursesChanged.subscribe(courses=>{
+        this.courses = courses
+      })
+    }
 
   ngOnInit() {
     this.isLoading = true;
@@ -38,6 +42,13 @@ export class CoursesListComponent {
     const userDialogRef = this.courseDialog.open(CourseAddEditComponent,{
       data: data
     });
+  }
+
+  onDelete(localIndex:number,id:number){
+    const isDelete = confirm("are you sure you want to delete this user?")
+    if(isDelete){
+      this.coursesService.deleteCourse(localIndex,id);
+    }
   }
 
 }

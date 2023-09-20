@@ -9,4 +9,5 @@ export interface Course{
   creationDateFormatted?:string;
   totalHours:number;
   imagePath:string;
+  courseLink:string;
 }

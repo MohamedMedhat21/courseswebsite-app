@@ -5,7 +5,7 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title">Add new course</h1>
+            <h1 class="modal-title"><span *ngIf="!data">Add new</span><span *ngIf="data">Update</span> course</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="closeDialog()"></button>
           </div>
           <div class="modal-body">
@@ -14,15 +14,30 @@
                 <label for="coursename" class="form-label">Course name <span class="text-danger">*</span></label>
                 <input type="text" class="form-control" id="coursename" aria-describedby="usernameHelp" ngModel name="courseName" required [(ngModel)]="courseName">
               </div>
-              <div class="mb-3" *ngIf="!this.data">
+              <div class="mb-3">
                 <label for="description" class="form-label">Description <span class="text-danger">*</span></label>
-                <input type="password" class="form-control" id="description"
+                <input type="text" class="form-control" id="description"
                 ngModel name="description" required minlength="6" [(ngModel)]="description">
               </div>
               <div class="mb-3">
-                <label for="instructorName" class="form-label">Instructor name <span class="text-danger">*</span></label>
-                <input type="text" id="instructorName" class="form-control"
-                ngModel name="instructorName" required [(ngModel)]="instructorName"/>
+                <label for="totalHours" class="form-label">Total hours <span class="text-danger">*</span></label>
+                <input type="text" id="totalHours" class="form-control"
+                ngModel name="totalHours" required [(ngModel)]="totalHours"/>
+              </div>
+              <div class="mb-3">
+                <label for="headline" class="form-label">Headline <span class="text-danger">*</span></label>
+                <input type="text" id="headline" class="form-control"
+                ngModel name="headline" required [(ngModel)]="headline"/>
+              </div>
+              <div class="mb-3">
+                <label for="imagePath" class="form-label">Image path <span class="text-danger">*</span></label>
+                <input type="text" id="imagePath" class="form-control"
+                ngModel name="imagePath" required [(ngModel)]="imagePath"/>
+              </div>
+              <div class="mb-3">
+                <label for="courseLink" class="form-label">Course link <span class="text-danger">*</span></label>
+                <input type="text" id="courseLink" class="form-control"
+                ngModel name="courseLink" required [(ngModel)]="courseLink"/>
               </div>
             </form>
           </div>

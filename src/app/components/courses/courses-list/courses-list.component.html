@@ -8,20 +8,29 @@
 
 
 <div class="list-group ms-3 mt-3" *ngFor="let course of courses;let i = index">
-  <a class="list-group-item list-group-item-action mb-2" aria-current="true" [routerLink]="[i]">
+  <div class="list-group-item  mb-2" aria-current="true">
     <div class="row">
       <div class="col-5 p-0">
         <img [src]="course.imagePath">
       </div>
       <div class="col-7">
         <div class="d-flex w-100 justify-content-between">
-          <h4 class="mb-1">{{course.name}}</h4>
-          <small>{{course.creationDateFormatted}}</small>
+          <a class="list-group-item-action w-50" [routerLink]="[i]">
+            <h4 class="mb-1">{{course.name}}</h4>
+          </a>
+          <div class="d-flex">
+            <small class="me-2">{{course.creationDateFormatted}}</small>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="onEdit(i,course.id)">Edit</button>
+              <button mat-menu-item (click)="onDelete(i,course.id)">Delete</button>
+            </mat-menu>
+            <a mat-button [matMenuTriggerFor]="menu" title="Edit" data-toggle="tooltip" type="button" ><i class="material-icons">&#xe5d4;</i></a>
+          </div>
         </div>
         <p class="mb-1">{{course.headline}}</p>
         <strong>{{course.instructorId}}</strong><br>
         <small>{{course.totalHours}} total hours</small>
       </div>
     </div>
-  </a>
+  </div>
 </div>

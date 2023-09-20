@@ -16,8 +16,9 @@ import { SettingsComponent } from './components/settings/settings.component';
 import { FormsModule } from '@angular/forms';
 import { UserAddEditComponent } from './components/admin-panel/user-add-edit/user-add-edit.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import {MatDialogModule} from '@angular/material/dialog';
 import { CourseAddEditComponent } from './components/courses/course-add-edit/course-add-edit.component'
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatMenuModule} from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { CourseAddEditComponent } from './components/courses/course-add-edit/cou
     HttpClientModule,
     FormsModule,
     NoopAnimationsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]
