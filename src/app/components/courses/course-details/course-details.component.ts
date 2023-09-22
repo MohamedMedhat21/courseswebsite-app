@@ -23,7 +23,6 @@ export class CourseDetailsComponent {
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
       this.id = +params['id'];
-      // console.log(this.id)
       this.courseDetails = this.coursesService.getCourse(this.id);
       this.courseVideosNumber = Math.floor(Math.random()*(100-11+1)+11)
       this.sanitizedCourseLink = this.domSanitizer.bypassSecurityTrustResourceUrl(this.courseDetails.courseLink);

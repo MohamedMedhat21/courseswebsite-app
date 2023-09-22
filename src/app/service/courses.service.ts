@@ -3,6 +3,7 @@ import { Observable, Subject, catchError, map, tap, throwError } from 'rxjs';
 import { Course } from '../model/course.model';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Constants } from '../utils/Constants';
+import { Utils } from '../utils/utils';
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +33,7 @@ export class CoursesService {
 
   addCourse(course: Course) {
     this.addCourseApi(course).subscribe(course=>{
+      course.creationDateFormatted = Utils.formatDate(course.creationDate);
       this.courses.push(course);
       this.coursesChanged.next(this.courses.slice());
     });
@@ -85,18 +87,12 @@ export class CoursesService {
         .pipe(
           tap(console.log),
           map((courses) => {
-            const currDate = new Date();
             courses.forEach((course: Course) => {
-              const creationDate = new Date(course.creationDate);
-              course.creationDateFormatted =
-                Math.ceil(
-                  (currDate.getTime() - creationDate.getTime()) /
-                    (1000 * 3600 * 24)
-                ) + ' days ago';
+              course.creationDateFormatted = Utils.formatDate(course.creationDate)
             });
             return courses;
           }),
-          catchError(this.handleError),
+          catchError(Utils.handleError),
           tap((courses) => {
             this.setCourses(courses);
           })
@@ -104,10 +100,4 @@ export class CoursesService {
     );
   }
 
-  handleError(error: HttpErrorResponse): Observable<never> {
-    console.log(error);
-    return throwError(
-      () => new Error(`An error occurred, Error code: ${error.status}`)
-    );
-  }
 }

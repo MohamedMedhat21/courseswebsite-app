@@ -12,19 +12,22 @@ import { CourseAddEditComponent } from '../course-add-edit/course-add-edit.compo
 })
 export class CoursesListComponent {
   courses: Course[];
+
   isLoading = false;
   currID: number;
+  currentPath:string;
 
   constructor( private coursesService: CoursesService,private router: Router,private route: ActivatedRoute,
     private courseDialog:MatDialog) {
       coursesService.coursesChanged.subscribe(courses=>{
-        this.courses = courses
+        this.getData();
       })
-    }
+  }
 
   ngOnInit() {
+    this.currentPath = this.route.snapshot.routeConfig?.path!;
     this.isLoading = true;
-    this.courses = this.coursesService.getCourses();
+    this.getData();
     this.isLoading = false;
   }
 
@@ -45,10 +48,18 @@ export class CoursesListComponent {
   }
 
   onDelete(localIndex:number,id:number){
-    const isDelete = confirm("are you sure you want to delete this user?")
+    const isDelete = confirm("are you sure you want to delete this course?")
     if(isDelete){
       this.coursesService.deleteCourse(localIndex,id);
     }
   }
 
+  getData(){
+    this.courses = this.coursesService.getCourses();
+      if(this.currentPath === 'publishedCourses'){
+        this.courses = this.courses.filter(value =>{
+          return value.instructorId === 3;
+        })
+      }
+    }
 }

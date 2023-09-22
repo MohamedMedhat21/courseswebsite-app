@@ -1,0 +1,33 @@
+<div *ngIf="isLoading" class="text-center mt-5">
+  <app-loading-spinner></app-loading-spinner>
+</div>
+
+
+<div class="list-group ms-3 mt-3" *ngFor="let studentCourse of studentCoursesData;let i = index">
+  <div class="list-group-item  mb-2" aria-current="true">
+    <div class="row">
+      <div class="col-5 p-0">
+        <img [src]="studentCourse.imagePath">
+      </div>
+      <div class="col-7">
+        <div class="d-flex w-100 justify-content-between">
+          <a class="list-group-item-action w-50" [routerLink]="[i]">
+            <h4 class="mb-1">{{studentCourse.courseName}}</h4>
+          </a>
+          <div class="d-flex">
+            <!-- <small class="me-2">enrolled from {{studentCourse.enrollmentDateFormatted}}</small> -->
+            <div>
+              <a mat-button [matMenuTriggerFor]="menu" title="Edit" data-toggle="tooltip" type="button" ><i class="material-icons">&#xe5d4;</i></a>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="onUnenroll(i,studentCourse.id)">Unenroll</button>
+              </mat-menu>
+            </div>
+          </div>
+        </div>
+        <p class="mb-4">{{studentCourse.headline}}</p>
+        <span>Instructor name <strong>{{studentCourse.instructorName}}</strong></span><br>
+        <small class="me-2">Enrolled from {{studentCourse.enrollmentDateFormatted}}</small>
+      </div>
+    </div>
+  </div>
+</div>

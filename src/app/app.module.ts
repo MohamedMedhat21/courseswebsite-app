@@ -19,6 +19,8 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { CourseAddEditComponent } from './components/courses/course-add-edit/course-add-edit.component'
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatMenuModule} from '@angular/material/menu';
+import { EnrollmentComponent } from './components/enrollment/enrollment.component';
+import { EnrollmentListComponent } from './components/enrollment/enrollment-list/enrollment-list.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import {MatMenuModule} from '@angular/material/menu';
     AdminPanelComponent,
     SettingsComponent,
     UserAddEditComponent,
-    CourseAddEditComponent
+    CourseAddEditComponent,
+    EnrollmentComponent,
+    EnrollmentListComponent
   ],
   imports: [
     BrowserModule,

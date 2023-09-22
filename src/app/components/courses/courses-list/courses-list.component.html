@@ -2,7 +2,7 @@
   <app-loading-spinner></app-loading-spinner>
 </div>
 
-<div class="mt-2 mb-3" style="text-align: right;">
+<div class="mt-2 mb-3" style="text-align: right;" *ngIf="currentPath === 'publishedCourses'">
   <button class="btn btn-primary me-3" type="button" (click)="openCourseDialog()">Add new course</button>
 </div>
 
@@ -20,11 +20,13 @@
           </a>
           <div class="d-flex">
             <small class="me-2">{{course.creationDateFormatted}}</small>
-            <mat-menu #menu="matMenu">
-              <button mat-menu-item (click)="onEdit(i,course.id)">Edit</button>
-              <button mat-menu-item (click)="onDelete(i,course.id)">Delete</button>
-            </mat-menu>
-            <a mat-button [matMenuTriggerFor]="menu" title="Edit" data-toggle="tooltip" type="button" ><i class="material-icons">&#xe5d4;</i></a>
+            <div *ngIf="currentPath !== 'courses'">
+              <a mat-button [matMenuTriggerFor]="menu" title="Edit" data-toggle="tooltip" type="button" ><i class="material-icons">&#xe5d4;</i></a>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="onEdit(i,course.id)" *ngIf="currentPath === 'publishedCourses'">Edit</button>
+                <button mat-menu-item (click)="onDelete(i,course.id)" *ngIf="currentPath === 'publishedCourses'">Delete</button>
+              </mat-menu>
+            </div>
           </div>
         </div>
         <p class="mb-1">{{course.headline}}</p>
