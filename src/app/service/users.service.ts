@@ -3,6 +3,7 @@ import { Observable, Subject, catchError, tap, throwError } from 'rxjs';
 import { User } from '../model/user.model';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Constants } from '../utils/Constants';
+import { Utils } from '../utils/utils';
 
 @Injectable({
   providedIn: 'root'
@@ -61,7 +62,7 @@ export class UsersService {
     return <Observable<User[]>>(
       this.http.get<User>(`${Constants.apiUrl}/users`, Constants.options).pipe(
         tap(console.log),
-        catchError(this.handleError),
+        catchError(Utils.handleError),
         tap((users) => {
           this.setUsers(users);
         })
@@ -90,16 +91,9 @@ export class UsersService {
   private deleteUserApi(id:number) {
     return (
       this.http.delete<void>(`${Constants.apiUrl}/users/${id}`, Constants.options).pipe(
-        catchError(this.handleError)
+        catchError(Utils.handleError)
       )
     );
   }
 
-  handleError(error: HttpErrorResponse): Observable<never> {
-    // console.log(error);
-    // this.error = error;
-    return throwError(
-      () => error
-    );
-  }
 }

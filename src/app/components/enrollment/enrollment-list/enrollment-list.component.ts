@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StudentCoursesData } from 'src/app/model/student-courses-data.model';
-import { StudentCoursesDataService } from 'src/app/service/student-courses-data.service';
+import { StudentCoursesService } from 'src/app/service/student-courses.service';
 
 @Component({
   selector: 'app-enrollment-list',
@@ -12,7 +12,7 @@ export class EnrollmentListComponent {
   studentCoursesData: StudentCoursesData[];
   isLoading = false;
 
-  constructor(private studentCoursesDataService:StudentCoursesDataService,private router: Router,
+  constructor(private studentCoursesDataService:StudentCoursesService,private router: Router,
     private route: ActivatedRoute) {
       studentCoursesDataService.studentCoursesDataChanged.subscribe(studentCoursesData=>{
         this.studentCoursesData = studentCoursesData;
@@ -28,7 +28,7 @@ export class EnrollmentListComponent {
   onUnenroll(localIndex:number,id:number){
     const isDelete = confirm("are you sure you want to unenroll from this course?")
     if(isDelete){
-      this.studentCoursesDataService.unenroll(localIndex,id);
+      this.studentCoursesDataService.unenroll(localIndex,id,this.studentCoursesData[localIndex].userId);
     }
   }
 }
