@@ -4,6 +4,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Course } from 'src/app/model/course.model';
 import { CoursesService } from 'src/app/service/courses.service';
 import { UsersService } from 'src/app/service/users.service';
+import { Constants } from 'src/app/utils/Constants';
 
 @Component({
   selector: 'app-course-add-edit',
@@ -58,8 +59,7 @@ export class CourseAddEditComponent {
     this.headline = courseForm.value.headline;
     this.imagePath = courseForm.value.imagePath;
     this.courseLink = courseForm.value.courseLink;
-    this.instructorId = 3;
-    // TODO take instructor id from the current logged in user id
+    this.instructorId = Constants.CurrentUserId;
 
 
 

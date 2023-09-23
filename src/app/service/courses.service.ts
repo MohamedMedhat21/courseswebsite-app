@@ -4,6 +4,7 @@ import { Course } from '../model/course.model';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Constants } from '../utils/Constants';
 import { Utils } from '../utils/utils';
+import { UsersService } from './users.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,8 @@ export class CoursesService {
   coursesChanged = new Subject<Course[]>();
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private usersService:UsersService
   ) {}
 
 
@@ -89,6 +91,9 @@ export class CoursesService {
           map((courses) => {
             courses.forEach((course: Course) => {
               course.creationDateFormatted = Utils.formatDate(course.creationDate)
+              this.getInstructorName(course.id).subscribe(res=>{
+                course.instructorName = res.instructorName;
+              });
             });
             return courses;
           }),
@@ -98,6 +103,12 @@ export class CoursesService {
           })
         )
     );
+  }
+
+
+
+  getInstructorName(courseId:number){
+    return this.http.get<any>(`${Constants.apiUrl}/courses/${courseId}`,Constants.options)
   }
 
 }
