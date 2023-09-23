@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg" style="background-color: #F9F7F7;">
   <div class="container-fluid">
-    <a class="navbar-brand" routerLink="/" style="color: #112D4E; font-weight:600;">Courses Website</a>
+    <a class="navbar-brand" routerLink="/home" style="color: #112D4E; font-weight:600;">Courses Website</a>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -8,18 +8,18 @@
           <a class="nav-link" routerLink="/courses">Browse courses</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/enrollments">My learning</a>
+          <a class="nav-link" routerLink="/enrollments" *ngIf="currentRoleId===3">My learning</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/publishedCourses">My courses</a>
+          <a class="nav-link" routerLink="/publishedCourses" *ngIf="currentRoleId===2" >My courses</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/adminPanel">Administration Panel</a>
+          <a class="nav-link" routerLink="/adminPanel" *ngIf="currentRoleId===1">Administration Panel</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="/aboutUs">About Us</a>
         </li>
-        <li>
+        <li class="nav-item" *ngIf="currentPath==='courses'">
           <form class="d-flex" role="search">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
               style="width: 500px;">
@@ -39,8 +39,8 @@
         </li> -->
       </ul>
       <div class="d-flex">
-        <button class="btn btn-outline-success me-2" type="button" routerLink="/auth">Join Us</button>
-        <button class="btn btn-outline-danger me-1" type="button" (click)="onLogout()">Logout</button>
+        <button class="btn btn-outline-success me-2" type="button" routerLink="/auth" *ngIf="!isAuthenticated">Join Us</button>
+        <button class="btn btn-outline-danger me-1" type="button" (click)="onLogout()" *ngIf="isAuthenticated" >Logout</button>
       </div>
     </div>
   </div>

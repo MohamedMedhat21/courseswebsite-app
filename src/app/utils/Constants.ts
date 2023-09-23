@@ -19,7 +19,7 @@ export class Constants {
 
   static CurrentUserId = 0;
 
-  static CurrentRoleId = 0;
+  static CurrentRoleId:number;
 
   static options = {
     headers: new HttpHeaders().append(

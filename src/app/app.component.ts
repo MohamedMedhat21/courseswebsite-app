@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from './service/auth.service';
+import { BehaviorSubject } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +15,7 @@ export class AppComponent {
 
   }
 
-  
+
   ngOnInit(){
     this.authService.autoLogin();
   }

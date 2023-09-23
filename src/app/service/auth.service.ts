@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, map, tap, throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Constants } from '../utils/Constants';
 import { User } from '../model/user.model';
 
@@ -26,6 +26,7 @@ export interface UserLogging {
 export class AuthService {
 
   user  = new BehaviorSubject<UserLogging>(null!);
+
   private tokenExpirationTimer:any;
 
 
@@ -47,6 +48,7 @@ export class AuthService {
 
       Constants.UserJwtToken = res.token;
       Constants.setOptions(Constants.UserJwtToken);
+      Constants.CurrentRoleId = res.roleId;
       localStorage.setItem('userData',JSON.stringify(user));
       this.user.next(user);
 
@@ -75,6 +77,7 @@ export class AuthService {
 
       Constants.UserJwtToken = res.token;
       Constants.setOptions(Constants.UserJwtToken);
+      Constants.CurrentRoleId = res.roleId;
       localStorage.setItem('userData',JSON.stringify(user));
       console.log(user)
       this.user.next(user);
@@ -97,7 +100,9 @@ export class AuthService {
 
     Constants.CurrentUserId = userData.userId
     Constants.UserJwtToken = userData.token;
+    Constants.CurrentRoleId = userData.roleId;
     Constants.setOptions(Constants.UserJwtToken);
+
     const user = {
       userId:userData.userId,
       username:userData.email,
