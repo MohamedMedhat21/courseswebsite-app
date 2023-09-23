@@ -3,6 +3,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Course } from 'src/app/model/course.model';
 import { CoursesService } from 'src/app/service/courses.service';
+import { StudentCoursesService } from 'src/app/service/student-courses.service';
+import { UsersService } from 'src/app/service/users.service';
 
 @Component({
   selector: 'app-course-details',
@@ -14,10 +16,12 @@ export class CourseDetailsComponent {
   id: number;
   courseVideosNumber:number;
   sanitizedCourseLink:any;
+  isUserEnrolled=false
 
   constructor( private coursesService: CoursesService,private route: ActivatedRoute,
     private router: Router,
-    private domSanitizer: DomSanitizer
+    private domSanitizer: DomSanitizer,
+    private studentCoursesService:StudentCoursesService
   ) {}
 
   ngOnInit() {
@@ -26,7 +30,13 @@ export class CourseDetailsComponent {
       this.courseDetails = this.coursesService.getCourse(this.id);
       this.courseVideosNumber = Math.floor(Math.random()*(100-11+1)+11)
       this.sanitizedCourseLink = this.domSanitizer.bypassSecurityTrustResourceUrl(this.courseDetails.courseLink);
+
+      this.isUserEnrolled = this.studentCoursesService.getStudentCourseData(this.courseDetails.id).length === 0? false:true;
     });
 
+  }
+
+  onEnroll(courseId:number){
+    this.isUserEnrolled = this.studentCoursesService.enrollInCourse(courseId);
   }
 }

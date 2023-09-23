@@ -10,12 +10,19 @@ import { AuthService } from './auth.service';
   providedIn: 'root'
 })
 export class StudentCoursesService {
-  userId=5; // TODO take user id from the current logged in user id
+  isAuthenticated=false;
 
   private studentCoursesData: StudentCoursesData[] = [];
   studentCoursesDataChanged = new Subject<StudentCoursesData[]>();
 
-  constructor(private http: HttpClient,private authService:AuthService) { }
+  constructor(private http: HttpClient,private authService:AuthService) {
+    this.authService.user.subscribe(user => {
+      this.isAuthenticated = !user ? false : true; // or you can use !!user
+    });
+    // console.log(Constants.CurrentUserId)
+    this.isAuthenticated = Constants.CurrentUserId === 0 ? false:true;
+    // console.log(this.isAuthenticated)
+  }
 
   setStudentCoursesData(studentCoursesData: StudentCoursesData[]) {
     this.studentCoursesData = studentCoursesData;
@@ -26,8 +33,27 @@ export class StudentCoursesService {
     return this.studentCoursesData.slice();
   }
 
-  getStudentCourseData(index: number) {
-    return this.studentCoursesData[index];
+  // getStudentCourseData(index: number) {
+  //   return this.studentCoursesData[index];
+  // }
+
+  getStudentCourseData(courseId: number) {
+    return this.studentCoursesData.filter(crs =>{
+      return crs.courseId === courseId
+    });
+  }
+
+  enrollInCourse(courseId:number){
+    let isSuccess=false;
+    this.enrollInCourseApi(courseId).subscribe((res) => {
+      console.log(res)
+      isSuccess = true;
+    },
+    err=>{
+      console.log(err)
+    }
+    );
+    return isSuccess;
   }
 
   unenroll(localIndex:number,courseId:number,userId:number){
@@ -39,9 +65,14 @@ export class StudentCoursesService {
   }
 
   fetchStudentCoursesData() {
+    if(!this.isAuthenticated){
+      return
+    }
+    if(Constants.CurrentRoleId!==3)
+      return
     return <Observable<StudentCoursesData[]>>(
       this.http
-        .get<StudentCoursesData>(`${Constants.apiUrl}/users/${this.userId}/enrollments`, Constants.options)
+        .get<StudentCoursesData>(`${Constants.apiUrl}/users/${Constants.CurrentUserId}/enrollments`, Constants.options)
         .pipe(
           tap(console.log),
           map((studentCoursesData) => {
@@ -55,6 +86,12 @@ export class StudentCoursesService {
             this.setStudentCoursesData(studentCoursesData);
           })
         )
+    );
+  }
+
+  private enrollInCourseApi(courseId:number){
+    return (
+      this.http.post(`${Constants.apiUrl}/users/${Constants.CurrentUserId}/enrollments`,{courseId},{headers:Constants.options.headers,observe : 'response'})
     );
   }
 

@@ -17,6 +17,10 @@ export class Constants {
 
   static readonly coursePageSize=10;
 
+  static CurrentUserId = 0;
+
+  static CurrentRoleId = 0;
+
   static options = {
     headers: new HttpHeaders().append(
       'Authorization',

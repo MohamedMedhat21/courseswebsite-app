@@ -3,10 +3,21 @@ import { BehaviorSubject, Observable, map, tap, throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Constants } from '../utils/Constants';
+import { User } from '../model/user.model';
 
-export interface authRes{
+export interface AuthRes{
   token:string;
   expiresAfterMins:number;
+  userId:number;
+  roleId:number;
+}
+
+export interface UserLogging {
+  userId:number;
+  username:string;
+  token:string;
+  expiresAfterMins:number;
+  roleId:number;
 }
 
 @Injectable({
@@ -14,7 +25,7 @@ export interface authRes{
 })
 export class AuthService {
 
-  user  = new BehaviorSubject<any>(null!);
+  user  = new BehaviorSubject<UserLogging>(null!);
   private tokenExpirationTimer:any;
 
 
@@ -22,15 +33,16 @@ export class AuthService {
 
   signup(username:string,password:string,email:string,rolename:string){
 
-    return this.http.post<authRes>(`${Constants.apiUrl}/auth/register`,{username,email,password,rolename},Constants.options).pipe(
+    return this.http.post<AuthRes>(`${Constants.apiUrl}/auth/register`,{username,email,password,rolename},Constants.options).pipe(
       map(res=>{
         // this.handleAuthentication(resData);
 
       const user = {
+        userId:res.userId,
         username:username,
-        email:email,
         token:res.token,
-        expiresAfterMins:res.expiresAfterMins
+        expiresAfterMins:res.expiresAfterMins,
+        roleId:res.roleId
       }
 
       Constants.UserJwtToken = res.token;
@@ -49,20 +61,22 @@ export class AuthService {
 
   login(username:string,password:string){
 
-    return this.http.post<authRes>(`${Constants.apiUrl}/auth/authenticate`,{username,password},Constants.options).pipe(
+    return this.http.post<AuthRes>(`${Constants.apiUrl}/auth/authenticate`,{username,password},Constants.options).pipe(
       map(res=>{
         // this.handleAuthentication(resData);
 
       const user = {
+        userId:res.userId,
         username:username,
         token:res.token,
-        expiresAfterMins:res.expiresAfterMins
+        expiresAfterMins:res.expiresAfterMins,
+        roleId:res.roleId
       }
 
-      console.log('hell')
       Constants.UserJwtToken = res.token;
       Constants.setOptions(Constants.UserJwtToken);
       localStorage.setItem('userData',JSON.stringify(user));
+      console.log(user)
       this.user.next(user);
 
       console.log(Constants.UserJwtToken);
@@ -81,28 +95,41 @@ export class AuthService {
       return;
     }
 
+    Constants.CurrentUserId = userData.userId
     Constants.UserJwtToken = userData.token;
     Constants.setOptions(Constants.UserJwtToken);
+    const user = {
+      userId:userData.userId,
+      username:userData.email,
+      token:userData.token,
+      expiresAfterMins:userData.expiresAfterMins,
+      roleId:userData.roleId
+    }
+
+    this.user.next(user);
 
   }
 
   logout(){
-    this.user.next(null);
-    this.router.navigate(['/auth']);
+    this.user.next(null!);
 
     localStorage.removeItem('userData');
 
-    if(this.tokenExpirationTimer)
-      clearTimeout(this.tokenExpirationTimer);
+    window.location.reload()
+
+    // this.router.navigate(['/auth']);
 
 
-    this.tokenExpirationTimer=null;
+    // if(this.tokenExpirationTimer)
+    //   clearTimeout(this.tokenExpirationTimer);
 
-    window.location.reload
+
+    // this.tokenExpirationTimer=null;
+
   }
 
   // autoLogout(expirationDuration:number){
-
+    // TODO refine is needed
   //   this.tokenExpirationTimer = setTimeout(() => {
   //     this.logout();
   //   }, expirationDuration);

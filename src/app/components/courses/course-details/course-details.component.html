@@ -26,8 +26,8 @@
               class="name">{{courseDetails.name}}</span><span class="text-highlight pl-2"></span></span>
           <span class="desc d-block">{{courseDetails.headline}}</span>
         </h1>
-        <div class="text-center mb-5">
-          <a href="#section-pricing" class="btn btn-primary btn-lg scrollto">Start Learning Now</a>
+        <div class="text-center mb-5" *ngIf="!isUserEnrolled">
+          <a class="btn btn-primary btn-lg" (click)="onEnroll(courseDetails.id)">Start Learning Now</a>
         </div>
 
         <div class="hero-summary">
@@ -66,7 +66,8 @@
         </ul>
       </div><!--//text-center-->
       <div class="text-center mb-5">
-        <a class="btn btn-primary scrollto" href="#section-pricing">Join Course Now</a>
+        <a *ngIf="!isUserEnrolled" class="btn btn-primary scrollto" (click)="onEnroll(courseDetails.id)">Join Course Now</a>
+        <h3 *ngIf="isUserEnrolled"><i class="material-icons me-2" style="color: green;">&#xe86c;</i>Enrolled!</h3>
       </div>
       <div class="video-container">
         <div class="ratio ratio-16x9">
@@ -475,7 +476,7 @@
       </div><!--//module-accordion-->
 
       <div class="text-center mt-5">
-        <a class="btn btn-primary scrollto" href="#section-pricing">Enrol Now</a>
+        <a *ngIf="!isUserEnrolled" class="btn btn-primary scrollto" (click)="onEnroll(courseDetails.id)">Enrol Now</a>
       </div>
 
       <div>

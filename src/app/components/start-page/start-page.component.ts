@@ -13,6 +13,6 @@ export class StartPageComponent {
   }
 
   onBrowseCourses(){
-    // this.router.navigate(['/courses']);
+    this.router.navigate(['/courses']);
   }
 }
