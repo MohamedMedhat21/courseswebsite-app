@@ -9,8 +9,11 @@ import { AdminPanelComponent } from './components/admin-panel/admin-panel.compon
 import { UsersResolverService } from './resolver/users-resolver.service';
 import { studentCoursesDataResolverService } from './resolver/student-courses-data.service';
 import { EnrollmentComponent } from './components/enrollment/enrollment.component';
+import { StartPageComponent } from './components/start-page/start-page.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  {path:'home',component:StartPageComponent},
   {path: 'courses',component:CoursesComponent,resolve:[CoursesResolverService],children:[
     // {path:'',component:RecipeStartComponent},
     // {path:'new',component:RecipeEditComponent},

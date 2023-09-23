@@ -21,6 +21,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatMenuModule} from '@angular/material/menu';
 import { EnrollmentComponent } from './components/enrollment/enrollment.component';
 import { EnrollmentListComponent } from './components/enrollment/enrollment-list/enrollment-list.component';
+import { StartPageComponent } from './components/start-page/start-page.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { EnrollmentListComponent } from './components/enrollment/enrollment-list
     UserAddEditComponent,
     CourseAddEditComponent,
     EnrollmentComponent,
-    EnrollmentListComponent
+    EnrollmentListComponent,
+    StartPageComponent
   ],
   imports: [
     BrowserModule,

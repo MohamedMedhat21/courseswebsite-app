@@ -4,6 +4,7 @@ import { StudentCoursesData } from '../model/student-courses-data.model';
 import { Observable, Subject, catchError, map, tap } from 'rxjs';
 import { Constants } from '../utils/Constants';
 import { Utils } from '../utils/utils';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class StudentCoursesService {
   private studentCoursesData: StudentCoursesData[] = [];
   studentCoursesDataChanged = new Subject<StudentCoursesData[]>();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private authService:AuthService) { }
 
   setStudentCoursesData(studentCoursesData: StudentCoursesData[]) {
     this.studentCoursesData = studentCoursesData;
@@ -35,8 +36,6 @@ export class StudentCoursesService {
         window.location.reload()
       }
     });
-    // this.studentCoursesData.splice(localUserId, 1);
-    // this.usersChanged.next(this.users.slice());
   }
 
   fetchStudentCoursesData() {

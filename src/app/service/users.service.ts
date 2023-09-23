@@ -28,8 +28,8 @@ export class UsersService {
     return this.users.slice();
   }
 
-  getUser(index: number) {
-    return this.users[index];
+  getUser(id:number) {
+    return this.users[id];
   }
 
   addUser(user:any) {
@@ -66,6 +66,15 @@ export class UsersService {
         tap((users) => {
           this.setUsers(users);
         })
+      )
+    );
+  }
+
+  fetchUser(userId:number) {
+    return <Observable<User>>(
+      this.http.get<User>(`${Constants.apiUrl}/users/${userId}`, Constants.options).pipe(
+        tap(console.log),
+        catchError(Utils.handleError)
       )
     );
   }
