@@ -24,7 +24,7 @@
               <a mat-button [matMenuTriggerFor]="menu" title="Edit" data-toggle="tooltip" type="button" ><i class="material-icons">&#xe5d4;</i></a>
               <mat-menu #menu="matMenu">
                 <button mat-menu-item (click)="onEdit(i,course.id)" *ngIf="currentPath === 'publishedCourses'">Edit</button>
-                <button mat-menu-item (click)="onDelete(i,course.id)" *ngIf="currentPath === 'publishedCourses'">Delete</button>
+                <button mat-menu-item (click)="onDelete(course.id)" *ngIf="currentPath === 'publishedCourses'">Delete</button>
               </mat-menu>
             </div>
           </div>

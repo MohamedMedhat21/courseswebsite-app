@@ -49,6 +49,7 @@ export class AuthService {
       Constants.UserJwtToken = res.token;
       Constants.setOptions(Constants.UserJwtToken);
       Constants.CurrentRoleId = res.roleId;
+      Constants.CurrentUserId =res.userId;
       localStorage.setItem('userData',JSON.stringify(user));
       this.user.next(user);
 
@@ -75,9 +76,12 @@ export class AuthService {
         roleId:res.roleId
       }
 
+      Constants.CurrentUserId = res.userId;
+      Constants.CurrentRoleId = res.roleId;
+
       Constants.UserJwtToken = res.token;
       Constants.setOptions(Constants.UserJwtToken);
-      Constants.CurrentRoleId = res.roleId;
+
       localStorage.setItem('userData',JSON.stringify(user));
       console.log(user)
       this.user.next(user);

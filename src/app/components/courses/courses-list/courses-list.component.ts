@@ -5,6 +5,7 @@ import { Course } from 'src/app/model/course.model';
 import { CoursesService } from 'src/app/service/courses.service';
 import { CourseAddEditComponent } from '../course-add-edit/course-add-edit.component';
 import { AuthService } from 'src/app/service/auth.service';
+import { Constants } from 'src/app/utils/Constants';
 
 @Component({
   selector: 'app-courses-list',
@@ -16,8 +17,6 @@ export class CoursesListComponent {
   isLoading = false;
   currID: number;
   currentPath: string;
-  currUserId: number;
-  isAuthenticated = false;
 
   constructor(
     private coursesService: CoursesService,
@@ -26,22 +25,19 @@ export class CoursesListComponent {
     private courseDialog: MatDialog,
     private authService: AuthService
   ) {
-    coursesService.coursesChanged.subscribe((courses) => {
-      this.getData();
-    });
-
-    this.authService.user.subscribe((user) => {
-      this.isAuthenticated = !user ? false : true; // or you can use !!user
-      if (this.isAuthenticated) this.currUserId = user.userId;
-      // console.log(user)
-    });
   }
 
   ngOnInit() {
     this.currentPath = this.route.snapshot.routeConfig?.path!;
     this.isLoading = true;
-    this.getData();
+    this.getData(this.coursesService.getCourses());
     this.isLoading = false;
+
+    this.coursesService.coursesChanged.subscribe(courses => {
+      this.getData(courses);
+      // console.log('hello')
+    });
+
   }
 
   openCourseDialog() {
@@ -59,18 +55,18 @@ export class CoursesListComponent {
     });
   }
 
-  onDelete(localIndex: number, id: number) {
+  onDelete(id: number) {
     const isDelete = confirm('are you sure you want to delete this course?');
     if (isDelete) {
-      this.coursesService.deleteCourse(localIndex, id);
+      this.coursesService.deleteCourse(id);
     }
   }
 
-  getData() {
-    this.courses = this.coursesService.getCourses();
+  getData(courses:Course[]) {
+    this.courses = courses;
     if (this.currentPath === 'publishedCourses') {
       this.courses = this.courses.filter((value) => {
-        return value.instructorId === this.currUserId;
+        return value.instructorId === Constants.CurrentUserId;
       });
     }
   }

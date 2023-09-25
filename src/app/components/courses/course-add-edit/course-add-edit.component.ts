@@ -68,7 +68,7 @@ export class CourseAddEditComponent {
       this.creationDate = this.data.courseDetails.creationDate;
     }
     else{
-      this.id = 0;
+      // this.id = 0;
       this.creationDate = new Date();
     }
 

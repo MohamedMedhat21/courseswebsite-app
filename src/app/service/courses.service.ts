@@ -36,6 +36,7 @@ export class CoursesService {
   addCourse(course: Course) {
     this.addCourseApi(course).subscribe(course=>{
       course.creationDateFormatted = Utils.formatDate(course.creationDate);
+      console.log(course.id)
       this.courses.push(course);
       this.coursesChanged.next(this.courses.slice());
     });
@@ -48,8 +49,14 @@ export class CoursesService {
     });
   }
 
-  deleteCourse(localIndex: number,id:number) {
+  deleteCourse(id:number) {
     this.deleteCourseApi(id).subscribe(course=>{
+      let localIndex = 0;
+      this.courses.forEach((crs,index)=>{
+        if(crs.id === id){
+          localIndex = index;
+        }
+      });
       this.courses.splice(localIndex, 1);
       this.coursesChanged.next(this.courses.slice());
     })
@@ -59,7 +66,7 @@ export class CoursesService {
     return <Observable<Course>>(
       this.http.post(`${Constants.apiUrl}/courses`,course,Constants.options).pipe(
         tap(console.log),
-        // catchError(this.handleError)
+        // catchError(this.handleError),
       )
     );
   }
@@ -73,9 +80,9 @@ export class CoursesService {
     );
   }
 
-  private deleteCourseApi(id:number){
+  private deleteCourseApi(courseId:number){
     return <Observable<Course>>(
-      this.http.delete(`${Constants.apiUrl}/courses/${id}`,Constants.options).pipe(
+      this.http.delete(`${Constants.apiUrl}/users/${Constants.CurrentUserId}/mycourses/${courseId}`,Constants.options).pipe(
         // tap(console.log),
         // catchError(this.handleError)
       )
