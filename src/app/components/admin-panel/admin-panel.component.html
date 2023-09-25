@@ -1,6 +1,9 @@
 <div class="mb-3 mt-3 ms-3 d-flex align-items-start justify-content-between">
   <h1 class="section-title fw-medium">User management</h1>
-  <button class="btn btn-primary me-3" type="button" (click)="openUserDialog()">Add new user</button>
+  <div>
+    <button class="btn btn-primary me-3" type="button" (click)="openUserDialog()">Add new user</button>
+    <button class="btn btn-primary me-3" type="button" (click)="onExportUsers()">Export users</button>
+  </div>
 </div>
 <div class="p-4">
   <table class="table table-striped table-hover">

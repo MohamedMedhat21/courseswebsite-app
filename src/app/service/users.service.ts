@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject, catchError, tap, throwError } from 'rxjs';
 import { User } from '../model/user.model';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Constants } from '../utils/Constants';
 import { Utils } from '../utils/utils';
 
@@ -58,6 +58,10 @@ export class UsersService {
     this.usersChanged.next(this.users.slice());
   }
 
+  exportUsers(){
+    this.downloadFileApi()
+  }
+
   fetchUsers() {
     return <Observable<User[]>>(
       this.http.get<User>(`${Constants.apiUrl}/users`, Constants.options).pipe(
@@ -78,6 +82,7 @@ export class UsersService {
       )
     );
   }
+
 
   private addUserApi(user:any){
     return <Observable<User>>(
@@ -105,4 +110,26 @@ export class UsersService {
     );
   }
 
+  private downloadFileApi() {
+
+    this.http.get(`${Constants.apiUrl}/users/exportAll`, {
+      responseType: 'blob', // 'blob' for handling binary data
+      headers:Constants.options.headers
+    }).subscribe((response: Blob) => {
+      const filename = 'users.pdf';
+
+      // Create a temporary anchor element
+      const link = document.createElement('a');
+      link.href = window.URL.createObjectURL(response);
+      link.download = filename;
+
+      // Simulate a click on the anchor element to trigger the download
+      link.click();
+
+      // Clean up the temporary anchor element
+      link.remove();
+    });
+  }
+
 }
+

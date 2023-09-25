@@ -50,4 +50,8 @@ export class AdminPanelComponent {
     });
   }
 
+  onExportUsers(){
+    this.userService.exportUsers();
+  }
+
 }
