@@ -1,7 +1,7 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { StudentCoursesData } from '../model/student-courses-data.model';
-import { Observable, Subject, catchError, map, tap } from 'rxjs';
+import { Observable, Subject, catchError, map, pipe, tap } from 'rxjs';
 import { Constants } from '../utils/Constants';
 import { Utils } from '../utils/utils';
 import { AuthService } from './auth.service';
@@ -29,6 +29,11 @@ export class StudentCoursesService {
     this.studentCoursesDataChanged.next(this.studentCoursesData.slice());
   }
 
+  addStudentCourseData(studentCourseData:StudentCoursesData){
+    this.studentCoursesData.push(studentCourseData);
+    this.studentCoursesDataChanged.next(this.studentCoursesData.slice());
+  }
+
   getStudentCoursesData() {
     return this.studentCoursesData.slice();
   }
@@ -44,16 +49,9 @@ export class StudentCoursesService {
   }
 
   enrollInCourse(courseId:number){
-    let isSuccess=false;
-    this.enrollInCourseApi(courseId).subscribe((res) => {
+    this.enrollInCourseApi(courseId).subscribe(res=>{
       console.log(res)
-      isSuccess = true;
-    },
-    err=>{
-      console.log(err)
-    }
-    );
-    return isSuccess;
+    });
   }
 
   unenroll(localIndex:number,courseId:number,userId:number){

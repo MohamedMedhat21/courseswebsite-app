@@ -14,15 +14,16 @@ export class EnrollmentListComponent {
 
   constructor(private studentCoursesDataService:StudentCoursesService,private router: Router,
     private route: ActivatedRoute) {
-      studentCoursesDataService.studentCoursesDataChanged.subscribe(studentCoursesData=>{
+    }
+
+    ngOnInit() {
+      this.isLoading = true;
+      this.studentCoursesData = this.studentCoursesDataService.getStudentCoursesData();
+      this.isLoading = false;
+      
+      this.studentCoursesDataService.studentCoursesDataChanged.subscribe(studentCoursesData=>{
         this.studentCoursesData = studentCoursesData;
       })
-  }
-
-  ngOnInit() {
-    this.isLoading = true;
-    this.studentCoursesData = this.studentCoursesDataService.getStudentCoursesData();
-    this.isLoading = false;
   }
 
   onUnenroll(localIndex:number,id:number){

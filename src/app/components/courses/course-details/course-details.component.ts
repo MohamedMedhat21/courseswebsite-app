@@ -2,6 +2,7 @@ import { Component, Input, SecurityContext } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Course } from 'src/app/model/course.model';
+import { StudentCoursesData } from 'src/app/model/student-courses-data.model';
 import { CoursesService } from 'src/app/service/courses.service';
 import { StudentCoursesService } from 'src/app/service/student-courses.service';
 import { UsersService } from 'src/app/service/users.service';
@@ -37,6 +38,10 @@ export class CourseDetailsComponent {
   }
 
   onEnroll(courseId:number){
-    this.isUserEnrolled = this.studentCoursesService.enrollInCourse(courseId);
+    // console.log(this.isUserEnrolled)
+    this.studentCoursesService.enrollInCourse(courseId)
+    this.isUserEnrolled = true; // TODO make the boolean depends on if enrollment is not successful
+
+    this.studentCoursesService.fetchStudentCoursesData() // TODO refresh enrollments if successful
   }
 }
