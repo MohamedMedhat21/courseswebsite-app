@@ -17,8 +17,13 @@ export class AuthGuard {
       map(user => {
         const isAuth = !!user;
         if(isAuth) {
-          if(user.roleId === 1)
-            return true;
+          if(route.routeConfig?.path === 'adminPanel' && user.roleId !== 1)
+            return this.router.createUrlTree(['/home']);
+          if(route.routeConfig?.path === 'publishedCourses' && user.roleId !== 2)
+            return this.router.createUrlTree(['/home']);
+          if(route.routeConfig?.path === 'enrollments' && user.roleId !== 3)
+            return this.router.createUrlTree(['/home']);
+          return true;
         }
         return this.router.createUrlTree(['/home']);
       })
