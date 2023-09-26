@@ -11,6 +11,7 @@ import { studentCoursesDataResolverService } from './resolver/student-courses-da
 import { EnrollmentComponent } from './components/enrollment/enrollment.component';
 import { StartPageComponent } from './components/start-page/start-page.component';
 import { AuthGuard } from './components/auth/auth.guard';
+import { RolesResolverService } from './resolver/roles-resolver.service';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -23,7 +24,7 @@ const routes: Routes = [
   ]},
   {path: 'enrollments',component:EnrollmentComponent,resolve:[studentCoursesDataResolverService],canActivate: [AuthGuard]},
   {path: 'publishedCourses',component:CoursesComponent,resolve:[CoursesResolverService],canActivate: [AuthGuard]},
-  {path: 'adminPanel',component:AdminPanelComponent,resolve:[UsersResolverService],canActivate: [AuthGuard]},
+  {path: 'adminPanel',component:AdminPanelComponent,resolve:[UsersResolverService,RolesResolverService],canActivate: [AuthGuard]},
   {path: 'aboutUs',component:AboutUsComponent},
   {path: 'auth',component:AuthComponent},
 ];
