@@ -14,7 +14,7 @@ import { AuthComponent } from './components/auth/auth.component';
 import { AdminPanelComponent } from './components/admin-panel/admin-panel.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { FormsModule } from '@angular/forms';
-import { UserAddEditComponent } from './components/admin-panel/user-add-edit/user-add-edit.component';
+import { UserAddEditComponent } from './components/admin-panel/user-management/user-add-edit/user-add-edit.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { CourseAddEditComponent } from './components/courses/course-add-edit/course-add-edit.component'
 import {MatDialogModule} from '@angular/material/dialog';
@@ -22,6 +22,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import { EnrollmentComponent } from './components/enrollment/enrollment.component';
 import { EnrollmentListComponent } from './components/enrollment/enrollment-list/enrollment-list.component';
 import { StartPageComponent } from './components/start-page/start-page.component';
+import { UserManagementComponent } from './components/admin-panel/user-management/user-management.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { StartPageComponent } from './components/start-page/start-page.component
     CourseAddEditComponent,
     EnrollmentComponent,
     EnrollmentListComponent,
-    StartPageComponent
+    StartPageComponent,
+    UserManagementComponent
   ],
   imports: [
     BrowserModule,
