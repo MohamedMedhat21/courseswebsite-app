@@ -15,7 +15,7 @@ import { AdminPanelComponent } from './components/admin-panel/admin-panel.compon
 import { SettingsComponent } from './components/settings/settings.component';
 import { FormsModule } from '@angular/forms';
 import { UserAddEditComponent } from './components/admin-panel/user-management/user-add-edit/user-add-edit.component';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { CourseAddEditComponent } from './components/courses/course-add-edit/course-add-edit.component'
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatMenuModule} from '@angular/material/menu';
@@ -25,6 +25,10 @@ import { StartPageComponent } from './components/start-page/start-page.component
 import { UserManagementComponent } from './components/admin-panel/user-management/user-management.component';
 import { RoleManagementComponent } from './components/admin-panel/role-management/role-management.component';
 import { RoleAddEditComponent } from './components/admin-panel/role-management/role-add-edit/role-add-edit.component';
+import { SidebarModule } from 'primeng/sidebar';
+import { ButtonModule } from 'primeng/button';
+import { MenuModule } from 'primeng/menu';
+import { TableModule } from 'primeng/table';
 
 @NgModule({
   declarations: [
@@ -45,7 +49,7 @@ import { RoleAddEditComponent } from './components/admin-panel/role-management/r
     StartPageComponent,
     UserManagementComponent,
     RoleManagementComponent,
-    RoleAddEditComponent
+    RoleAddEditComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,7 +58,12 @@ import { RoleAddEditComponent } from './components/admin-panel/role-management/r
     FormsModule,
     NoopAnimationsModule,
     MatDialogModule,
-    MatMenuModule
+    MatMenuModule,
+    BrowserAnimationsModule,
+    SidebarModule,
+    ButtonModule,
+    MenuModule,
+    TableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

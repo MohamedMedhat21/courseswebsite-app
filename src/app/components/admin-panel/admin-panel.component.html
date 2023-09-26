@@ -1,3 +1,23 @@
-<app-user-management></app-user-management>
-<hr>
-<app-role-management></app-role-management>
+
+<p-sidebar [(visible)]="sidebarVisible">
+  <h1>Admin panel</h1>
+  <ng-template pTemplate="content">
+    <ul class="list-group list-group-flush mt-5">
+      <a href="" class="list-group-item list-group-item-action mb-2" (click)="userManagementVisible = true; roleManagementVisible=false;sidebarVisible=false;">User management</a>
+      <a href="" class="list-group-item list-group-item-action" (click)="userManagementVisible = false;roleManagementVisible=true;sidebarVisible=false;">Role management</a>
+    </ul>
+  </ng-template>
+  <ng-template pTemplate="footer">Courses website</ng-template>
+</p-sidebar>
+
+<div class="row">
+  <p-button class="ms-3 mt-2" (click)="sidebarVisible = true" icon="pi pi-bars"></p-button>
+</div>
+
+<div *ngIf="userManagementVisible">
+  <app-user-management></app-user-management>
+</div>
+
+<div *ngIf="roleManagementVisible">
+  <app-role-management></app-role-management>
+</div>

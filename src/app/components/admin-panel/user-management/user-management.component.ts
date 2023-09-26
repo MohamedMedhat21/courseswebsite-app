@@ -40,7 +40,7 @@ export class UserManagementComponent {
   }
 
   onEdit(localIndex:number,id:number){
-
+    
     const data = {
       userDetails:this.users[localIndex],
       localIndex:localIndex
