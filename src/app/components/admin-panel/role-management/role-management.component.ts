@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Role } from 'src/app/model/role.model';
 import { RolesService } from 'src/app/service/roles.service';
+import { RoleAddEditComponent } from './role-add-edit/role-add-edit.component';
 
 @Component({
   selector: 'app-role-management',
@@ -12,7 +13,7 @@ export class RoleManagementComponent {
 
   roles:Role[];
 
-  constructor(private roleService:RolesService,private userDialog:MatDialog){
+  constructor(private roleService:RolesService,private roleDialog:MatDialog){
 
   }
 
@@ -24,27 +25,27 @@ export class RoleManagementComponent {
     this.roles = this.roleService.getRoles();
   }
 
-  openUserDialog(){
-    // const userDialogRef = this.userDialog.open(UserAddEditComponent);
+  openRoleDialog(){
+    const roleDialogRef = this.roleDialog.open(RoleAddEditComponent);
   }
 
   onDelete(id:number){
-    const isDelete = confirm("are you sure you want to delete this user?")
+    const isDelete = confirm("are you sure you want to delete this role?")
     if(isDelete){
-      // this.userService.deleteUser(id);
+      this.roleService.deleteRole(id);
     }
   }
 
   onEdit(localIndex:number,id:number){
 
     const data = {
-      // userDetails:this.users[localIndex],
+      roleDetails:this.roles[localIndex],
       localIndex:localIndex
     }
 
-    // const userDialogRef = this.userDialog.open(UserAddEditComponent,{
-    //   data: data
-    // });
+    const roleDialogRef = this.roleDialog.open(RoleAddEditComponent,{
+      data: data
+    });
   }
 
 

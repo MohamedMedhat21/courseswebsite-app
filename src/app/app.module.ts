@@ -24,6 +24,7 @@ import { EnrollmentListComponent } from './components/enrollment/enrollment-list
 import { StartPageComponent } from './components/start-page/start-page.component';
 import { UserManagementComponent } from './components/admin-panel/user-management/user-management.component';
 import { RoleManagementComponent } from './components/admin-panel/role-management/role-management.component';
+import { RoleAddEditComponent } from './components/admin-panel/role-management/role-add-edit/role-add-edit.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { RoleManagementComponent } from './components/admin-panel/role-managemen
     EnrollmentListComponent,
     StartPageComponent,
     UserManagementComponent,
-    RoleManagementComponent
+    RoleManagementComponent,
+    RoleAddEditComponent
   ],
   imports: [
     BrowserModule,

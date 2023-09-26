@@ -47,12 +47,11 @@ export class UserAddEditComponent {
     this.roleName = userForm.value.roleName;
 
     const enabledString = this.enabled === true ? 1 : 0;
-    
+
     if (this.data){
       this.id = this.data.userDetails.id;
     }
     else{
-      this.id = 0
       this.password = userForm.value.password;
     }
 
