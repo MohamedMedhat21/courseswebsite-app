@@ -20,7 +20,7 @@ export class HeaderComponent {
   ngOnInit() {
     this.authService.user.subscribe((user) => {
       this.isAuthenticated = !user ? false : true; // or you can use !!user
-      this.currentRoleId = Constants.CurrentRoleId;
+      this.currentRoleId = Constants.CurrentLoggedUser.roleId;
     });
 
     this.router.events.subscribe((val) => {
@@ -30,7 +30,7 @@ export class HeaderComponent {
         this.currentPath = val.url.split('/')[1]
       }
     });
-    this.isAuthenticated = Constants.CurrentUserId === 0 ? false : true;
+    this.isAuthenticated = Constants.CurrentLoggedUser.id === 0 ? false : true;
 
   }
 

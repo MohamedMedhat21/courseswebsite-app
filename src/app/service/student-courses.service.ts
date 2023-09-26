@@ -20,7 +20,7 @@ export class StudentCoursesService {
       this.isAuthenticated = !user ? false : true; // or you can use !!user
     });
     // console.log(Constants.CurrentUserId)
-    this.isAuthenticated = Constants.CurrentUserId === 0 ? false:true;
+    this.isAuthenticated = Constants.CurrentLoggedUser.id === 0 ? false:true;
     // console.log(this.isAuthenticated)
   }
 
@@ -68,11 +68,11 @@ export class StudentCoursesService {
     if(!this.isAuthenticated){
       return
     }
-    if(Constants.CurrentRoleId!==3)
+    if(Constants.CurrentLoggedUser.roleId!==3)
       return
     return <Observable<StudentCoursesData[]>>(
       this.http
-        .get<StudentCoursesData>(`${Constants.apiUrl}/users/${Constants.CurrentUserId}/enrollments`, Constants.options)
+        .get<StudentCoursesData>(`${Constants.apiUrl}/users/${Constants.CurrentLoggedUser.id}/enrollments`, Constants.options)
         .pipe(
           tap(console.log),
           map((studentCoursesData) => {
@@ -91,7 +91,7 @@ export class StudentCoursesService {
 
   private enrollInCourseApi(courseId:number){
     return (
-      this.http.post(`${Constants.apiUrl}/users/${Constants.CurrentUserId}/enrollments`,{courseId},{headers:Constants.options.headers,observe : 'response'})
+      this.http.post(`${Constants.apiUrl}/users/${Constants.CurrentLoggedUser.id}/enrollments`,{courseId},{headers:Constants.options.headers,observe : 'response'})
     );
   }
 

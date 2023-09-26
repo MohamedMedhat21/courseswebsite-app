@@ -1,10 +1,17 @@
 import { HttpHeaders } from "@angular/common/http";
 
+export interface CurrentUser{
+  id:number;
+  username:string;
+  jwtToken:string;
+  expiresAfterMins:number;
+  roleId:number;
+}
+
+
 export class Constants {
 
   static readonly apiUrl = 'http://localhost:8080/api';
-
-  static UserJwtToken='';
 
   static readonly AdminJwtToken =
   'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtb2hhIiwiaWF0IjoxNjk1NDYzNjAxLCJleHAiOjE2OTU0ODUyMDF9.-2LQYKSBXmHfuwujR64jJa4n_0EYa1mVWyJM_38y-qc';
@@ -17,14 +24,12 @@ export class Constants {
 
   static readonly coursePageSize=10;
 
-  static CurrentUserId = 0;
-
-  static CurrentRoleId:number;
+  static CurrentLoggedUser:CurrentUser={id:0,username:'',jwtToken:'',roleId:0,expiresAfterMins:0};
 
   static options = {
     headers: new HttpHeaders().append(
       'Authorization',
-      `Bearer ${this.UserJwtToken}`
+      `Bearer ${this.CurrentLoggedUser.jwtToken}`
     ),
   };
 
@@ -32,7 +37,7 @@ export class Constants {
     const options = {
       headers: new HttpHeaders().append(
         'Authorization',
-        `Bearer ${this.UserJwtToken}`
+        `Bearer ${this.CurrentLoggedUser.jwtToken}`
       ),
     };
     this.options = options;

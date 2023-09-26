@@ -16,10 +16,11 @@ export class AuthGuard {
       take(1),
       map(user => {
         const isAuth = !!user;
-        if (isAuth) {
-          return true;
+        if(isAuth) {
+          if(user.roleId === 1)
+            return true;
         }
-        return this.router.createUrlTree(['/auth']);
+        return this.router.createUrlTree(['/home']);
       })
     );
   }

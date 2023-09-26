@@ -66,7 +66,7 @@ export class CoursesListComponent {
     this.courses = courses;
     if (this.currentPath === 'publishedCourses') {
       this.courses = this.courses.filter((value) => {
-        return value.instructorId === Constants.CurrentUserId;
+        return value.instructorId === Constants.CurrentLoggedUser.id;
       });
     }
   }

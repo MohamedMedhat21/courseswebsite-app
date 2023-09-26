@@ -59,7 +59,7 @@ export class CourseAddEditComponent {
     this.headline = courseForm.value.headline;
     this.imagePath = courseForm.value.imagePath;
     this.courseLink = courseForm.value.courseLink;
-    this.instructorId = Constants.CurrentUserId;
+    this.instructorId = Constants.CurrentLoggedUser.id;
 
 
 
@@ -81,7 +81,8 @@ export class CourseAddEditComponent {
       imagePath: this.imagePath,
       courseLink: this.courseLink,
       creationDate: this.creationDate,
-      instructorId: this.instructorId
+      instructorId: this.instructorId,
+      instructorName:Constants.CurrentLoggedUser.username
     };
 
     if (this.data){

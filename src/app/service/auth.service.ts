@@ -1,22 +1,13 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, map, tap, throwError } from 'rxjs';
+import { BehaviorSubject, map } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Constants } from '../utils/Constants';
-import { User } from '../model/user.model';
+import { Constants, CurrentUser } from '../utils/Constants';
 
 export interface AuthRes{
-  token:string;
-  expiresAfterMins:number;
   userId:number;
-  roleId:number;
-}
-
-export interface UserLogging {
-  userId:number;
-  username:string;
   token:string;
-  expiresAfterMins:number;
+  expiresAfter:number;
   roleId:number;
 }
 
@@ -25,7 +16,7 @@ export interface UserLogging {
 })
 export class AuthService {
 
-  user  = new BehaviorSubject<UserLogging>(null!);
+  user  = new BehaviorSubject<CurrentUser>(null!);
 
   private tokenExpirationTimer:any;
 
@@ -38,25 +29,22 @@ export class AuthService {
       map(res=>{
         // this.handleAuthentication(resData);
 
-      const user = {
-        userId:res.userId,
+      Constants.CurrentLoggedUser={
+        id:res.userId,
         username:username,
-        token:res.token,
-        expiresAfterMins:res.expiresAfterMins,
+        jwtToken:res.token,
+        expiresAfterMins:res.expiresAfter,
         roleId:res.roleId
       }
 
-      Constants.UserJwtToken = res.token;
-      Constants.setOptions(Constants.UserJwtToken);
-      Constants.CurrentRoleId = res.roleId;
-      Constants.CurrentUserId =res.userId;
-      localStorage.setItem('userData',JSON.stringify(user));
-      this.user.next(user);
+      Constants.setOptions(res.token);
 
-      console.log(Constants.UserJwtToken);
+      localStorage.setItem('userData',JSON.stringify(Constants.CurrentLoggedUser));
+      this.user.next(Constants.CurrentLoggedUser);
+
+      console.log(Constants.CurrentLoggedUser);
 
       // this.autoLogout(user.expiresAfterMins * 1000);
-
     })
     );
   }
@@ -65,57 +53,47 @@ export class AuthService {
   login(username:string,password:string){
 
     return this.http.post<AuthRes>(`${Constants.apiUrl}/auth/authenticate`,{username,password},Constants.options).pipe(
-      map(res=>{
+      map(res =>{
         // this.handleAuthentication(resData);
 
-      const user = {
-        userId:res.userId,
-        username:username,
-        token:res.token,
-        expiresAfterMins:res.expiresAfterMins,
-        roleId:res.roleId
-      }
+        Constants.CurrentLoggedUser={
+          id:res.userId,
+          username:username,
+          jwtToken:res.token,
+          expiresAfterMins:res.expiresAfter,
+          roleId:res.roleId
+        }
 
-      Constants.CurrentUserId = res.userId;
-      Constants.CurrentRoleId = res.roleId;
+        Constants.setOptions(res.token);
 
-      Constants.UserJwtToken = res.token;
-      Constants.setOptions(Constants.UserJwtToken);
-
-      localStorage.setItem('userData',JSON.stringify(user));
-      console.log(user)
-      this.user.next(user);
-
-      console.log(Constants.UserJwtToken);
+      localStorage.setItem('userData',JSON.stringify(Constants.CurrentLoggedUser));
+      console.log(Constants.CurrentLoggedUser)
+      this.user.next(Constants.CurrentLoggedUser);
 
       // this.autoLogout(user.expiresAfterMins * 1000);
-
     })
     );
   }
 
   autoLogin(){
 
-    const userData = JSON.parse(localStorage.getItem('userData')!);
+    const userData:CurrentUser = JSON.parse(localStorage.getItem('userData')!);
 
     if(!userData){
       return;
     }
 
-    Constants.CurrentUserId = userData.userId
-    Constants.UserJwtToken = userData.token;
-    Constants.CurrentRoleId = userData.roleId;
-    Constants.setOptions(Constants.UserJwtToken);
-
-    const user = {
-      userId:userData.userId,
-      username:userData.email,
-      token:userData.token,
+    Constants.CurrentLoggedUser={
+      id:userData.id,
+      username:userData.username,
+      jwtToken:userData.jwtToken,
       expiresAfterMins:userData.expiresAfterMins,
       roleId:userData.roleId
     }
 
-    this.user.next(user);
+    Constants.setOptions(userData.jwtToken);
+
+    this.user.next(Constants.CurrentLoggedUser);
 
   }
 
@@ -142,15 +120,12 @@ export class AuthService {
   //   this.tokenExpirationTimer = setTimeout(() => {
   //     this.logout();
   //   }, expirationDuration);
-
   // }
 
 
   private handleAuthentication(email:string,userId:string,token:string,expiresIn:number){
     const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
-
       // const user = new User(email,userId,token,expirationDate);
-
       // this.user.next(user);
 
       // localStorage.setItem('userData',JSON.stringify(user));

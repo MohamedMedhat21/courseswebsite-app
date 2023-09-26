@@ -5,7 +5,7 @@ export interface Course{
   description:string;
   headline:string;
   instructorId:number;
-  instructorName?:string;
+  instructorName:string;
   creationDate:Date;
   creationDateFormatted?:string;
   totalHours:number;

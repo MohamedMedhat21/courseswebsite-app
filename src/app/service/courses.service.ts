@@ -7,18 +7,13 @@ import { Utils } from '../utils/utils';
 import { UsersService } from './users.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CoursesService {
-
   private courses: Course[] = [];
   coursesChanged = new Subject<Course[]>();
 
-  constructor(
-    private http: HttpClient,
-    private usersService:UsersService
-  ) {}
-
+  constructor(private http: HttpClient, private usersService: UsersService) {}
 
   setCourses(courses: Course[]) {
     this.courses = courses;
@@ -34,59 +29,73 @@ export class CoursesService {
   }
 
   addCourse(course: Course) {
-    this.addCourseApi(course).subscribe(course=>{
+    this.addCourseApi(course).subscribe((course) => {
       course.creationDateFormatted = Utils.formatDate(course.creationDate);
-      console.log(course.id)
+      course.instructorName = Constants.CurrentLoggedUser.username
       this.courses.push(course);
       this.coursesChanged.next(this.courses.slice());
     });
   }
 
   updateCourse(index: number, editedCourse: Course) {
-    this.updateCourseApi(editedCourse).subscribe(course=>{
-      this.courses[index] = editedCourse;
+    this.updateCourseApi(editedCourse).subscribe((course) => {
+      let localIndex = 0;
+      this.courses.forEach((crs, index) => {
+        if (crs.id === editedCourse.id) {
+          localIndex = index;
+        }
+      });
+      this.courses[localIndex] = editedCourse;
       this.coursesChanged.next(this.courses.slice());
     });
   }
 
-  deleteCourse(id:number) {
-    this.deleteCourseApi(id).subscribe(course=>{
+  deleteCourse(id: number) {
+    this.deleteCourseApi(id).subscribe((course) => {
       let localIndex = 0;
-      this.courses.forEach((crs,index)=>{
-        if(crs.id === id){
+      this.courses.forEach((crs, index) => {
+        if (crs.id === id) {
           localIndex = index;
         }
       });
       this.courses.splice(localIndex, 1);
       this.coursesChanged.next(this.courses.slice());
-    })
+    });
   }
 
-  private addCourseApi(course:any){
+  private addCourseApi(course: any) {
     return <Observable<Course>>(
-      this.http.post(`${Constants.apiUrl}/courses`,course,Constants.options).pipe(
-        tap(console.log),
-        // catchError(this.handleError),
-      )
+      this.http
+        .post(`${Constants.apiUrl}/users/${Constants.CurrentLoggedUser.id}/mycourses`, course, Constants.options)
+        .pipe(
+          tap(console.log)
+          // catchError(this.handleError),
+        )
     );
   }
 
-  private updateCourseApi(course:any){
+  private updateCourseApi(course: any) {
     return <Observable<Course>>(
-      this.http.put(`${Constants.apiUrl}/courses`,course,Constants.options).pipe(
-        tap(console.log),
-        // catchError(this.handleError)
-      )
+      this.http
+        .put(
+          `${Constants.apiUrl}/users/${Constants.CurrentLoggedUser.id}/mycourses`,
+          course,
+          Constants.options
+        )
+        .pipe(tap(console.log))
     );
   }
 
-  private deleteCourseApi(courseId:number){
-    return <Observable<Course>>(
-      this.http.delete(`${Constants.apiUrl}/users/${Constants.CurrentUserId}/mycourses/${courseId}`,Constants.options).pipe(
-        // tap(console.log),
-        // catchError(this.handleError)
+  private deleteCourseApi(courseId: number) {
+    return <Observable<Course>>this.http
+      .delete(
+        `${Constants.apiUrl}/users/${Constants.CurrentLoggedUser.id}/mycourses/${courseId}`,
+        Constants.options
       )
-    );
+      .pipe
+      // tap(console.log),
+      // catchError(this.handleError)
+      ();
   }
 
   fetchCourses() {
@@ -97,10 +106,9 @@ export class CoursesService {
           tap(console.log),
           map((courses) => {
             courses.forEach((course: Course) => {
-              course.creationDateFormatted = Utils.formatDate(course.creationDate)
-              this.getInstructorName(course.id).subscribe(res=>{
-                course.instructorName = res.instructorName;
-              });
+              course.creationDateFormatted = Utils.formatDate(
+                course.creationDate
+              );
             });
             return courses;
           }),
@@ -111,11 +119,4 @@ export class CoursesService {
         )
     );
   }
-
-
-
-  getInstructorName(courseId:number){
-    return this.http.get<any>(`${Constants.apiUrl}/courses/${courseId}`,Constants.options)
-  }
-
 }
