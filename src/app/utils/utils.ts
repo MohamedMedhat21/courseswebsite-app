@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from "@angular/common/http";
 import { Observable, throwError } from "rxjs";
+import jwt_decode, { JwtPayload } from 'jwt-decode'
 
 export class Utils {
 
@@ -18,6 +19,13 @@ export class Utils {
     return throwError(
       () => new Error(`An error occurred, Error code: ${error.status}`)
     );
+  }
+
+  static getJwtTokenExpirationDate(token: string): Date {
+    const decodedToken = jwt_decode<JwtPayload>(token);
+    const expirationDate = new Date(0); // Start with the Unix epoch
+    expirationDate.setUTCSeconds(decodedToken.exp!); // Set the expiration date using the `exp` claim
+    return expirationDate;
   }
 
 }

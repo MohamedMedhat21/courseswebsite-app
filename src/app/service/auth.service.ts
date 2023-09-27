@@ -3,6 +3,7 @@ import { BehaviorSubject, map } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Constants, CurrentUser } from '../utils/Constants';
+import { Utils } from '../utils/utils';
 
 export interface AuthRes{
   userId:number;
@@ -80,6 +81,16 @@ export class AuthService {
     const userData:CurrentUser = JSON.parse(localStorage.getItem('userData')!);
 
     if(!userData){
+      return;
+    }
+
+    const tokenExpirationDate = Utils.getJwtTokenExpirationDate(userData.jwtToken);
+    const nowDate = new Date();
+    const diffTime =  nowDate.getTime() - tokenExpirationDate.getTime()
+    // const diffHours = Math.floor(diffTime / (1000 * 60 * 60))
+
+    if(diffTime > 0){
+      this.logout()
       return;
     }
 
