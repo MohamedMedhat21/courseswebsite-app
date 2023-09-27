@@ -12,17 +12,19 @@ import { EnrollmentComponent } from './components/enrollment/enrollment.componen
 import { StartPageComponent } from './components/start-page/start-page.component';
 import { AuthGuard } from './components/auth/auth.guard';
 import { RolesResolverService } from './resolver/roles-resolver.service';
+import { EnrollmentDetailsComponent } from './components/enrollment/enrollment-details/enrollment-details.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   {path:'home',component:StartPageComponent},
-  {path: 'courses',component:CoursesComponent,resolve:[CoursesResolverService,studentCoursesDataResolverService],children:[
-    // {path:'',component:RecipeStartComponent},
-    // {path:'new',component:RecipeEditComponent},
+  {path: 'courses',component:CoursesComponent,resolve:[CoursesResolverService,studentCoursesDataResolverService]
+  ,children:[
     {path:':id',component:CourseDetailsComponent},
-    // {path:':id/edit',component:RecipeEditComponent},
   ]},
-  {path: 'enrollments',component:EnrollmentComponent,resolve:[studentCoursesDataResolverService],canActivate: [AuthGuard]},
+  {path: 'enrollments',component:EnrollmentComponent,resolve:[studentCoursesDataResolverService,CoursesResolverService],canActivate: [AuthGuard]
+  ,children:[
+    {path:':id',component:EnrollmentDetailsComponent},
+  ]},
   {path: 'publishedCourses',component:CoursesComponent,resolve:[CoursesResolverService],canActivate: [AuthGuard]},
   {path: 'adminPanel',component:AdminPanelComponent,resolve:[UsersResolverService,RolesResolverService],canActivate: [AuthGuard]},
   {path: 'aboutUs',component:AboutUsComponent},

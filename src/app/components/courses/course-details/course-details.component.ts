@@ -31,8 +31,7 @@ export class CourseDetailsComponent {
       this.courseDetails = this.coursesService.getCourse(this.id);
       this.courseVideosNumber = Math.floor(Math.random()*(100-11+1)+11)
       this.sanitizedCourseLink = this.domSanitizer.bypassSecurityTrustResourceUrl(this.courseDetails.courseLink);
-
-      this.isUserEnrolled = this.studentCoursesService.getStudentCourseData(this.courseDetails.id).length === 0? false:true;
+      this.isUserEnrolled = this.studentCoursesService.getStudentCourseDataByCrsId(this.courseDetails.id) === undefined ? false:true;
     });
 
   }

@@ -28,6 +28,12 @@ export class CoursesService {
     return this.courses[index];
   }
 
+  getCourseByCourseId(courseId: number) {
+    return this.courses.filter(crs =>{
+      return crs.id === courseId
+    })[0];
+  }
+
   addCourse(course: Course) {
     this.addCourseApi(course).subscribe((course) => {
       course.creationDateFormatted = Utils.formatDate(course.creationDate);

@@ -29,6 +29,7 @@ import { SidebarModule } from 'primeng/sidebar';
 import { ButtonModule } from 'primeng/button';
 import { MenuModule } from 'primeng/menu';
 import { TableModule } from 'primeng/table';
+import { EnrollmentDetailsComponent } from './components/enrollment/enrollment-details/enrollment-details.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { TableModule } from 'primeng/table';
     UserManagementComponent,
     RoleManagementComponent,
     RoleAddEditComponent,
+    EnrollmentDetailsComponent,
   ],
   imports: [
     BrowserModule,

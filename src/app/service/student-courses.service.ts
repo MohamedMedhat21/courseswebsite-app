@@ -38,14 +38,14 @@ export class StudentCoursesService {
     return this.studentCoursesData.slice();
   }
 
-  // getStudentCourseData(index: number) {
-  //   return this.studentCoursesData[index];
-  // }
+  getStudentCourseData(index: number) {
+    return this.studentCoursesData[index];
+  }
 
-  getStudentCourseData(courseId: number) {
+  getStudentCourseDataByCrsId(courseId: number) {
     return this.studentCoursesData.filter(crs =>{
       return crs.courseId === courseId
-    });
+    })[0];
   }
 
   enrollInCourse(courseId:number){

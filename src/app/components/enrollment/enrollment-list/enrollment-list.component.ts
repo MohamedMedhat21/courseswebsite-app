@@ -20,7 +20,7 @@ export class EnrollmentListComponent {
       this.isLoading = true;
       this.studentCoursesData = this.studentCoursesDataService.getStudentCoursesData();
       this.isLoading = false;
-      
+
       this.studentCoursesDataService.studentCoursesDataChanged.subscribe(studentCoursesData=>{
         this.studentCoursesData = studentCoursesData;
       })
@@ -30,6 +30,7 @@ export class EnrollmentListComponent {
     const isDelete = confirm("are you sure you want to unenroll from this course?")
     if(isDelete){
       this.studentCoursesDataService.unenroll(localIndex,id,this.studentCoursesData[localIndex].userId);
+      this.router.navigate(['/enrollments'])
     }
   }
 }
