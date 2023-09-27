@@ -1,38 +1,30 @@
-<div *ngIf="isLoading" class="text-center mt-5">
-  <app-loading-spinner></app-loading-spinner>
-</div>
+<div class="container">
+  <div *ngIf="isLoading" class="text-center mt-5">
+    <app-loading-spinner></app-loading-spinner>
+  </div>
 
-<div class="mt-2 mb-3" style="text-align: right;" *ngIf="currentPath === 'publishedCourses'">
-  <button class="btn btn-primary me-3" type="button" (click)="openCourseDialog()">Add new course</button>
-</div>
+  <div class="mt-2 mb-3" style="text-align: right;" *ngIf="currentPath === 'publishedCourses'">
+    <button class="btn btn-primary me-3" type="button" (click)="openCourseDialog()">Add new course</button>
+  </div>
 
-
-<div class="list-group ms-3 mt-3" *ngFor="let course of courses;let i = index">
-  <div class="list-group-item  mb-2" aria-current="true">
-    <div class="row">
-      <div class="col-5 p-0">
-        <img [src]="course.imagePath">
-      </div>
-      <div class="col-7">
-        <div class="d-flex w-100 justify-content-between">
-          <a class="list-group-item-action w-50" [routerLink]="[i]">
-            <h4 class="mb-1">{{course.name}}</h4>
-          </a>
-          <div class="d-flex">
-            <small class="me-2">{{course.creationDateFormatted}}</small>
-            <div *ngIf="currentPath !== 'courses'">
-              <a mat-button [matMenuTriggerFor]="menu" title="Edit" data-toggle="tooltip" type="button" ><i class="material-icons">&#xe5d4;</i></a>
-              <mat-menu #menu="matMenu">
-                <button mat-menu-item (click)="onEdit(i,course.id)" *ngIf="currentPath === 'publishedCourses'">Edit</button>
-                <button mat-menu-item (click)="onDelete(course.id)" *ngIf="currentPath === 'publishedCourses'">Delete</button>
-              </mat-menu>
+  <div>
+    <div class="ms-3 mt-3" *ngFor="let course of courses;let i = index">
+        <p-card class="col-sm" header={{course.name}} subheader={{course.headline}} [style]="{ width: '320px' }">
+          <ng-template pTemplate="header">
+            <a [routerLink]="[i]" *ngIf="currentPath === 'courses'"><img [src]="course.imagePath" alt="course photo" ></a>
+            <a *ngIf="currentPath === 'publishedCourses'"><img [src]="course.imagePath" alt="course photo" ></a>
+          </ng-template>
+          <ng-template pTemplate="content">
+            <strong>Instructor: {{course.instructorName}}</strong><br>
+            <small>{{course.creationDateFormatted}}</small>
+          </ng-template>
+          <ng-template pTemplate="footer">
+            <div *ngIf="currentPath === 'publishedCourses'">
+              <p-button label="Edit" icon="pi pi-check" (click)="onEdit(i,course.id)"></p-button>
+              <p-button label="Delete" icon="pi pi-times" (click)="onDelete(course.id)" styleClass="p-button-danger" [style]="{ 'margin-left': '.5em' }"></p-button>
             </div>
-          </div>
-        </div>
-        <p class="mb-4">{{course.headline}}</p>
-        <strong>{{course.instructorName}}</strong><br>
-        <small>{{course.totalHours}} total hours</small>
-      </div>
+          </ng-template>
+        </p-card>
     </div>
   </div>
 </div>

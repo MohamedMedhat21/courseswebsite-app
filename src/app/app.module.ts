@@ -30,6 +30,8 @@ import { ButtonModule } from 'primeng/button';
 import { MenuModule } from 'primeng/menu';
 import { TableModule } from 'primeng/table';
 import { EnrollmentDetailsComponent } from './components/enrollment/enrollment-details/enrollment-details.component';
+import { MenubarModule } from 'primeng/menubar';
+import { CardModule } from 'primeng/card';
 
 @NgModule({
   declarations: [
@@ -65,7 +67,9 @@ import { EnrollmentDetailsComponent } from './components/enrollment/enrollment-d
     SidebarModule,
     ButtonModule,
     MenuModule,
-    TableModule
+    TableModule,
+    MenubarModule,
+    CardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

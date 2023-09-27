@@ -1,6 +1,9 @@
 <nav class="navbar navbar-expand-lg" style="background-color: #F9F7F7;">
   <div class="container-fluid">
     <a class="navbar-brand" routerLink="/home" style="color: #112D4E; font-weight:600;">Courses Website</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -21,9 +24,8 @@
         </li>
         <li class="nav-item" *ngIf="currentPath==='courses'">
           <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
-              style="width: 500px;">
-            <button class="btn btn-outline-success" type="submit">Search</button>
+            <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success ms-2" type="submit">Search</button>
           </form>
         </li>
         <!-- <li class="nav-item dropdown">

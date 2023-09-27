@@ -5,6 +5,7 @@ import { Course } from 'src/app/model/course.model';
 import { CoursesService } from 'src/app/service/courses.service';
 import { UsersService } from 'src/app/service/users.service';
 import { Constants } from 'src/app/utils/Constants';
+import { Utils } from 'src/app/utils/utils';
 
 @Component({
   selector: 'app-course-add-edit',
@@ -82,7 +83,8 @@ export class CourseAddEditComponent {
       courseLink: this.courseLink,
       creationDate: this.creationDate,
       instructorId: this.instructorId,
-      instructorName:Constants.CurrentLoggedUser.username
+      instructorName:Constants.CurrentLoggedUser.username,
+      creationDateFormatted : Utils.formatDate(this.creationDate)
     };
 
     if (this.data){
