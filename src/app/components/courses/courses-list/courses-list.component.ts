@@ -7,6 +7,13 @@ import { CourseAddEditComponent } from '../course-add-edit/course-add-edit.compo
 import { AuthService } from 'src/app/service/auth.service';
 import { Constants } from 'src/app/utils/Constants';
 
+// interface PageEvent {
+//   first: number;
+//   rows: number;
+//   page: number;
+//   pageCount: number;
+// }
+
 @Component({
   selector: 'app-courses-list',
   templateUrl: './courses-list.component.html',
@@ -20,10 +27,8 @@ export class CoursesListComponent {
 
   constructor(
     private coursesService: CoursesService,
-    private router: Router,
     private route: ActivatedRoute,
     private courseDialog: MatDialog,
-    private authService: AuthService
   ) {
   }
 
@@ -70,4 +75,16 @@ export class CoursesListComponent {
       });
     }
   }
+
+  // first: number = 0;
+
+  // rows: number = 2;
+
+  // onPageChange(event: PageEvent){
+  //   this.getModels(event.page + 1);
+  // }
+
+  // getModels(page: number = 1) {
+  //   return this.courses.slice(page-1,Constants.defaultCoursesPagination.pageSize);
+  // }
 }

@@ -107,16 +107,14 @@ export class CoursesService {
   fetchCourses() {
     return <Observable<Course[]>>(
       this.http
-        .get<Course>(`${Constants.apiUrl}/courses?p=0&s=id`, Constants.options)
+        .get<Course>(`${Constants.apiUrl}/courses?pageNumber=0&pageSize=10&sortField=id`, Constants.options)
         .pipe(
           tap(console.log),
-          map((courses) => {
-            courses.forEach((course: Course) => {
-              course.creationDateFormatted = Utils.formatDate(
-                course.creationDate
-              );
+          map((res) => {
+            res.courses.forEach((course: Course) => {
+              course.creationDateFormatted = Utils.formatDate(course.creationDate);
             });
-            return courses;
+            return res.courses;
           }),
           catchError(Utils.handleError),
           tap((courses) => {

@@ -17,7 +17,7 @@ export class CoursesComponent {
 
   ngOnInit() {
     this.currentPath = this.route.snapshot.routeConfig?.path!;
-    console.log(this.currentPath)
+    // console.log(this.currentPath)
   }
 
 }
