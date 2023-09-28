@@ -41,12 +41,11 @@
               </div>
               <div class="mb-3">
                 <label for="roleName" class="form-label">Role name</label>
-                <input type="text" id="roleName" class="form-control"
-                ngModel name="roleName" required [(ngModel)]="roleName"/>
+                <p-dropdown id="roleName" class="form-control" [options]="roles" optionLabel="name" name="role" ngModel [(ngModel)]="role" [required]="true" placeholder="Select a Role"></p-dropdown>
               </div>
               <div class="mb-3 form-check">
                 <input type="checkbox" class="form-check-input" id="enabled"
-                ngModel name="enabledCheckbox" checked=true [(ngModel)]="enabled"/> <!-- TODO check box is not working-->
+                ngModel name="enabledCheckbox" [(ngModel)]="enabled"/> <!-- TODO check box is not working-->
                 <label class="form-check-label" for="enabled">Enable this user</label>
               </div>
               <!-- <button type="submit" class="btn btn-primary" [disabled]="!userForm.valid">Add user</button> -->

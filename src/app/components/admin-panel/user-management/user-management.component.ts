@@ -3,6 +3,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { User } from 'src/app/model/user.model';
 import { UsersService } from 'src/app/service/users.service';
 import { UserAddEditComponent } from './user-add-edit/user-add-edit.component';
+import { Role } from 'src/app/model/role.model';
+import { RolesService } from 'src/app/service/roles.service';
 
 @Component({
   selector: 'app-user-management',
@@ -12,9 +14,10 @@ import { UserAddEditComponent } from './user-add-edit/user-add-edit.component';
 export class UserManagementComponent {
 
   users:User[];
+  isExportBtnLoading = false;
+
 
   constructor(private userService:UsersService,private userDialog:MatDialog){
-
   }
 
   ngOnInit(){
@@ -40,7 +43,7 @@ export class UserManagementComponent {
   }
 
   onEdit(localIndex:number,id:number){
-    
+
     const data = {
       userDetails:this.users[localIndex],
       localIndex:localIndex
@@ -53,7 +56,9 @@ export class UserManagementComponent {
   }
 
   onExportUsers(){
+    this.isExportBtnLoading = true;
     this.userService.exportUsers();
+    this.isExportBtnLoading = false;
   }
 
 

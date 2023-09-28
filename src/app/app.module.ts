@@ -33,6 +33,8 @@ import { EnrollmentDetailsComponent } from './components/enrollment/enrollment-d
 import { MenubarModule } from 'primeng/menubar';
 import { CardModule } from 'primeng/card';
 import { PaginatorModule } from 'primeng/paginator';
+import { DropdownModule } from 'primeng/dropdown';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +57,7 @@ import { PaginatorModule } from 'primeng/paginator';
     RoleManagementComponent,
     RoleAddEditComponent,
     EnrollmentDetailsComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
@@ -71,7 +74,8 @@ import { PaginatorModule } from 'primeng/paginator';
     TableModule,
     MenubarModule,
     CardModule,
-    PaginatorModule
+    PaginatorModule,
+    DropdownModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,6 +1,8 @@
 import { Component, Inject } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Role } from 'src/app/model/role.model';
+import { RolesService } from 'src/app/service/roles.service';
 import { UsersService } from 'src/app/service/users.service';
 
 @Component({
@@ -15,10 +17,12 @@ export class UserAddEditComponent {
   password : string;
   email :string;
   enabled :boolean;
-  roleName :string;
+  role :Role;
+  roles:Role[];
 
   constructor(
     private userService: UsersService,
+    private roleService:RolesService,
     public dialogRef: MatDialogRef<UserAddEditComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
@@ -28,8 +32,14 @@ export class UserAddEditComponent {
       this.username = this.data.userDetails.username;
       this.email = this.data.userDetails.email;
       this.enabled = this.data.userDetails.enabled;
-      this.roleName = this.data.userDetails.role.name;
+      this.role = this.data.userDetails.role;
     }
+
+    this.roleService.rolesChanged.subscribe(roles =>{
+      this.roles = roles;
+    })
+
+    this.roles = this.roleService.getRoles();
   }
 
   closeDialog() {
@@ -37,14 +47,13 @@ export class UserAddEditComponent {
   }
 
   onSubmit(userForm: NgForm) {
-    this.error = null;
 
     if (!userForm.valid) return;
 
     this.username = userForm.value.username;
     this.email = userForm.value.email;
     this.enabled = userForm.value.enabledCheckbox;
-    this.roleName = userForm.value.roleName;
+    this.role = userForm.value.role;
 
     const enabledString = this.enabled === true ? 1 : 0;
 
@@ -61,9 +70,10 @@ export class UserAddEditComponent {
       password: this.password,
       email: this.email,
       enabled: enabledString,
-      rolename: this.roleName,
+      rolename: this.role.name,
     };
 
+    console.log(user.enabled)
     if (this.data){
       this.userService.updateUser(this.data.localIndex,user);
     }
