@@ -1,6 +1,5 @@
 import { HttpHeaders } from "@angular/common/http";
 import { Subject } from "rxjs";
-// import { CourseResponse } from "../model/course-response.model";
 
 export interface CurrentUser{
   id:number;
@@ -29,14 +28,6 @@ export class Constants {
   static CurrentLoggedUser:CurrentUser={id:0,username:'',jwtToken:'',roleId:0,expiresAfterMins:0};
 
   static courseFilter = new Subject<string>();
-
-  // static defaultCoursesPagination:CourseResponse = {
-  //   page:0,
-  //   totalPages:1,
-  //   totalRecords:6,
-  //   sortField:'id',
-  //   pageSize:2
-  // }
 
   static options = {
     headers: new HttpHeaders().append(

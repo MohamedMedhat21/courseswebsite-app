@@ -10,7 +10,7 @@
 </div>
 
 <div class="container">
-  <p-table [value]="users" [tableStyle]="{ 'min-width': '50rem' }">
+  <p-table [value]="usersPaginatedList" [tableStyle]="{ 'min-width': '50rem' }">
     <ng-template pTemplate="header">
       <tr>
         <th>#</th>
@@ -35,10 +35,11 @@
         <td><span [ngClass]="{'text-success': user.enabled == '1','text-warning': user.enabled == '0'}">&bull;</span>
           <span *ngIf="user.enabled == '1'"> Active</span> <span *ngIf="user.enabled == '0'"> Inactive</span> </td>
         <td>
-          <button pButton pRipple type="button" icon="pi pi-pencil" (click)="onEdit(rowIndex,user.id)" class="p-button-rounded p-button-text" title="Settings" data-toggle="tooltip"></button>
+          <button pButton pRipple type="button" icon="pi pi-pencil" (click)="onEdit(rowIndex + (currentPage - 1) * itemsPerPage ,user.id)" class="p-button-rounded p-button-text" title="Settings" data-toggle="tooltip"></button>
           <button style="color: #F44336;" pButton type="button" icon="pi pi-times" (click)="onDelete(user.id)" class="p-button-rounded p-button-text" title="Delete" data-toggle="tooltip"></button>
         </td>
       </tr>
     </ng-template>
   </p-table>
+  <p-paginator (onPageChange)="onPageChange($event)" [first]="(currentPage - 1) * itemsPerPage" [rows]="itemsPerPage" [totalRecords]="users.length"  [pageLinkSize]="2"></p-paginator>
 </div>

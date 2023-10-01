@@ -5,6 +5,14 @@ import { UsersService } from 'src/app/service/users.service';
 import { UserAddEditComponent } from './user-add-edit/user-add-edit.component';
 import { Role } from 'src/app/model/role.model';
 import { RolesService } from 'src/app/service/roles.service';
+import { Constants } from 'src/app/utils/Constants';
+
+// interface PageEvent {
+//   first: number;
+//   rows: number;
+//   page: number;
+//   pageCount: number;
+// }
 
 @Component({
   selector: 'app-user-management',
@@ -14,6 +22,9 @@ import { RolesService } from 'src/app/service/roles.service';
 export class UserManagementComponent {
 
   users:User[];
+  usersPaginatedList:User[];
+  itemsPerPage = 3;
+  currentPage = 1;
   isExportBtnLoading = false;
 
 
@@ -23,9 +34,21 @@ export class UserManagementComponent {
   ngOnInit(){
     this.userService.usersChanged.subscribe(users =>{
       this.users = users;
+
+      this.onPageChange({
+        page: this.currentPage - 1,
+        first: (this.currentPage - 1) * this.itemsPerPage,
+        rows: this.itemsPerPage
+      });
     })
 
     this.users = this.userService.getUsers();
+
+    this.onPageChange({
+      page: 0,
+      first: 0,
+      rows: this.itemsPerPage
+    });
   }
 
   openUserDialog(){
@@ -44,6 +67,7 @@ export class UserManagementComponent {
 
   onEdit(localIndex:number,id:number){
 
+    console.log(localIndex)
     const data = {
       userDetails:this.users[localIndex],
       localIndex:localIndex
@@ -61,5 +85,13 @@ export class UserManagementComponent {
     this.isExportBtnLoading = false;
   }
 
+  onPageChange(event: any){
+    console.log(event)
+    this.currentPage = event.page + 1;
+    this.usersPaginatedList = this.users.slice(
+      event.first,
+      event.first + this.itemsPerPage
+    );
+  }
 
 }
