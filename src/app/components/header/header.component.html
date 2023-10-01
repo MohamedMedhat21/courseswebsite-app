@@ -23,9 +23,10 @@
           <a class="nav-link" routerLink="/aboutUs">About Us</a>
         </li>
         <li class="nav-item" *ngIf="currentPath==='courses'">
-          <form class="d-flex" role="search">
-            <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success ms-2" type="submit">Search</button>
+          <form class="d-flex" role="search" #searchForm="ngForm" (ngSubmit)="onSubmit(searchForm)">
+            <input  placeholder="search for course" type="text" class="form-control" aria-describedby="usernameHelp"
+            ngModel name="searchQuery" (input)="onSubmit(searchForm)">
+            <button class="btn btn-outline-success ms-2"  type="submit" [disabled]="!searchForm.valid">Search</button>
           </form>
         </li>
         <!-- <li class="nav-item dropdown">

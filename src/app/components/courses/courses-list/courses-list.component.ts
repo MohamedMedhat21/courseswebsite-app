@@ -6,6 +6,7 @@ import { CoursesService } from 'src/app/service/courses.service';
 import { CourseAddEditComponent } from '../course-add-edit/course-add-edit.component';
 import { AuthService } from 'src/app/service/auth.service';
 import { Constants } from 'src/app/utils/Constants';
+import { Subject } from 'rxjs';
 
 // interface PageEvent {
 //   first: number;
@@ -21,9 +22,12 @@ import { Constants } from 'src/app/utils/Constants';
 })
 export class CoursesListComponent {
   courses: Course[];
+  filteredCourses: Course[];
   isLoading = false;
   currID: number;
   currentPath: string;
+
+
 
   constructor(
     private coursesService: CoursesService,
@@ -43,6 +47,10 @@ export class CoursesListComponent {
       // console.log('hello')
     });
 
+    Constants.courseFilter.subscribe(query => {
+      this.filterData(query);
+    });
+
   }
 
   openCourseDialog() {
@@ -51,7 +59,7 @@ export class CoursesListComponent {
 
   onEdit(localIndex: number, id: number) {
     const data = {
-      courseDetails: this.courses[localIndex],
+      courseDetails: this.filteredCourses[localIndex],
       localIndex: localIndex,
     };
 
@@ -70,10 +78,24 @@ export class CoursesListComponent {
   getData(courses:Course[]) {
     this.courses = courses;
     if (this.currentPath === 'publishedCourses') {
-      this.courses = this.courses.filter((value) => {
+      this.filteredCourses = this.courses.filter((value) => {
         return value.instructorId === Constants.CurrentLoggedUser.id;
       });
+    }else{
+      this.filteredCourses = this.courses
     }
+  }
+
+  filterData(query:string) {
+    // console.log(query)
+    if(query === ''||this.currentPath === 'publishedCourses'){
+      this.getData(this.coursesService.getCourses());
+      return;
+    }
+
+    this.filteredCourses = this.courses.filter((crs) => {
+      return crs.name.toLocaleLowerCase().includes(query.toLocaleLowerCase());
+    });
   }
 
   // first: number = 0;

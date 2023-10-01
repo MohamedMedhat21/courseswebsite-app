@@ -1,4 +1,5 @@
 import { HttpHeaders } from "@angular/common/http";
+import { Subject } from "rxjs";
 // import { CourseResponse } from "../model/course-response.model";
 
 export interface CurrentUser{
@@ -26,6 +27,8 @@ export class Constants {
   static readonly coursePageSize=10;
 
   static CurrentLoggedUser:CurrentUser={id:0,username:'',jwtToken:'',roleId:0,expiresAfterMins:0};
+
+  static courseFilter = new Subject<string>();
 
   // static defaultCoursesPagination:CourseResponse = {
   //   page:0,

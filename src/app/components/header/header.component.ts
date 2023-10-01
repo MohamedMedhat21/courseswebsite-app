@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
 import { AuthService } from 'src/app/service/auth.service';
 import { Constants } from 'src/app/utils/Constants';
@@ -36,5 +37,10 @@ export class HeaderComponent {
 
   onLogout() {
     this.authService.logout();
+  }
+
+  onSubmit(searchForm: NgForm){
+    // console.log(searchForm.value.searchQuery)
+    Constants.courseFilter.next(searchForm.value.searchQuery)
   }
 }

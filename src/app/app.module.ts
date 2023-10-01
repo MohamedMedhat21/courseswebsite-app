@@ -35,6 +35,7 @@ import { CardModule } from 'primeng/card';
 import { PaginatorModule } from 'primeng/paginator';
 import { DropdownModule } from 'primeng/dropdown';
 import { FooterComponent } from './components/footer/footer.component';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
   declarations: [
@@ -75,7 +76,8 @@ import { FooterComponent } from './components/footer/footer.component';
     MenubarModule,
     CardModule,
     PaginatorModule,
-    DropdownModule
+    DropdownModule,
+    ToastModule
   ],
   providers: [],
   bootstrap: [AppComponent]
