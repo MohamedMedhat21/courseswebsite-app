@@ -37,6 +37,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { FooterComponent } from './components/footer/footer.component';
 import { ToastModule } from 'primeng/toast';
 import { MessagesModule } from 'primeng/messages';
+import { CourseStartComponent } from './components/courses/course-start/course-start.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { MessagesModule } from 'primeng/messages';
     RoleAddEditComponent,
     EnrollmentDetailsComponent,
     FooterComponent,
+    CourseStartComponent,
   ],
   imports: [
     BrowserModule,

@@ -90,7 +90,7 @@ export class CoursesListComponent {
     });
   }
 
-  getcrsIdForRouter(id:number ):string{
+  getCrsIdForRouter(id:number ):string{
     const crs = this.filteredCourses[id];
     let reIdx = -1;
     this.courses.forEach((element,idx) => {

@@ -8,6 +8,7 @@ import { StudentCoursesData } from 'src/app/model/student-courses-data.model';
 import { CoursesService } from 'src/app/service/courses.service';
 import { StudentCoursesService } from 'src/app/service/student-courses.service';
 import { UsersService } from 'src/app/service/users.service';
+import { Constants } from 'src/app/utils/Constants';
 import { Utils } from 'src/app/utils/utils';
 
 @Component({
@@ -51,6 +52,11 @@ export class CourseDetailsComponent {
 
   onEnroll(courseId: number) {
     // console.log(this.isUserEnrolled)
+    const isAuthenticated = Constants.CurrentLoggedUser.id === 0 ? false : true;
+    if(!isAuthenticated){
+      this.router.navigate(['/auth']);
+      return;
+    }
     const res = this.studentCoursesService.enrollInCourse(courseId);
     res.subscribe((res) => {
       console.log(res);

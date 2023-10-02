@@ -13,16 +13,19 @@ import { StartPageComponent } from './components/start-page/start-page.component
 import { AuthGuard } from './components/auth/auth.guard';
 import { RolesResolverService } from './resolver/roles-resolver.service';
 import { EnrollmentDetailsComponent } from './components/enrollment/enrollment-details/enrollment-details.component';
+import { CourseStartComponent } from './components/courses/course-start/course-start.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   {path:'home',component:StartPageComponent},
   {path: 'courses',component:CoursesComponent,resolve:[CoursesResolverService,studentCoursesDataResolverService]
   ,children:[
+    { path: '', component: CourseStartComponent },
     {path:':id',component:CourseDetailsComponent},
   ]},
   {path: 'enrollments',component:EnrollmentComponent,resolve:[studentCoursesDataResolverService,CoursesResolverService],canActivate: [AuthGuard]
   ,children:[
+    { path: '', component: CourseStartComponent },
     {path:':id',component:EnrollmentDetailsComponent},
   ]},
   {path: 'publishedCourses',component:CoursesComponent,resolve:[CoursesResolverService],canActivate: [AuthGuard]},
