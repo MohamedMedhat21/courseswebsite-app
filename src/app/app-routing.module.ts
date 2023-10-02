@@ -7,7 +7,7 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
 import { AuthComponent } from './components/auth/auth.component';
 import { AdminPanelComponent } from './components/admin-panel/admin-panel.component';
 import { UsersResolverService } from './resolver/users-resolver.service';
-import { studentCoursesDataResolverService } from './resolver/student-courses-data.service';
+import { studentCoursesDataResolverService } from './resolver/student-courses-data-resolver.service';
 import { EnrollmentComponent } from './components/enrollment/enrollment.component';
 import { StartPageComponent } from './components/start-page/start-page.component';
 import { AuthGuard } from './components/auth/auth.guard';

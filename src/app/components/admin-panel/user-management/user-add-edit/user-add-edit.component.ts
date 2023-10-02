@@ -73,7 +73,6 @@ export class UserAddEditComponent {
       rolename: this.role.name,
     };
 
-    // console.log(user.enabled)
     if (this.data){
       this.userService.updateUser(this.data.localIndex,user);
     }
@@ -85,8 +84,4 @@ export class UserAddEditComponent {
     userForm.reset();
     this.closeDialog();
   }
-
-  // onErrorCloseBtn(){
-  //   this.error=null;
-  // }
 }
