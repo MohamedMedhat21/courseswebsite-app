@@ -1,4 +1,4 @@
-<div class="scrollspy-example" style="max-height: 100vh;overflow: scroll;" >
+<div class="scrollspy-example" style="max-height: 100vh;overflow: scroll;">
   <div class="container">
     <div *ngIf="isLoading" class="text-center mt-5">
       <app-loading-spinner></app-loading-spinner>
@@ -8,24 +8,26 @@
       <button class="btn btn-primary me-3" type="button" (click)="openCourseDialog()">Add new course</button>
     </div>
 
-    <div>
-      <div class="ms-3 mt-3" *ngFor="let course of filteredCourses;let i = index">
-          <p-card class="col-sm" header={{course.name}} subheader={{course.headline}} [style]="{ width: '320px' }">
-            <ng-template pTemplate="header">
-              <a [routerLink]="getcrsIdForRouter(i)" *ngIf="currentPath === 'courses'"><img [src]="course.imagePath" alt="course photo" ></a>
-              <a *ngIf="currentPath === 'publishedCourses'"><img [src]="course.imagePath" alt="course photo" ></a>
-            </ng-template>
-            <ng-template pTemplate="content">
-              <strong>Instructor: {{course.instructorName}}</strong><br>
-              <small>{{course.creationDateFormatted}}</small>
-            </ng-template>
-            <ng-template pTemplate="footer">
-              <div *ngIf="currentPath === 'publishedCourses'">
-                <p-button label="Edit" icon="pi pi-check" (click)="onEdit(i,course.id)"></p-button>
-                <p-button label="Delete" icon="pi pi-times" (click)="onDelete(course.id)" styleClass="p-button-danger" [style]="{ 'margin-left': '.5em' }"></p-button>
-              </div>
-            </ng-template>
-          </p-card>
+    <div class="grid">
+      <div class="ms-3 mt-3 col" *ngFor="let course of filteredCourses;let i = index">
+        <p-card header={{course.name}} subheader={{course.headline}} [style]="{ width: '320px' }">
+          <ng-template pTemplate="header">
+            <a [routerLink]="getcrsIdForRouter(i)" *ngIf="currentPath === 'courses'"><img [src]="course.imagePath"
+                alt="course photo"></a>
+            <a *ngIf="currentPath === 'publishedCourses'"><img [src]="course.imagePath" alt="course photo"></a>
+          </ng-template>
+          <ng-template pTemplate="content">
+            <strong>Instructor: {{course.instructorName}}</strong><br>
+            <small>{{course.creationDateFormatted}}</small>
+          </ng-template>
+          <ng-template pTemplate="footer">
+            <div *ngIf="currentPath === 'publishedCourses'">
+              <p-button label="Edit" icon="pi pi-check" (click)="onEdit(i,course.id)"></p-button>
+              <p-button label="Delete" icon="pi pi-times" (click)="onDelete(course.id)" styleClass="p-button-danger"
+                [style]="{ 'margin-left': '.5em' }"></p-button>
+            </div>
+          </ng-template>
+        </p-card>
       </div>
     </div>
   </div>

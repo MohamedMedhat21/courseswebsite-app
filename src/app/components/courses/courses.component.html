@@ -1,14 +1,14 @@
-<div class="row" *ngIf="currentPath === 'courses'">
-  <div class="col-md-3">
+<div class="grid" *ngIf="currentPath === 'courses'">
+  <div class="col-3">
     <app-courses-list></app-courses-list>
   </div>
-  <div class="col-md-9" style="max-height: 100vh;overflow: scroll;">
+  <div class="col-9" style="max-height: 100vh;overflow: scroll;">
     <router-outlet></router-outlet>
   </div>
 </div>
 
 <div *ngIf="currentPath !== 'courses'">
-  <div class="container">
+  <div>
     <app-courses-list></app-courses-list>
   </div>
 </div>
