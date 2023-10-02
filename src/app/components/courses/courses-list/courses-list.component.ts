@@ -8,12 +8,6 @@ import { AuthService } from 'src/app/service/auth.service';
 import { Constants } from 'src/app/utils/Constants';
 import { Subject } from 'rxjs';
 
-// interface PageEvent {
-//   first: number;
-//   rows: number;
-//   page: number;
-//   pageCount: number;
-// }
 
 @Component({
   selector: 'app-courses-list',
@@ -26,7 +20,6 @@ export class CoursesListComponent {
   isLoading = false;
   currID: number;
   currentPath: string;
-
 
 
   constructor(
@@ -44,7 +37,6 @@ export class CoursesListComponent {
 
     this.coursesService.coursesChanged.subscribe(courses => {
       this.getData(courses);
-      // console.log('hello')
     });
 
     Constants.courseFilter.subscribe(query => {
@@ -98,15 +90,14 @@ export class CoursesListComponent {
     });
   }
 
-  // first: number = 0;
+  getcrsIdForRouter(id:number ):string{
+    const crs = this.filteredCourses[id];
+    let reIdx = -1;
+    this.courses.forEach((element,idx) => {
+      if(element.id === crs.id)
+        reIdx =  idx;
+    });
+    return reIdx + '';
+  }
 
-  // rows: number = 2;
-
-  // onPageChange(event: PageEvent){
-  //   this.getModels(event.page + 1);
-  // }
-
-  // getModels(page: number = 1) {
-  //   return this.courses.slice(page-1,Constants.defaultCoursesPagination.pageSize);
-  // }
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, map } from 'rxjs';
+import { BehaviorSubject, catchError, map } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Constants, CurrentUser } from '../utils/Constants';
@@ -46,7 +46,8 @@ export class AuthService {
       console.log(Constants.CurrentLoggedUser);
 
       // this.autoLogout(user.expiresAfterMins * 1000);
-    })
+    }),
+    catchError(Utils.handleError)
     );
   }
 
@@ -72,7 +73,8 @@ export class AuthService {
       this.user.next(Constants.CurrentLoggedUser);
 
       // this.autoLogout(user.expiresAfterMins * 1000);
-    })
+    }),
+    catchError(Utils.handleError),
     );
   }
 

@@ -73,7 +73,7 @@ export class UserAddEditComponent {
       rolename: this.role.name,
     };
 
-    console.log(user.enabled)
+    // console.log(user.enabled)
     if (this.data){
       this.userService.updateUser(this.data.localIndex,user);
     }

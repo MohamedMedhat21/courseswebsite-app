@@ -37,7 +37,6 @@ export class UsersService {
       this.users.push(user);
       this.usersChanged.next(this.users.slice());
     });
-    // console.log(this.errorMessage)
   }
 
   updateUser(index: number, editedUser:any) {
@@ -88,7 +87,7 @@ export class UsersService {
     return <Observable<User>>(
       this.http.post(`${Constants.apiUrl}/users`,user,Constants.options).pipe(
         tap(console.log),
-        // catchError(this.handleError)
+        catchError(Utils.handleError)
       )
     );
   }
@@ -96,8 +95,8 @@ export class UsersService {
   private updateUserApi(user:any){
     return <Observable<never>>(
       this.http.put(`${Constants.apiUrl}/users`,user,Constants.options).pipe(
-        // tap(console.log),
-        // catchError(this.handleError)
+        tap(console.log),
+        catchError(Utils.handleError)
       )
     );
   }
@@ -115,7 +114,8 @@ export class UsersService {
     this.http.get(`${Constants.apiUrl}/users/exportAll`, {
       responseType: 'blob', // 'blob' for handling binary data
       headers:Constants.options.headers
-    }).subscribe((response: Blob) => {
+    }).pipe(catchError(Utils.handleError))
+    .subscribe((response: Blob) => {
       const filename = 'users.pdf';
 
       // Create a temporary anchor element

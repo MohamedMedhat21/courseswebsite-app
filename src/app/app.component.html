@@ -5,6 +5,9 @@
 <app-header></app-header>
 <div class="ww">
   <div class="main-content">
+    <div class="container col-6" *ngIf="globalMessage">
+      <p-messages [(value)]="globalMessage" [enableService]="false"></p-messages>
+    </div>
     <router-outlet></router-outlet>
   </div>
 

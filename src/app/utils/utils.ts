@@ -1,10 +1,11 @@
 import { HttpErrorResponse } from "@angular/common/http";
-import { Observable, throwError } from "rxjs";
+import { Observable, Subject, throwError } from "rxjs";
 import jwt_decode, { JwtPayload } from 'jwt-decode'
 
 export class Utils {
 
   static readonly currDate = new Date();
+  static errorMessage = new Subject<string>();
 
   static formatDate(date:Date){
     const creationDate = new Date(date);
@@ -14,10 +15,17 @@ export class Utils {
     return days + ' days ago';
   }
 
-  static handleError(error: HttpErrorResponse): Observable<never> {
-    console.log(error);
+  static handleError(error: HttpErrorResponse) {
+    // if(error.error instanceof ErrorEvent){
+    //   console.log('Client side error ',error)
+    // }
+    // else{
+    //   console.log('Server side error ',error)
+    // }
+
+    Utils.errorMessage.next(error.error.message);
     return throwError(
-      () => new Error(`An error occurred, Error code: ${error.status}`)
+      () => new Error(`An error occurred, Error code: ${error}`)
     );
   }
 

@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { AuthService } from './service/auth.service';
 import { BehaviorSubject } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
-import { MessageService } from 'primeng/api';
+import { Message, MessageService } from 'primeng/api';
+import { Utils } from './utils/utils';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +13,7 @@ import { MessageService } from 'primeng/api';
 })
 export class AppComponent {
   title = 'courseswebsite-app';
+  globalMessage: Message[];
 
   constructor(private authService:AuthService){
 
@@ -19,6 +21,11 @@ export class AppComponent {
 
 
   ngOnInit(){
+    Utils.errorMessage.subscribe(msg =>{
+      this.globalMessage = [
+        { severity: 'error', summary: 'Error', detail: msg }
+    ];
+    })
     this.authService.autoLogin();
   }
 }

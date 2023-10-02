@@ -74,8 +74,8 @@ export class CoursesService {
       this.http
         .post(`${Constants.apiUrl}/users/${Constants.CurrentLoggedUser.id}/mycourses`, course, Constants.options)
         .pipe(
-          tap(console.log)
-          // catchError(this.handleError),
+          tap(console.log),
+          catchError(Utils.handleError),
         )
     );
   }
@@ -88,7 +88,10 @@ export class CoursesService {
           course,
           Constants.options
         )
-        .pipe(tap(console.log))
+        .pipe(
+          tap(console.log),
+          catchError(Utils.handleError)
+          )
     );
   }
 
@@ -98,10 +101,10 @@ export class CoursesService {
         `${Constants.apiUrl}/users/${Constants.CurrentLoggedUser.id}/mycourses/${courseId}`,
         Constants.options
       )
-      .pipe
-      // tap(console.log),
-      // catchError(this.handleError)
-      ();
+      .pipe(
+      tap(console.log),
+      catchError(Utils.handleError)
+      );
   }
 
   fetchCourses() {

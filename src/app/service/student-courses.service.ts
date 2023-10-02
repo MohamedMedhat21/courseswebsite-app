@@ -79,7 +79,7 @@ export class StudentCoursesService {
             });
             return studentCoursesData;
           }),
-          // catchError(this.handleError),
+          catchError(Utils.handleError),
           tap((studentCoursesData) => {
             this.setStudentCoursesData(studentCoursesData);
           })
@@ -90,12 +90,14 @@ export class StudentCoursesService {
   private enrollInCourseApi(courseId:number){
     return (
       this.http.post(`${Constants.apiUrl}/users/${Constants.CurrentLoggedUser.id}/enrollments`,{courseId},{headers:Constants.options.headers,observe : 'response'})
+      .pipe(catchError(Utils.handleError))
     );
   }
 
   private unenrollCourseApi(userId:number,courseId:number){
     return (
       this.http.delete(`${Constants.apiUrl}/users/${userId}/enrollments/${courseId}`, {headers:Constants.options.headers,observe : 'response'})
+      .pipe(catchError(Utils.handleError))
       );
   }
 

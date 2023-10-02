@@ -12,7 +12,7 @@
       <div class="ms-3 mt-3" *ngFor="let course of filteredCourses;let i = index">
           <p-card class="col-sm" header={{course.name}} subheader={{course.headline}} [style]="{ width: '320px' }">
             <ng-template pTemplate="header">
-              <a [routerLink]="[i]" *ngIf="currentPath === 'courses'"><img [src]="course.imagePath" alt="course photo" ></a>
+              <a [routerLink]="getcrsIdForRouter(i)" *ngIf="currentPath === 'courses'"><img [src]="course.imagePath" alt="course photo" ></a>
               <a *ngIf="currentPath === 'publishedCourses'"><img [src]="course.imagePath" alt="course photo" ></a>
             </ng-template>
             <ng-template pTemplate="content">

@@ -6,6 +6,7 @@ import { UserAddEditComponent } from './user-add-edit/user-add-edit.component';
 import { Role } from 'src/app/model/role.model';
 import { RolesService } from 'src/app/service/roles.service';
 import { Constants } from 'src/app/utils/Constants';
+import { Utils } from 'src/app/utils/utils';
 
 // interface PageEvent {
 //   first: number;
@@ -67,7 +68,7 @@ export class UserManagementComponent {
 
   onEdit(localIndex:number,id:number){
 
-    console.log(localIndex)
+    // console.log(localIndex)
     const data = {
       userDetails:this.users[localIndex],
       localIndex:localIndex
@@ -86,7 +87,7 @@ export class UserManagementComponent {
   }
 
   onPageChange(event: any){
-    console.log(event)
+    // console.log(event)
     this.currentPage = event.page + 1;
     this.usersPaginatedList = this.users.slice(
       event.first,
