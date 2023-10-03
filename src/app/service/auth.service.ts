@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, catchError, map } from 'rxjs';
+import { BehaviorSubject, catchError, map, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Constants, CurrentUser } from '../utils/Constants';
 import { Utils } from '../utils/utils';
+import { Token } from '../model/token.model';
 
 export interface AuthRes{
   userId:number;
@@ -92,39 +93,73 @@ export class AuthService {
     // const diffHours = Math.floor(diffTime / (1000 * 60 * 60))
 
     if(diffTime > 0){
-      this.logout()
+      this.logout().subscribe()
       return;
     }
 
-    Constants.CurrentLoggedUser={
-      id:userData.id,
-      username:userData.username,
-      jwtToken:userData.jwtToken,
-      expiresAfterMins:userData.expiresAfterMins,
-      roleId:userData.roleId
-    }
+    this.checkToken('',userData).subscribe();
+  }
 
+  checkToken(token:string,userData:CurrentUser){
+    Constants.CurrentLoggedUser.jwtToken = userData.jwtToken;
     Constants.setOptions(userData.jwtToken);
+    return this.http.get<Token>(`${Constants.apiUrl}/auth/checkToken`,Constants.options).pipe(
+      tap(console.log),
+      map(userToken =>{
+        if(!userToken.revoked && !userToken.expired){
+          Constants.CurrentLoggedUser={
+            id:userData.id,
+            username:userData.username,
+            jwtToken:userData.jwtToken,
+            expiresAfterMins:userData.expiresAfterMins,
+            roleId:userData.roleId
+          }
 
-    this.user.next(Constants.CurrentLoggedUser);
+          Constants.setOptions(userData.jwtToken);
 
+          this.user.next(Constants.CurrentLoggedUser);
+
+        }else{
+          this.logout().subscribe();
+        }
+    }),
+    catchError(Utils.handleError),
+    );
   }
 
   logout(){
-    this.user.next(null!);
+    return this.http.get(`${Constants.apiUrl}/auth/logout`,Constants.options).pipe(
+      map(res =>{
 
-    localStorage.removeItem('userData');
+        Constants.CurrentLoggedUser={
+          id:0,
+          username:'',
+          jwtToken:'',
+          expiresAfterMins:0,
+          roleId:0
+        }
 
-    window.location.reload()
+        Constants.setOptions('');
 
-    // this.router.navigate(['/auth']);
+        this.user.next(null!);
+
+        localStorage.removeItem('userData');
+
+        window.location.reload()
+
+        // this.router.navigate(['/auth']);
 
 
-    // if(this.tokenExpirationTimer)
-    //   clearTimeout(this.tokenExpirationTimer);
+        // if(this.tokenExpirationTimer)
+        //   clearTimeout(this.tokenExpirationTimer);
 
 
-    // this.tokenExpirationTimer=null;
+        // this.tokenExpirationTimer=null;
+        
+    }),
+    catchError(Utils.handleError),
+    );
+
 
   }
 

@@ -23,7 +23,11 @@ export class Utils {
     //   console.log('Server side error ',error)
     // }
     console.log(error)
-    Utils.errorMessage.next(error.error.message);
+    if(error.error.message)
+      Utils.errorMessage.next(error.error.message);
+    else
+      Utils.errorMessage.next(error.message);
+
     return throwError(
       () => new Error(`An error occurred, Error code: ${error}`)
     );

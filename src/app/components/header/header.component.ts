@@ -36,7 +36,7 @@ export class HeaderComponent {
   }
 
   onLogout() {
-    this.authService.logout();
+    this.authService.logout().subscribe();
   }
 
   onSubmit(searchForm: NgForm){
