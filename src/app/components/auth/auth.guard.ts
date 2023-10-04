@@ -19,16 +19,16 @@ export class AuthGuard {
       map(user => {
         const isAuth = !!user;
         if(isAuth) {
-          if(route.routeConfig?.path === RouterPaths.adminPanel && user.roleId !== UserRoles.ADMIN){
-            return this.router.createUrlTree(['/home']);
+          if(route.routeConfig?.path === RouterPaths.ADMIN_PANEL && user.roleId !== UserRoles.ADMIN){
+            return this.router.createUrlTree(['/'+RouterPaths.HOME]);
           }
-          if(route.routeConfig?.path === RouterPaths.publishedCourses && user.roleId !== UserRoles.INSTRUCTOR)
-            return this.router.createUrlTree(['/home']);
-          if(route.routeConfig?.path === RouterPaths.enrollments && user.roleId !== UserRoles.STUDENT)
-            return this.router.createUrlTree(['/home']);
+          if(route.routeConfig?.path === RouterPaths.PUBLISHED_COURSES && user.roleId !== UserRoles.INSTRUCTOR)
+            return this.router.createUrlTree(['/'+RouterPaths.HOME]);
+          if(route.routeConfig?.path === RouterPaths.ENROLLMENTS && user.roleId !== UserRoles.STUDENT)
+            return this.router.createUrlTree(['/'+RouterPaths.HOME]);
           return true;
         }
-        return this.router.createUrlTree(['/home']);
+        return this.router.createUrlTree(['/'+RouterPaths.HOME]);
       })
     );
   }

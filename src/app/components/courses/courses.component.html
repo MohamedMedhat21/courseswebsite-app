@@ -1,4 +1,4 @@
-<div class="grid" *ngIf="currentPath === 'courses'">
+<div class="grid" *ngIf="currentPath === routerPaths.COURSES">
   <div class="col-3">
     <app-courses-list></app-courses-list>
   </div>
@@ -7,7 +7,7 @@
   </div>
 </div>
 
-<div *ngIf="currentPath !== 'courses'">
+<div *ngIf="currentPath !== routerPaths.COURSES">
   <div>
     <app-courses-list></app-courses-list>
   </div>

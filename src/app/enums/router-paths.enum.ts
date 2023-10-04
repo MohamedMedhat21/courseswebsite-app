@@ -1,4 +1,4 @@
 export enum RouterPaths {
-  home = 'home', auth='auth', adminPanel = 'adminPanel',courses='courses',
-  publishedCourses = 'publishedCourses', enrollments = 'enrollments',aboutUs = 'aboutUs'
+  HOME = 'home', AUTH='auth', ADMIN_PANEL = 'adminPanel',COURSES='courses',
+  PUBLISHED_COURSES = 'publishedCourses', ENROLLMENTS = 'enrollments',ABOUT_US = 'aboutUs'
 }

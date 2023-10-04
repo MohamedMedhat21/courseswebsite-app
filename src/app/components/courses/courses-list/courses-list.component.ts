@@ -19,6 +19,7 @@ export class CoursesListComponent {
   isLoading = false;
   currID: number;
   currentPath: string;
+  routerPaths = RouterPaths;
 
 
   constructor(
@@ -68,7 +69,7 @@ export class CoursesListComponent {
 
   getData(courses:Course[]) {
     this.courses = courses;
-    if (this.currentPath === RouterPaths.publishedCourses) {
+    if (this.currentPath === RouterPaths.PUBLISHED_COURSES) {
       this.filteredCourses = this.courses.filter((value) => {
         return value.instructorId === Constants.CurrentLoggedUser.id;
       });
@@ -79,7 +80,7 @@ export class CoursesListComponent {
 
   filterData(query:string) {
     // console.log(query)
-    if(query === ''||this.currentPath === RouterPaths.publishedCourses){
+    if(query === ''||this.currentPath === RouterPaths.PUBLISHED_COURSES){
       this.getData(this.coursesService.getCourses());
       return;
     }

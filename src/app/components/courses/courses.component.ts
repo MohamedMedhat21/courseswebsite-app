@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { RouterPaths } from 'src/app/enums/router-paths.enum';
 
 @Component({
   selector: 'app-courses',
@@ -9,6 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 export class CoursesComponent {
 
   currentPath: string;
+  routerPaths = RouterPaths;
 
   constructor(
     private route: ActivatedRoute,
@@ -17,7 +19,6 @@ export class CoursesComponent {
 
   ngOnInit() {
     this.currentPath = this.route.snapshot.routeConfig?.path!;
-    // console.log(this.currentPath)
   }
 
 }

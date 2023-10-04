@@ -4,7 +4,7 @@
       <app-loading-spinner></app-loading-spinner>
     </div>
 
-    <div class="mt-2 mb-3 text-right" *ngIf="currentPath === 'publishedCourses'">
+    <div class="mt-2 mb-3 text-right" *ngIf="currentPath === routerPaths.PUBLISHED_COURSES">
       <button class="btn btn-primary me-3" type="button" (click)="openCourseDialog()">Add new course</button>
     </div>
 
@@ -12,16 +12,16 @@
       <div class="ms-3 mt-3 col" *ngFor="let course of filteredCourses;let i = index">
         <p-card header={{course.name}} subheader={{course.headline}} [style]="{ width: '320px' }">
           <ng-template pTemplate="header">
-            <a [routerLink]="getCrsIdForRouter(i)" *ngIf="currentPath === 'courses'"><img [src]="course.imagePath"
+            <a [routerLink]="getCrsIdForRouter(i)" *ngIf="currentPath === routerPaths.COURSES"><img [src]="course.imagePath"
                 alt="course photo"></a>
-            <a *ngIf="currentPath === 'publishedCourses'"><img [src]="course.imagePath" alt="course photo"></a>
+            <a *ngIf="currentPath === routerPaths.PUBLISHED_COURSES"><img [src]="course.imagePath" alt="course photo"></a>
           </ng-template>
           <ng-template pTemplate="content">
             <strong>Instructor: {{course.instructorName}}</strong><br>
             <small>{{course.creationDateFormatted}}</small>
           </ng-template>
           <ng-template pTemplate="footer">
-            <div *ngIf="currentPath === 'publishedCourses'">
+            <div *ngIf="currentPath === routerPaths.PUBLISHED_COURSES">
               <p-button label="Edit" icon="pi pi-check" (click)="onEdit(i,course.id)"></p-button>
               <p-button label="Delete" icon="pi pi-times" (click)="onDelete(course.id)" styleClass="p-button-danger"
                 [style]="{ 'margin-left': '.5em' }"></p-button>

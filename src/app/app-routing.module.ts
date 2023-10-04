@@ -18,21 +18,21 @@ import { RouterPaths } from './enums/router-paths.enum';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
-  {path:RouterPaths.home,component:StartPageComponent},
-  {path: RouterPaths.courses,component:CoursesComponent,resolve:[studentCoursesDataResolverService,CoursesResolverService]
+  {path:RouterPaths.HOME,component:StartPageComponent},
+  {path: RouterPaths.COURSES,component:CoursesComponent,resolve:[studentCoursesDataResolverService,CoursesResolverService]
   ,children:[
     { path: '', component: CourseStartComponent },
     {path:':id',component:CourseDetailsComponent},
   ]},
-  {path: RouterPaths.enrollments,component:EnrollmentComponent,resolve:[studentCoursesDataResolverService,CoursesResolverService],canActivate: [AuthGuard]
+  {path: RouterPaths.ENROLLMENTS,component:EnrollmentComponent,resolve:[studentCoursesDataResolverService,CoursesResolverService],canActivate: [AuthGuard]
   ,children:[
     { path: '', component: CourseStartComponent },
     {path:':id',component:EnrollmentDetailsComponent},
   ]},
-  {path: RouterPaths.publishedCourses,component:CoursesComponent,resolve:[CoursesResolverService],canActivate: [AuthGuard]},
-  {path: RouterPaths.adminPanel,component:AdminPanelComponent,resolve:[UsersResolverService,RolesResolverService],canActivate: [AuthGuard]},
-  {path: RouterPaths.aboutUs,component:AboutUsComponent},
-  {path: RouterPaths.auth,component:AuthComponent},
+  {path: RouterPaths.PUBLISHED_COURSES,component:CoursesComponent,resolve:[CoursesResolverService],canActivate: [AuthGuard]},
+  {path: RouterPaths.ADMIN_PANEL,component:AdminPanelComponent,resolve:[UsersResolverService,RolesResolverService],canActivate: [AuthGuard]},
+  {path: RouterPaths.ABOUT_US,component:AboutUsComponent},
+  {path: RouterPaths.AUTH,component:AuthComponent},
 ];
 
 @NgModule({

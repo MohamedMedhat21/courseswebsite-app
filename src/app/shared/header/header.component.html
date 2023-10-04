@@ -8,41 +8,30 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-0 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" routerLink="/courses">Browse courses</a>
+          <a class="nav-link" routerLink="/{{routerPaths.COURSES}}">Browse courses</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/enrollments" *ngIf="currentRoleId===3">My learning</a>
+          <a class="nav-link" routerLink="/{{routerPaths.ENROLLMENTS}}" *ngIf="currentRoleId===userRoles.STUDENT">My learning</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/publishedCourses" *ngIf="currentRoleId===2" >My courses</a>
+          <a class="nav-link" routerLink="/{{routerPaths.PUBLISHED_COURSES}}" *ngIf="currentRoleId===userRoles.INSTRUCTOR" >My courses</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/adminPanel" *ngIf="currentRoleId===1">Administration Panel</a>
+          <a class="nav-link" routerLink="/{{routerPaths.ADMIN_PANEL}}" *ngIf="currentRoleId===userRoles.ADMIN">Administration Panel</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/aboutUs">About Us</a>
+          <a class="nav-link" routerLink="/{{routerPaths.ABOUT_US}}">About Us</a>
         </li>
-        <li class="nav-item" *ngIf="currentPath==='courses'">
+        <li class="nav-item" *ngIf="currentPath===routerPaths.COURSES">
           <form class="d-flex" role="search" #searchForm="ngForm" (ngSubmit)="onSubmit(searchForm)">
             <input  placeholder="search for course" type="text" class="form-control" aria-describedby="usernameHelp"
             ngModel name="searchQuery" (input)="onSubmit(searchForm)">
             <button class="btn btn-outline-success ms-2"  type="submit" [disabled]="!searchForm.valid">Search</button>
           </form>
         </li>
-        <!-- <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li> -->
       </ul>
       <div class="d-flex">
-        <button class="btn btn-outline-success me-2" type="button" routerLink="/auth" *ngIf="!isAuthenticated">Join Us</button>
+        <button class="btn btn-outline-success me-2" type="button" routerLink="/{{routerPaths.AUTH}}" *ngIf="!isAuthenticated">Join Us</button>
         <button class="btn btn-outline-danger me-1" type="button" (click)="onLogout()" *ngIf="isAuthenticated" >Logout</button>
       </div>
     </div>

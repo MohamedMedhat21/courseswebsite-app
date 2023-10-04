@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { NavigationStart, Router } from '@angular/router';
+import { RouterPaths } from 'src/app/enums/router-paths.enum';
+import { UserRoles } from 'src/app/enums/user-roles.enum';
 import { AuthService } from 'src/app/service/auth.service';
 import { Constants } from 'src/app/utils/Constants';
 
@@ -14,6 +16,8 @@ export class HeaderComponent {
   isAuthenticated = false;
   currentRoleId: number;
   currentPath: string;
+  routerPaths = RouterPaths;
+  userRoles = UserRoles;
 
   constructor(private authService: AuthService, private router: Router) {
 
@@ -26,7 +30,6 @@ export class HeaderComponent {
     });
 
     this.router.events.subscribe((val) => {
-      // console.log(val)
       if (val instanceof NavigationStart) {
         //do something on start activity
         this.currentPath = val.url.split('/')[1]
@@ -41,7 +44,6 @@ export class HeaderComponent {
   }
 
   onSubmit(searchForm: NgForm){
-    // console.log(searchForm.value.searchQuery)
     Constants.courseFilter.next(searchForm.value.searchQuery)
   }
 }
