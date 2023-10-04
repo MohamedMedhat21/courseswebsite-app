@@ -14,24 +14,25 @@ import { AuthGuard } from './components/auth/auth.guard';
 import { RolesResolverService } from './resolver/roles-resolver.service';
 import { EnrollmentDetailsComponent } from './components/enrollment/enrollment-details/enrollment-details.component';
 import { CourseStartComponent } from './components/courses/course-start/course-start.component';
+import { RouterPaths } from './enums/router-paths.enum';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
-  {path:'home',component:StartPageComponent},
-  {path: 'courses',component:CoursesComponent,resolve:[studentCoursesDataResolverService,CoursesResolverService]
+  {path:RouterPaths.home,component:StartPageComponent},
+  {path: RouterPaths.courses,component:CoursesComponent,resolve:[studentCoursesDataResolverService,CoursesResolverService]
   ,children:[
     { path: '', component: CourseStartComponent },
     {path:':id',component:CourseDetailsComponent},
   ]},
-  {path: 'enrollments',component:EnrollmentComponent,resolve:[studentCoursesDataResolverService,CoursesResolverService],canActivate: [AuthGuard]
+  {path: RouterPaths.enrollments,component:EnrollmentComponent,resolve:[studentCoursesDataResolverService,CoursesResolverService],canActivate: [AuthGuard]
   ,children:[
     { path: '', component: CourseStartComponent },
     {path:':id',component:EnrollmentDetailsComponent},
   ]},
-  {path: 'publishedCourses',component:CoursesComponent,resolve:[CoursesResolverService],canActivate: [AuthGuard]},
-  {path: 'adminPanel',component:AdminPanelComponent,resolve:[UsersResolverService,RolesResolverService],canActivate: [AuthGuard]},
-  {path: 'aboutUs',component:AboutUsComponent},
-  {path: 'auth',component:AuthComponent},
+  {path: RouterPaths.publishedCourses,component:CoursesComponent,resolve:[CoursesResolverService],canActivate: [AuthGuard]},
+  {path: RouterPaths.adminPanel,component:AdminPanelComponent,resolve:[UsersResolverService,RolesResolverService],canActivate: [AuthGuard]},
+  {path: RouterPaths.aboutUs,component:AboutUsComponent},
+  {path: RouterPaths.auth,component:AuthComponent},
 ];
 
 @NgModule({

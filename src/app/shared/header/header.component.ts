@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
+import { NavigationStart, Router } from '@angular/router';
 import { AuthService } from 'src/app/service/auth.service';
 import { Constants } from 'src/app/utils/Constants';
+
 
 @Component({
   selector: 'app-header',

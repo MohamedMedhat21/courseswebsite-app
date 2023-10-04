@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Course } from 'src/app/model/course.model';
 import { CoursesService } from 'src/app/service/courses.service';
 import { CourseAddEditComponent } from '../course-add-edit/course-add-edit.component';
-import { AuthService } from 'src/app/service/auth.service';
 import { Constants } from 'src/app/utils/Constants';
-import { Subject } from 'rxjs';
+import { RouterPaths } from 'src/app/enums/router-paths.enum';
 
 
 @Component({
@@ -69,7 +68,7 @@ export class CoursesListComponent {
 
   getData(courses:Course[]) {
     this.courses = courses;
-    if (this.currentPath === 'publishedCourses') {
+    if (this.currentPath === RouterPaths.publishedCourses) {
       this.filteredCourses = this.courses.filter((value) => {
         return value.instructorId === Constants.CurrentLoggedUser.id;
       });
@@ -80,7 +79,7 @@ export class CoursesListComponent {
 
   filterData(query:string) {
     // console.log(query)
-    if(query === ''||this.currentPath === 'publishedCourses'){
+    if(query === ''||this.currentPath === RouterPaths.publishedCourses){
       this.getData(this.coursesService.getCourses());
       return;
     }
