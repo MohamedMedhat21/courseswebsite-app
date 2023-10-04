@@ -17,7 +17,7 @@
           <div class="d-flex">
             <!-- <small class="me-2">enrolled from {{studentCourse.enrollmentDateFormatted}}</small> -->
             <div>
-              <a mat-button [matMenuTriggerFor]="menu" title="Edit" data-toggle="tooltip" type="button" ><i class="material-icons">&#xe5d4;</i></a>
+              <a mat-button [matMenuTriggerFor]="menu" title="Edit" data-toggle="tooltip" type="button" ><i class="pi pi-ellipsis-v"></i></a>
               <mat-menu #menu="matMenu">
                 <button mat-menu-item (click)="onUnenroll(i,studentCourse.id)">Unenroll</button>
               </mat-menu>

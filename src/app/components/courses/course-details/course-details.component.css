@@ -11931,7 +11931,7 @@ a:hover {
 }
 .hero-section {
   position: relative;
-  background: url("src/assets/hero-bg.jpg") no-repeat center center;
+  background: url("src/assets/images/hero-bg.jpg") no-repeat center center;
   background-size: cover;
   min-height: 400px;
   color: #fff;
