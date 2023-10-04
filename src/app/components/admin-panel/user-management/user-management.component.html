@@ -36,7 +36,7 @@
           <span *ngIf="user.enabled == '1'"> Active</span> <span *ngIf="user.enabled == '0'"> Inactive</span> </td>
         <td>
           <button pButton pRipple type="button" icon="pi pi-pencil" (click)="onEdit(rowIndex + (currentPage - 1) * itemsPerPage ,user.id)" class="p-button-rounded p-button-text" title="Settings" data-toggle="tooltip"></button>
-          <button style="color: #F44336;" pButton type="button" icon="pi pi-times" (click)="onDelete(user.id)" class="p-button-rounded p-button-text" title="Delete" data-toggle="tooltip"></button>
+          <button pButton type="button" icon="pi pi-times" (click)="onDelete(user.id)" class="p-button-rounded p-button-text text-red-500" title="Delete" data-toggle="tooltip"></button>
         </td>
       </tr>
     </ng-template>

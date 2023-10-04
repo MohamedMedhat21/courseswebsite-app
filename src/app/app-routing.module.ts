@@ -16,9 +16,9 @@ import { EnrollmentDetailsComponent } from './components/enrollment/enrollment-d
 import { CourseStartComponent } from './components/courses/course-start/course-start.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', redirectTo: 'home', pathMatch: 'full'},
   {path:'home',component:StartPageComponent},
-  {path: 'courses',component:CoursesComponent,resolve:[CoursesResolverService,studentCoursesDataResolverService]
+  {path: 'courses',component:CoursesComponent,resolve:[studentCoursesDataResolverService,CoursesResolverService]
   ,children:[
     { path: '', component: CourseStartComponent },
     {path:':id',component:CourseDetailsComponent},

@@ -102,8 +102,9 @@ export class AuthService {
 
   checkToken(token:string,userData:CurrentUser){
     Constants.CurrentLoggedUser.jwtToken = userData.jwtToken;
+    token = userData.jwtToken;
     Constants.setOptions(userData.jwtToken);
-    return this.http.get<Token>(`${Constants.apiUrl}/auth/checkToken`,Constants.options).pipe(
+    return this.http.post<Token>(`${Constants.apiUrl}/auth/checkToken`,{token}).pipe(
       tap(console.log),
       map(userToken =>{
         if(!userToken.revoked && !userToken.expired){
@@ -120,6 +121,7 @@ export class AuthService {
           this.user.next(Constants.CurrentLoggedUser);
 
         }else{
+          console.log('ssssss');
           this.logout().subscribe();
         }
     }),
@@ -155,7 +157,7 @@ export class AuthService {
 
 
         // this.tokenExpirationTimer=null;
-        
+
     }),
     catchError(Utils.handleError),
     );

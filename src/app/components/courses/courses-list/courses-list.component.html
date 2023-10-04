@@ -1,10 +1,10 @@
-<div class="scrollspy-example" style="max-height: 100vh;overflow: scroll;">
+<div class="scrollspy-example max-h-screen overflow-scroll">
   <div class="container">
     <div *ngIf="isLoading" class="text-center mt-5">
       <app-loading-spinner></app-loading-spinner>
     </div>
 
-    <div class="mt-2 mb-3" style="text-align: right;" *ngIf="currentPath === 'publishedCourses'">
+    <div class="mt-2 mb-3 text-right" *ngIf="currentPath === 'publishedCourses'">
       <button class="btn btn-primary me-3" type="button" (click)="openCourseDialog()">Add new course</button>
     </div>
 

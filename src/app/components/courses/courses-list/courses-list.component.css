@@ -5,3 +5,7 @@
 ::-webkit-scrollbar-thumb {
   background: #c1c1c1;
 }
+
+.p-card-width{
+  width: 320px;
+}
