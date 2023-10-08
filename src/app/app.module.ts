@@ -38,6 +38,7 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { ToastModule } from 'primeng/toast';
 import { MessagesModule } from 'primeng/messages';
 import { CourseStartComponent } from './components/courses/course-start/course-start.component';
+import { httpInterceptorProviders } from './interceptors';
 
 @NgModule({
   declarations: [
@@ -83,7 +84,7 @@ import { CourseStartComponent } from './components/courses/course-start/course-s
     ToastModule,
     MessagesModule
   ],
-  providers: [],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

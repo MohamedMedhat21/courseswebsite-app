@@ -23,10 +23,15 @@ export class Utils {
     //   console.log('Server side error ',error)
     // }
     console.log(error)
-    if(error.error.message)
-      Utils.errorMessage.next(error.error.message);
-    else
-      Utils.errorMessage.next(error.message);
+    if(error.status === 403)
+      Utils.errorMessage.next('your are not authorized please logout!');
+    else{
+      if(error.error.message){
+          Utils.errorMessage.next(error.error.message);
+      }
+      else
+        Utils.errorMessage.next(error.message);
+    }
 
     return throwError(
       () => new Error(`An error occurred, Error code: ${error}`)

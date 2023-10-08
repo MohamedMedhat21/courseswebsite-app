@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, catchError, map, tap } from 'rxjs';
+import { BehaviorSubject, catchError, finalize, map, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Constants, CurrentUser } from '../utils/Constants';
@@ -103,7 +103,7 @@ export class AuthService {
   checkToken(token:string,userData:CurrentUser){
     Constants.CurrentLoggedUser.jwtToken = userData.jwtToken;
     token = userData.jwtToken;
-    Constants.setOptions(userData.jwtToken);
+    Constants.setOptions(token);
     return this.http.post<Token>(`${Constants.apiUrl}/auth/checkToken`,{token}).pipe(
       tap(console.log),
       map(userToken =>{
@@ -115,14 +115,14 @@ export class AuthService {
             expiresAfterMins:userData.expiresAfterMins,
             roleId:userData.roleId
           }
-
           Constants.setOptions(userData.jwtToken);
 
           this.user.next(Constants.CurrentLoggedUser);
 
         }else{
-          console.log('ssssss');
-          this.logout().subscribe();
+          if(confirm('Current Creds are expired do you want to log out?')){
+            this.logout().subscribe();
+          }
         }
     }),
     catchError(Utils.handleError),
