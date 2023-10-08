@@ -28,7 +28,7 @@ export class StudentCoursesAPiService {
 
     return <Observable<StudentCoursesData[]>>(
       this.http
-        .get<StudentCoursesData>(`${Constants.apiUrl}/users/${Constants.CurrentLoggedUser.id}/enrollments`, Constants.options)
+        .get<StudentCoursesData>(`${Constants.apiUrl}/users/${Constants.CurrentLoggedUser.id}/enrollments`)
         .pipe(
           tap(console.log),
           map((studentCoursesData) => {
@@ -44,14 +44,14 @@ export class StudentCoursesAPiService {
 
   enrollInCourseApi(courseId:number){
     return (
-      this.http.post(`${Constants.apiUrl}/users/${Constants.CurrentLoggedUser.id}/enrollments`,{courseId},{headers:Constants.options.headers,observe : 'response'})
+      this.http.post(`${Constants.apiUrl}/users/${Constants.CurrentLoggedUser.id}/enrollments`,{courseId},{observe : 'response'})
       .pipe(catchError(Utils.handleError))
     );
   }
 
   unenrollCourseApi(userId:number,courseId:number){
     return (
-      this.http.delete(`${Constants.apiUrl}/users/${userId}/enrollments/${courseId}`, {headers:Constants.options.headers,observe : 'response'})
+      this.http.delete(`${Constants.apiUrl}/users/${userId}/enrollments/${courseId}`, {observe : 'response'})
       .pipe(catchError(Utils.handleError))
       );
   }

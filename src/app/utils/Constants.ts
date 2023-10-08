@@ -29,22 +29,22 @@ export class Constants {
 
   static courseFilter = new Subject<string>();
 
-  static options = {
-    headers: new HttpHeaders().append(
-      'Authorization',
-      `Bearer ${this.CurrentLoggedUser.jwtToken}`
-    ),
-  };
+  // static options = {
+  //   headers: new HttpHeaders().append(
+  //     'Authorization',
+  //     `Bearer ${this.CurrentLoggedUser.jwtToken}`
+  //   ),
+  // };
 
-  static setOptions(token:string){
-    const options = {
-      headers: new HttpHeaders().append(
-        'Authorization',
-        `Bearer ${this.CurrentLoggedUser.jwtToken}`
-      ),
-    };
-    this.options = options;
-  }
+  // static setOptions(token:string){
+  //   const options = {
+  //     headers: new HttpHeaders().append(
+  //       'Authorization',
+  //       `Bearer ${this.CurrentLoggedUser.jwtToken}`
+  //     ),
+  //   };
+  //   this.options = options;
+  // }
 
 
 }

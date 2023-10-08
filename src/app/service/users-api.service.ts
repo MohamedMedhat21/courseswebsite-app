@@ -16,7 +16,7 @@ export class UsersApiService {
 
   fetchUsers() {
     return <Observable<User[]>>(
-      this.http.get<User>(`${Constants.apiUrl}/users`, Constants.options).pipe(
+      this.http.get<User>(`${Constants.apiUrl}/users`).pipe(
         tap(console.log),
         catchError(Utils.handleError)
       )
@@ -25,7 +25,7 @@ export class UsersApiService {
 
   fetchUser(userId:number) {
     return <Observable<User>>(
-      this.http.get<User>(`${Constants.apiUrl}/users/${userId}`, Constants.options).pipe(
+      this.http.get<User>(`${Constants.apiUrl}/users/${userId}`).pipe(
         tap(console.log),
         catchError(Utils.handleError)
       )
@@ -35,7 +35,7 @@ export class UsersApiService {
 
   addUserApi(user:any){
     return <Observable<User>>(
-      this.http.post(`${Constants.apiUrl}/users`,user,Constants.options).pipe(
+      this.http.post(`${Constants.apiUrl}/users`,user).pipe(
         tap(console.log),
         catchError(Utils.handleError)
       )
@@ -44,7 +44,7 @@ export class UsersApiService {
 
   updateUserApi(user:any){
     return <Observable<never>>(
-      this.http.put(`${Constants.apiUrl}/users`,user,Constants.options).pipe(
+      this.http.put(`${Constants.apiUrl}/users`,user).pipe(
         tap(console.log),
         catchError(Utils.handleError)
       )
@@ -53,7 +53,7 @@ export class UsersApiService {
 
   deleteUserApi(id:number) {
     return (
-      this.http.delete<void>(`${Constants.apiUrl}/users/${id}`, Constants.options).pipe(
+      this.http.delete<void>(`${Constants.apiUrl}/users/${id}`).pipe(
         catchError(Utils.handleError)
       )
     );
@@ -63,7 +63,6 @@ export class UsersApiService {
 
     this.http.get(`${Constants.apiUrl}/users/exportAll`, {
       responseType: 'blob', // 'blob' for handling binary data
-      headers:Constants.options.headers
     }).pipe(catchError(Utils.handleError))
     .subscribe((response: Blob) => {
       const filename = 'users.pdf';

@@ -15,7 +15,7 @@ export class CoursesApiService {
   addCourseApi(course: any) {
     return <Observable<Course>>(
       this.http
-        .post(`${Constants.apiUrl}/users/${Constants.CurrentLoggedUser.id}/mycourses`, course, Constants.options)
+        .post(`${Constants.apiUrl}/users/${Constants.CurrentLoggedUser.id}/mycourses`, course)
         .pipe(
           tap(console.log),
           catchError(Utils.handleError),
@@ -28,8 +28,7 @@ export class CoursesApiService {
       this.http
         .put(
           `${Constants.apiUrl}/users/${Constants.CurrentLoggedUser.id}/mycourses`,
-          course,
-          Constants.options
+          course
         )
         .pipe(
           tap(console.log),
@@ -41,8 +40,7 @@ export class CoursesApiService {
   deleteCourseApi(courseId: number) {
     return <Observable<Course>>this.http
       .delete(
-        `${Constants.apiUrl}/users/${Constants.CurrentLoggedUser.id}/mycourses/${courseId}`,
-        Constants.options
+        `${Constants.apiUrl}/users/${Constants.CurrentLoggedUser.id}/mycourses/${courseId}`
       )
       .pipe(
       tap(console.log),
@@ -53,7 +51,7 @@ export class CoursesApiService {
   fetchCourses() {
     return <Observable<Course[]>>(
       this.http
-        .get<Course>(`${Constants.apiUrl}/courses?pageNumber=0&pageSize=10&sortField=id`, Constants.options)
+        .get<Course>(`${Constants.apiUrl}/courses?pageNumber=0&pageSize=10&sortField=id`)
         .pipe(
           tap(console.log),
           map((res) => {

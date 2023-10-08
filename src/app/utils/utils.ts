@@ -1,17 +1,17 @@
-import { HttpErrorResponse } from "@angular/common/http";
-import { Observable, Subject, throwError } from "rxjs";
-import jwt_decode, { JwtPayload } from 'jwt-decode'
+import { HttpErrorResponse } from '@angular/common/http';
+import { Observable, Subject, throwError } from 'rxjs';
+import jwt_decode, { JwtPayload } from 'jwt-decode';
 
 export class Utils {
-
   static readonly currDate = new Date();
   static errorMessage = new Subject<string>();
 
-  static formatDate(date:Date){
+  static formatDate(date: Date) {
     const creationDate = new Date(date);
-    const days = Math.ceil((this.currDate.getTime() - creationDate.getTime()) / (1000 * 3600 * 24));
-    if(days < 1)
-      return 'Today'
+    const days = Math.ceil(
+      (this.currDate.getTime() - creationDate.getTime()) / (1000 * 3600 * 24)
+    );
+    if (days < 1) return 'Today';
     return days + ' days ago';
   }
 
@@ -22,15 +22,15 @@ export class Utils {
     // else{
     //   console.log('Server side error ',error)
     // }
-    console.log(error)
-    if(error.status === 403)
-      Utils.errorMessage.next('your are not authorized please logout!');
-    else{
-      if(error.error.message){
-          Utils.errorMessage.next(error.error.message);
-      }
-      else
-        Utils.errorMessage.next(error.message);
+    console.log(error);
+    if (error.status === 403)
+      Utils.errorMessage.next(
+        'Current credentials are expired\nplease log out and login again'
+      );
+    else {
+      if (error.error.message) {
+        Utils.errorMessage.next(error.error.message);
+      } else Utils.errorMessage.next(error.message);
     }
 
     return throwError(
@@ -44,5 +44,4 @@ export class Utils {
     expirationDate.setUTCSeconds(decodedToken.exp!); // Set the expiration date using the `exp` claim
     return expirationDate;
   }
-
 }

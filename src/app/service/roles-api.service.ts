@@ -14,7 +14,7 @@ export class RolesApiService {
 
   fetchRoles() {
     return <Observable<Role[]>>(
-      this.http.get<Role>(`${Constants.apiUrl}/roles`, Constants.options).pipe(
+      this.http.get<Role>(`${Constants.apiUrl}/roles`).pipe(
         tap(console.log),
         catchError(Utils.handleError)
       )
@@ -23,7 +23,7 @@ export class RolesApiService {
 
   addRoleApi(role:Role){
     return <Observable<Role>>(
-      this.http.post(`${Constants.apiUrl}/roles`,role,Constants.options).pipe(
+      this.http.post(`${Constants.apiUrl}/roles`,role).pipe(
         tap(console.log),
         catchError(Utils.handleError)
       )
@@ -32,7 +32,7 @@ export class RolesApiService {
 
   updateRoleApi(role:Role){
     return <Observable<never>>(
-      this.http.put(`${Constants.apiUrl}/roles`,role,Constants.options).pipe(
+      this.http.put(`${Constants.apiUrl}/roles`,role).pipe(
         tap(console.log),
         catchError(Utils.handleError)
       )
@@ -41,7 +41,7 @@ export class RolesApiService {
 
   deleteRoleApi(roleId:number){
     return (
-      this.http.delete<void>(`${Constants.apiUrl}/roles/${roleId}`, Constants.options).pipe(
+      this.http.delete<void>(`${Constants.apiUrl}/roles/${roleId}`).pipe(
         catchError(Utils.handleError)
       )
     );

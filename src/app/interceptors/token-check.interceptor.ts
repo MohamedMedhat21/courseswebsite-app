@@ -16,15 +16,17 @@ export class TokenCheckInterceptor implements HttpInterceptor {
   constructor(private authService:AuthService) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    if(request.url.includes('checkToken')||request.url.includes('http://localhost:8080/api/courses?')
+    if(request.url.includes('http://localhost:8080/api/courses?')
     ||request.url.includes('http://localhost:8080/api/auth')){
       return next.handle(request);
     }
-    console.log('from interceptor');
+    const modifiedRequest = request.clone({
+      setHeaders: {
+        Authorization: `Bearer ${Constants.CurrentLoggedUser.jwtToken}`
+      }
+    });
     // console.log(request);
-    this.authService.checkToken('',Constants.CurrentLoggedUser).subscribe();
-    // console.log('----------------------------');
-
-    return next.handle(request);
+    // this.authService.checkToken('',Constants.CurrentLoggedUser).subscribe();
+    return next.handle(modifiedRequest);
   }
 }

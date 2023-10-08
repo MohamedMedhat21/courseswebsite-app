@@ -27,7 +27,7 @@ export class AuthService {
 
   signup(username:string,password:string,email:string,rolename:string){
 
-    return this.http.post<AuthRes>(`${Constants.apiUrl}/auth/register`,{username,email,password,rolename},Constants.options).pipe(
+    return this.http.post<AuthRes>(`${Constants.apiUrl}/auth/register`,{username,email,password,rolename}).pipe(
       map(res=>{
         // this.handleAuthentication(resData);
 
@@ -39,7 +39,7 @@ export class AuthService {
         roleId:res.roleId
       }
 
-      Constants.setOptions(res.token);
+      // Constants.setOptions(res.token);
 
       localStorage.setItem('userData',JSON.stringify(Constants.CurrentLoggedUser));
       this.user.next(Constants.CurrentLoggedUser);
@@ -55,7 +55,7 @@ export class AuthService {
 
   login(username:string,password:string){
 
-    return this.http.post<AuthRes>(`${Constants.apiUrl}/auth/authenticate`,{username,password},Constants.options).pipe(
+    return this.http.post<AuthRes>(`${Constants.apiUrl}/auth/authenticate`,{username,password}).pipe(
       map(res =>{
         // this.handleAuthentication(resData);
 
@@ -67,7 +67,7 @@ export class AuthService {
           roleId:res.roleId
         }
 
-        Constants.setOptions(res.token);
+        // Constants.setOptions(res.token);
 
       localStorage.setItem('userData',JSON.stringify(Constants.CurrentLoggedUser));
       console.log(Constants.CurrentLoggedUser)
@@ -103,7 +103,7 @@ export class AuthService {
   checkToken(token:string,userData:CurrentUser){
     Constants.CurrentLoggedUser.jwtToken = userData.jwtToken;
     token = userData.jwtToken;
-    Constants.setOptions(token);
+    // Constants.setOptions(token);
     return this.http.post<Token>(`${Constants.apiUrl}/auth/checkToken`,{token}).pipe(
       tap(console.log),
       map(userToken =>{
@@ -115,14 +115,10 @@ export class AuthService {
             expiresAfterMins:userData.expiresAfterMins,
             roleId:userData.roleId
           }
-          Constants.setOptions(userData.jwtToken);
+          // Constants.setOptions(userData.jwtToken);
 
           this.user.next(Constants.CurrentLoggedUser);
 
-        }else{
-          if(confirm('Current Creds are expired do you want to log out?')){
-            this.logout().subscribe();
-          }
         }
     }),
     catchError(Utils.handleError),
@@ -130,7 +126,7 @@ export class AuthService {
   }
 
   logout(){
-    return this.http.get(`${Constants.apiUrl}/auth/logout`,Constants.options).pipe(
+    return this.http.get(`${Constants.apiUrl}/auth/logout`).pipe(
       map(res =>{
 
         Constants.CurrentLoggedUser={
@@ -141,7 +137,7 @@ export class AuthService {
           roleId:0
         }
 
-        Constants.setOptions('');
+        // Constants.setOptions('');
 
         this.user.next(null!);
 
