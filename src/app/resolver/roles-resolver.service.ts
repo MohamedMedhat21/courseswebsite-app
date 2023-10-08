@@ -13,7 +13,9 @@ export class RolesResolverService {
   resolve(route:ActivatedRouteSnapshot,state:RouterStateSnapshot){
     const roles = this.rolesService.getRoles();
     if(roles.length === 0){
-      return this.rolesServiceApi.fetchRoles();
+      return this.rolesServiceApi.fetchRoles().subscribe(roles =>{
+        this.rolesService.setRoles(roles);
+      });
     }
     return roles;
   }

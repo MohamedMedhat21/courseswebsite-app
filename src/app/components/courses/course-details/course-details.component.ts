@@ -1,15 +1,12 @@
-import { Component, Input, SecurityContext } from '@angular/core';
+import { Component } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { catchError } from 'rxjs';
 import { Course } from 'src/app/model/course.model';
-import { StudentCoursesData } from 'src/app/model/student-courses-data.model';
 import { CoursesService } from 'src/app/service/courses.service';
+import { StudentCoursesAPiService } from 'src/app/service/student-courses-api.service';
 import { StudentCoursesService } from 'src/app/service/student-courses.service';
-import { UsersService } from 'src/app/service/users.service';
 import { Constants } from 'src/app/utils/Constants';
-import { Utils } from 'src/app/utils/utils';
 
 @Component({
   selector: 'app-course-details',
@@ -29,6 +26,7 @@ export class CourseDetailsComponent {
     private router: Router,
     private domSanitizer: DomSanitizer,
     private studentCoursesService: StudentCoursesService,
+    private studentCoursesApiService: StudentCoursesAPiService,
     private messageService: MessageService
   ) {}
 
@@ -51,7 +49,6 @@ export class CourseDetailsComponent {
   }
 
   onEnroll(courseId: number) {
-    // console.log(this.isUserEnrolled)
     const isAuthenticated = Constants.CurrentLoggedUser.id === 0 ? false : true;
     if(!isAuthenticated){
       this.router.navigate(['/auth']);
@@ -61,8 +58,8 @@ export class CourseDetailsComponent {
     res.subscribe((res) => {
       console.log(res);
       this.isUserEnrolled = true;
-      this.studentCoursesService.fetchStudentCoursesData()?.subscribe(res=>{
-        console.log(res)
+      this.studentCoursesApiService.fetchStudentCoursesData()?.subscribe(res=>{
+        this.studentCoursesService.setStudentCoursesData(res);
       });
       this.messageService.add({
         severity: 'success',

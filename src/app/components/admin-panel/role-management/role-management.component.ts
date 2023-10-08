@@ -23,6 +23,7 @@ export class RoleManagementComponent {
     })
 
     this.roles = this.roleService.getRoles();
+    console.log(this.roleService.getRoles())
   }
 
   openRoleDialog(){
