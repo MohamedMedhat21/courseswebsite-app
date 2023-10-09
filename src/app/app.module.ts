@@ -39,6 +39,7 @@ import { ToastModule } from 'primeng/toast';
 import { MessagesModule } from 'primeng/messages';
 import { CourseStartComponent } from './components/courses/course-start/course-start.component';
 import { httpInterceptorProviders } from './interceptors';
+import { NotFoundComponent } from './shared/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { httpInterceptorProviders } from './interceptors';
     EnrollmentDetailsComponent,
     FooterComponent,
     CourseStartComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,

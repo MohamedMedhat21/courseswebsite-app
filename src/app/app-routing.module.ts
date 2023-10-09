@@ -15,9 +15,10 @@ import { RolesResolverService } from './resolver/roles-resolver.service';
 import { EnrollmentDetailsComponent } from './components/enrollment/enrollment-details/enrollment-details.component';
 import { CourseStartComponent } from './components/courses/course-start/course-start.component';
 import { RouterPaths } from './enums/router-paths.enum';
+import { NotFoundComponent } from './shared/not-found/not-found.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full'},
+  { path: '', redirectTo: RouterPaths.HOME, pathMatch: 'full'},
   {path:RouterPaths.HOME,component:StartPageComponent},
   {path: RouterPaths.COURSES,component:CoursesComponent,resolve:[studentCoursesDataResolverService,CoursesResolverService]
   ,children:[
@@ -33,6 +34,8 @@ const routes: Routes = [
   {path: RouterPaths.ADMIN_PANEL,component:AdminPanelComponent,resolve:[UsersResolverService,RolesResolverService],canActivate: [AuthGuard]},
   {path: RouterPaths.ABOUT_US,component:AboutUsComponent},
   {path: RouterPaths.AUTH,component:AuthComponent},
+  {path: RouterPaths.NOT_FOUND,component:NotFoundComponent},
+  { path: '**', redirectTo: RouterPaths.NOT_FOUND }
 ];
 
 @NgModule({
