@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg">
   <div class="container-fluid">
-    <a class="navbar-brand" routerLink="/home">Courses Website</a>
+    <a class="navbar-brand" routerLink="/home">{{"COURSES_WEBSITE" | translate}}</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -8,7 +8,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-0 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" routerLink="/{{routerPaths.COURSES}}">Browse courses</a>
+          <a class="nav-link" routerLink="/{{routerPaths.COURSES}}">{{"BROWSE_COURSES" | translate}}</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="/{{routerPaths.ENROLLMENTS}}" *ngIf="currentRoleId===userRoles.STUDENT">My learning</a>
@@ -20,7 +20,7 @@
           <a class="nav-link" routerLink="/{{routerPaths.ADMIN_PANEL}}" *ngIf="currentRoleId===userRoles.ADMIN">Administration Panel</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/{{routerPaths.ABOUT_US}}">About Us</a>
+          <a class="nav-link" routerLink="/{{routerPaths.ABOUT_US}}">{{"ABOUT_US" | translate}}</a>
         </li>
         <li class="nav-item" *ngIf="currentPath===routerPaths.COURSES">
           <form class="d-flex" role="search" #searchForm="ngForm" (ngSubmit)="onSubmit(searchForm)">
@@ -31,8 +31,9 @@
         </li>
       </ul>
       <div class="d-flex">
-        <button class="btn btn-outline-success me-2" type="button" routerLink="/{{routerPaths.AUTH}}" *ngIf="!isAuthenticated">Join Us</button>
-        <button class="btn btn-outline-danger me-1" type="button" (click)="onLogout()" *ngIf="isAuthenticated" >Logout</button>
+        <p-dropdown class="me-2" id="roleName" [(ngModel)]="selectedLang" [options]="langs" optionLabel="name" placeholder="Lang" (onChange)="onLangChange()"></p-dropdown>
+        <button class="btn btn-outline-success me-2" type="button" routerLink="/{{routerPaths.AUTH}}" *ngIf="!isAuthenticated">{{"JOIN_US" | translate}}</button>
+        <button class="btn btn-outline-danger me-1" type="button" (click)="onLogout()" *ngIf="isAuthenticated" >{{"LOG_OUT" | translate}}</button>
       </div>
     </div>
   </div>

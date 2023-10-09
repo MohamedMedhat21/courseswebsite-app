@@ -4,6 +4,9 @@ import { BehaviorSubject } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { Message, MessageService } from 'primeng/api';
 import { Utils } from './utils/utils';
+import { TranslateService } from '@ngx-translate/core';
+import { Lang } from './interface/lang';
+import { Constants } from './utils/Constants';
 
 @Component({
   selector: 'app-root',
@@ -15,8 +18,7 @@ export class AppComponent {
   title = 'courseswebsite-app';
   globalMessage: Message[];
 
-  constructor(private authService:AuthService){
-
+  constructor(private authService:AuthService,public translateService:TranslateService){
   }
 
 
@@ -24,8 +26,10 @@ export class AppComponent {
     Utils.errorMessage.subscribe(msg =>{
       this.globalMessage = [
         { severity: 'error', summary: 'Error', detail: msg }
-    ];
+      ];
     })
     this.authService.autoLogin();
+    const lang:Lang = JSON.parse(localStorage.getItem('lang')!) || Constants.langs[1];
+    this.translateService.use(lang.code)
   }
 }

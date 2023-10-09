@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -40,6 +40,8 @@ import { MessagesModule } from 'primeng/messages';
 import { CourseStartComponent } from './components/courses/course-start/course-start.component';
 import { httpInterceptorProviders } from './interceptors';
 import { NotFoundComponent } from './shared/not-found/not-found.component';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 @NgModule({
   declarations: [
@@ -84,9 +86,24 @@ import { NotFoundComponent } from './shared/not-found/not-found.component';
     PaginatorModule,
     DropdownModule,
     ToastModule,
-    MessagesModule
+    MessagesModule,
+    TranslateModule.forRoot({
+      defaultLanguage:'en',
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+    }
+    }),
   ],
   providers: [httpInterceptorProviders],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports:[
+    TranslateModule
+  ]
 })
 export class AppModule { }
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}

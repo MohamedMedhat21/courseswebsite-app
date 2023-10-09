@@ -1,5 +1,6 @@
 import { HttpHeaders } from "@angular/common/http";
 import { Subject } from "rxjs";
+import { Lang } from "../interface/lang";
 
 export interface CurrentUser{
   id:number;
@@ -28,6 +29,11 @@ export class Constants {
   static CurrentLoggedUser:CurrentUser={id:0,username:'',jwtToken:'',roleId:0,expiresAfterMins:0};
 
   static courseFilter = new Subject<string>();
+
+  static langs:Lang[] = [
+    {name:'Arabic',code:"ar"},
+    {name:'English',code:"en"},
+  ]
 
   // static options = {
   //   headers: new HttpHeaders().append(
