@@ -50,6 +50,7 @@ export class CoursesService {
           localIndex = index;
         }
       });
+      course.creationDateFormatted = Utils.formatDate(course.creationDate);
       this.courses[localIndex] = editedCourse;
       this.coursesChanged.next(this.courses.slice());
     });

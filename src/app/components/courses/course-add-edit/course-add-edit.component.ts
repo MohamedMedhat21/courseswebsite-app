@@ -3,45 +3,37 @@ import { NgForm } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Course } from 'src/app/model/course.model';
 import { CoursesService } from 'src/app/service/courses.service';
-import { UsersService } from 'src/app/service/users.service';
 import { Constants } from 'src/app/utils/Constants';
 import { Utils } from 'src/app/utils/utils';
 
 @Component({
   selector: 'app-course-add-edit',
   templateUrl: './course-add-edit.component.html',
-  styleUrls: ['./course-add-edit.component.css']
+  styleUrls: ['./course-add-edit.component.css'],
 })
 export class CourseAddEditComponent {
-
-  error: any;
-  id:number;
-  courseName : string;
-  description : string;
-  totalHours:number;
-  headline:string;
-  imagePath:string;
-  courseLink:string;
-  creationDate:Date;
-  instructorId:number;
+  course: Course = {
+    id: 0,
+    name: '',
+    description: '',
+    headline: '',
+    instructorId: 0,
+    instructorName: '',
+    creationDate: new Date(),
+    totalHours: 0,
+    imagePath: '',
+    courseLink: '',
+  };
 
   constructor(
-    private courseService:CoursesService,
+    private courseService: CoursesService,
     public dialogRef: MatDialogRef<CourseAddEditComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
   ngOnInit() {
-    if (this.data){
-      this.id = this.data.courseDetails.id;
-      this.courseName = this.data.courseDetails.name;
-      this.description = this.data.courseDetails.description;
-      this.totalHours = this.data.courseDetails.totalHours;
-      this.headline = this.data.courseDetails.headline;
-      this.imagePath = this.data.courseDetails.imagePath;
-      this.courseLink = this.data.courseDetails.courseLink;
-      this.creationDate = this.data.courseDetails.creationDate;
-      this.instructorId = this.data.courseDetails.instructorId;
+    if (this.data) {
+      this.setData(this.data.courseDetails);
     }
   }
 
@@ -50,53 +42,34 @@ export class CourseAddEditComponent {
   }
 
   onSubmit(courseForm: NgForm) {
-    this.error = null;
-
     if (!courseForm.valid) return;
 
-    this.courseName = courseForm.value.courseName;
-    this.description = courseForm.value.description;
-    this.totalHours = courseForm.value.totalHours;
-    this.headline = courseForm.value.headline;
-    this.imagePath = courseForm.value.imagePath;
-    this.courseLink = courseForm.value.courseLink;
-    this.instructorId = Constants.CurrentLoggedUser.id;
+    this.setData(courseForm.value);
 
+    this.course.instructorName = Constants.CurrentLoggedUser.username;
+    if(this.data)
+      this.course.creationDate = this.data.courseDetails.creationDate;
+    this.course.creationDateFormatted = Utils.formatDate(this.course.creationDate);
 
-
-    if (this.data){
-      this.id = this.data.courseDetails.id;
-      this.creationDate = this.data.courseDetails.creationDate;
-    }
-    else{
-      // this.id = 0;
-      this.creationDate = new Date();
+    if (this.data) {
+      this.courseService.updateCourse(this.data.localIndex, this.course);
+    } else {
+      this.courseService.addCourse(this.course);
     }
 
-    const course:Course = {
-      id: this.id,
-      name: this.courseName,
-      description: this.description,
-      totalHours: this.totalHours,
-      headline: this.headline,
-      imagePath: this.imagePath,
-      courseLink: this.courseLink,
-      creationDate: this.creationDate,
-      instructorId: this.instructorId,
-      instructorName:Constants.CurrentLoggedUser.username,
-      creationDateFormatted : Utils.formatDate(this.creationDate)
-    };
-
-    if (this.data){
-      this.courseService.updateCourse(this.data.localIndex,course);
-    }
-    else{
-      this.courseService.addCourse(course);
-    }
-
-
-    courseForm.reset();
+   // courseForm.reset(); // not needed as we close the dialog if needed again do it in api response
     this.closeDialog();
   }
 
+  private setData(data: any) {
+    if(data.id)
+      this.course.id = data.id;
+    this.course.name = data.name;
+    this.course.description = data.description;
+    this.course.totalHours = data.totalHours;
+    this.course.headline = data.headline;
+    this.course.imagePath = data.imagePath;
+    this.course.courseLink = data.courseLink;
+    this.course.instructorId = Constants.CurrentLoggedUser.id;
+  }
 }

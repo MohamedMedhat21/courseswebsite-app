@@ -22,7 +22,7 @@
           </ng-template>
           <ng-template pTemplate="footer">
             <div *ngIf="currentPath === routerPaths.PUBLISHED_COURSES">
-              <p-button label="Edit" icon="pi pi-check" (click)="onEdit(i,course.id)"></p-button>
+              <p-button label="Edit" icon="pi pi-pencil" (click)="onEdit(i,course.id)"></p-button>
               <p-button label="Delete" icon="pi pi-times" (click)="onDelete(course.id)" styleClass="p-button-danger"
                 [style]="{ 'margin-left': '.5em' }"></p-button>
             </div>
