@@ -31,5 +31,6 @@ export class AppComponent {
     this.authService.autoLogin();
     const lang:Lang = JSON.parse(localStorage.getItem('lang')!) || Constants.langs[1];
     this.translateService.use(lang.code)
+    document.documentElement.lang = lang.code;
   }
 }

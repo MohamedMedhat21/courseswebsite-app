@@ -2,13 +2,13 @@
   <div class="d-flex flex-wrap justify-content-between align-items-center py-3 my-2">
 
     <!-- Footer content -->
-    <p class=" mb-0 ms-4 text-body-secondary">© 2023 Courses Website, Inc</p>
-    <ul class="nav col-md-4 justify-content-end me-4">
-      <li class="nav-item"><a routerLink="/home" class="nav-link px-2 text-body-secondary">Home</a></li>
-      <li class="nav-item"><a routerLink="/courses" class="nav-link px-2 text-body-secondary">Courses</a></li>
-      <li class="nav-item"><a routerLink="/home" class="nav-link px-2 text-body-secondary">Pricing</a></li>
-      <li class="nav-item"><a routerLink="/home" class="nav-link px-2 text-body-secondary">FAQs</a></li>
-      <li class="nav-item"><a routerLink="/aboutUs" class="nav-link px-2 text-body-secondary">About</a></li>
+    <ul class="nav col-md-4 justify-content-start ms-4">
+      <li class="nav-item"><a routerLink="/home" class="nav-link px-2 text-body-secondary">{{ "FOOTER.home" |translate}}</a></li>
+      <li class="nav-item"><a routerLink="/courses" class="nav-link px-2 text-body-secondary">{{ "FOOTER.Courses" |translate}}</a></li>
+      <li class="nav-item"><a routerLink="/home" class="nav-link px-2 text-body-secondary">{{ "FOOTER.Pricing" |translate}}</a></li>
+      <li class="nav-item"><a routerLink="/home" class="nav-link px-2 text-body-secondary">{{ "FOOTER.FAQs" |translate}}</a></li>
+      <li class="nav-item"><a routerLink="/aboutUs" class="nav-link px-2 text-body-secondary">{{ "FOOTER.About_us" |translate}}</a></li>
     </ul>
+    <p class=" mb-0 me-4 text-body-secondary">{{ "FOOTER.footer_template" |translate}}</p>
   </div>
 </footer>

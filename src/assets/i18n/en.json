@@ -4,7 +4,25 @@
   "LOG_OUT":"Log Out",
   "BROWSE_COURSES":"Browse courses",
   "MY_COURSES":"My Courses",
-  "ABOUT_US":"About Us",
+  "ABOUT_US_PAGE": {
+    "about_us": "About Us",
+    "1st_col_1st_p": "We help organizations of all types and sizes prepare for the path ahead — wherever it leads. Our curated collection of business and technical courses help companies, governments, and nonprofits go further by placing learning at the center of their strategies.",
+    "1st_col_2nd_p":"Courses Website fit us like a glove. Their team curates fresh, up-to-date courses from their marketplace and makes them available to customers.",
+    "2nd_col_1st_h":"Work with heart",
+    "2nd_col_1st_p":"In total, it was a big success, I would get emails about what a fantastic resource it was.",
+    "2nd_col_2nd_h":"Reliable services",
+    "2nd_col_2nd_p":"At Courses Website, we’re all learners and instructors. We live out our values every day to create a culture that is diverse, inclusive, and committed to helping employees thrive.",
+    "2nd_col_3rd_h":"Great support",
+    "2nd_col_3rd_p":"Courses Website responds to the needs of the business in an agile and global manner. It’s truly the best solution for our employees and their careers."
+  },
+  "FOOTER":{
+    "footer_template":"© 2023 Courses Website, Inc",
+    "home":"Home",
+    "Courses":"Courses",
+    "Pricing":"Pricing",
+    "FAQs":"FAQs",
+    "About_us":"About us"
+  },
   "CHANGE_LANGUAGE":"change Language",
   "COURSES_WEBSITE":"Courses Website"
 }

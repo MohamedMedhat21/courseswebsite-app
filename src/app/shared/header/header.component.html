@@ -20,7 +20,7 @@
           <a class="nav-link" routerLink="/{{routerPaths.ADMIN_PANEL}}" *ngIf="currentRoleId===userRoles.ADMIN">Administration Panel</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/{{routerPaths.ABOUT_US}}">{{"ABOUT_US" | translate}}</a>
+          <a class="nav-link" routerLink="/{{routerPaths.ABOUT_US}}">{{"ABOUT_US_PAGE.about_us" | translate}}</a>
         </li>
         <li class="nav-item" *ngIf="currentPath===routerPaths.COURSES">
           <form class="d-flex" role="search" #searchForm="ngForm" (ngSubmit)="onSubmit(searchForm)">
@@ -31,7 +31,7 @@
         </li>
       </ul>
       <div class="d-flex">
-        <p-dropdown class="me-2" id="roleName" [(ngModel)]="selectedLang" [options]="langs" optionLabel="name" placeholder="Lang" (onChange)="onLangChange()"></p-dropdown>
+        <p-dropdown class="me-2" id="roleName" [(ngModel)]="selectedLang" [options]="langs" optionLabel="name" placeholder="selectedLang" (onChange)="onLangChange()"></p-dropdown>
         <button class="btn btn-outline-success me-2" type="button" routerLink="/{{routerPaths.AUTH}}" *ngIf="!isAuthenticated">{{"JOIN_US" | translate}}</button>
         <button class="btn btn-outline-danger me-1" type="button" (click)="onLogout()" *ngIf="isAuthenticated" >{{"LOG_OUT" | translate}}</button>
       </div>

@@ -23,7 +23,7 @@ export class HeaderComponent {
   langs:Lang[];
   selectedLang:Lang;
 
-  constructor(private authService: AuthService, private router: Router,public translateService:TranslateService) {
+  constructor(private authService: AuthService, private router: Router,private translateService:TranslateService) {
 
   }
 
@@ -56,5 +56,6 @@ export class HeaderComponent {
   onLangChange(){
     this.translateService.use(this.selectedLang.code);
     localStorage.setItem('lang',JSON.stringify(this.selectedLang));
+    document.documentElement.lang = this.selectedLang.code;
   }
 }

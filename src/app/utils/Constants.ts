@@ -1,15 +1,6 @@
-import { HttpHeaders } from "@angular/common/http";
 import { Subject } from "rxjs";
 import { Lang } from "../interface/lang";
-
-export interface CurrentUser{
-  id:number;
-  username:string;
-  jwtToken:string;
-  expiresAfterMins:number;
-  roleId:number;
-}
-
+import { CurrentUser } from "../interface/current-user.interface";
 
 export class Constants {
 
@@ -31,26 +22,8 @@ export class Constants {
   static courseFilter = new Subject<string>();
 
   static langs:Lang[] = [
-    {name:'Arabic',code:"ar"},
-    {name:'English',code:"en"},
+    {name:'العربية',code:'ar'},
+    {name:'English',code:'en'},
   ]
-
-  // static options = {
-  //   headers: new HttpHeaders().append(
-  //     'Authorization',
-  //     `Bearer ${this.CurrentLoggedUser.jwtToken}`
-  //   ),
-  // };
-
-  // static setOptions(token:string){
-  //   const options = {
-  //     headers: new HttpHeaders().append(
-  //       'Authorization',
-  //       `Bearer ${this.CurrentLoggedUser.jwtToken}`
-  //     ),
-  //   };
-  //   this.options = options;
-  // }
-
 
 }

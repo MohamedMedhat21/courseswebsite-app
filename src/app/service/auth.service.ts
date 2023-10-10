@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, catchError, finalize, map, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Constants, CurrentUser } from '../utils/Constants';
+import { Router } from '@angular/router';
+import { Constants } from '../utils/Constants';
 import { Utils } from '../utils/utils';
 import { Token } from '../model/token.model';
+import { CurrentUser } from '../interface/current-user.interface';
 
 export interface AuthRes{
   userId:number;

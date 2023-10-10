@@ -4,6 +4,10 @@
 @import "primeicons/primeicons.css";
 
 
+html:lang(ar) {
+  text-align: right;
+}
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
