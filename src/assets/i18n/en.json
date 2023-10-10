@@ -19,6 +19,16 @@
     "courses_hours":"Hours of learning",
     "browse_courses_btn":"Browse courses now"
   },
+  "AUTH_PAGE":{
+    "username":"Username",
+    "password":"Password",
+    "login":"Login",
+    "switch_to":"Switch to",
+    "sign_up":"Sign Up",
+    "create_account":"create account",
+    "email":"E-mail",
+    "role_name":"Role name"
+  },
   "ABOUT_US_PAGE": {
     "about_us": "About Us",
     "1st_col_1st_p": "We help organizations of all types and sizes prepare for the path ahead — wherever it leads. Our curated collection of business and technical courses help companies, governments, and nonprofits go further by placing learning at the center of their strategies.",
