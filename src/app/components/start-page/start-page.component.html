@@ -3,26 +3,26 @@
   </div><!--//hero-mask-->
   <div class="container text-center py-5">
     <div class="single-col-max mx-auto">
-      <div class="hero-heading-upper pt-3 mb-3">Best platform for Online Course</div>
+      <div class="hero-heading-upper pt-3 mb-3">{{ "HOME_PAGE.upper_heading" | translate}}</div>
       <h1 class="hero-heading mb-5">
         <span class="brand mb-4 d-block"><span class="text-highlight pr-2"></span><span
-            class="name">Courses website</span><span class="text-highlight pl-2"></span></span>
-        <span class="desc d-block">Your learning is our responsibility</span>
+            class="name">{{"COURSES_WEBSITE" | translate}}</span><span class="text-highlight pl-2"></span></span>
+        <span class="desc d-block">{{ "HOME_PAGE.heading" | translate}}</span>
       </h1>
       <div class="text-center mb-5">
-        <a class="btn btn-primary btn-lg scrollto" (click)="onBrowseCourses()">Browse courses Now</a>
+        <a class="btn btn-primary btn-lg scrollto" (click)="onBrowseCourses()">{{ "HOME_PAGE.browse_courses_btn" | translate}}</a>
       </div>
 
       <div class="hero-summary">
         <div class="row">
           <div class="item col-4">
-            <div class="summary-desc mb-1"><i class="icon fas fa-video me-2"></i>Content</div>
-            <h4 class="summary-heading">123+ <span class="desc">Courses</span></h4>
+            <div class="summary-desc mb-1"><i class="icon fas fa-video me-2"></i>{{ "HOME_PAGE.content" | translate}}</div>
+            <h4 class="summary-heading"><span class="desc">{{ "HOME_PAGE.courses_number" | translate}}</span></h4>
 
           </div><!--//col-->
           <div class="item col-4">
-            <div class="summary-desc mb-1"><i class="icon fas fa-clock me-2"></i>Duration</div>
-            <h4 class="summary-heading">1500 <span class="desc">Hours of learning</span></h4>
+            <div class="summary-desc mb-1"><i class="icon fas fa-clock me-2"></i>{{ "HOME_PAGE.duration" | translate}}</div>
+            <h4 class="summary-heading">1500 <span class="desc">{{ "HOME_PAGE.courses_hours" | translate}}</span></h4>
 
           </div><!--//col-->
         </div><!--//row-->

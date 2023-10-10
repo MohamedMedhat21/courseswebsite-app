@@ -22,6 +22,10 @@ export class HeaderComponent {
   isEng = true;
   langs:Lang[];
   selectedLang:Lang;
+  searchPlaceholder:{
+    en:'search for course',
+    ar:'اسم الدورة'
+  }
 
   constructor(private authService: AuthService, private router: Router,private translateService:TranslateService) {
 
