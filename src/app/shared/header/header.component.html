@@ -8,7 +8,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-0 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" routerLink="/{{routerPaths.COURSES}}">{{"HEADER.browse_courses" | translate}}</a>
+          <a class="nav-link" routerLink="/{{routerPaths.COURSES}}" routerLinkActive="active">{{"HEADER.browse_courses" | translate}}</a>
         </li>
         <li class="nav-item" *ngIf="currentPath===routerPaths.COURSES">
           <form class="d-flex" role="search" #searchForm="ngForm" (ngSubmit)="onSubmit(searchForm)">
@@ -18,16 +18,16 @@
           </form>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/{{routerPaths.ENROLLMENTS}}" *ngIf="currentRoleId===userRoles.STUDENT">{{ "HEADER.my_learning" | translate}}</a>
+          <a class="nav-link" routerLink="/{{routerPaths.ENROLLMENTS}}" routerLinkActive="active" *ngIf="currentRoleId===userRoles.STUDENT">{{ "HEADER.my_learning" | translate}}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/{{routerPaths.PUBLISHED_COURSES}}" *ngIf="currentRoleId===userRoles.INSTRUCTOR">{{ "HEADER.my_courses" | translate}}</a>
+          <a class="nav-link" routerLink="/{{routerPaths.PUBLISHED_COURSES}}" routerLinkActive="active" *ngIf="currentRoleId===userRoles.INSTRUCTOR">{{ "HEADER.my_courses" | translate}}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/{{routerPaths.ADMIN_PANEL}}" *ngIf="currentRoleId===userRoles.ADMIN">{{ "HEADER.admin_panel" | translate}}</a>
+          <a class="nav-link" routerLink="/{{routerPaths.ADMIN_PANEL}}" routerLinkActive="active" *ngIf="currentRoleId===userRoles.ADMIN">{{ "HEADER.admin_panel" | translate}}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/{{routerPaths.ABOUT_US}}">{{"ABOUT_US_PAGE.about_us" | translate}}</a>
+          <a class="nav-link" routerLink="/{{routerPaths.ABOUT_US}}" routerLinkActive="active">{{"ABOUT_US_PAGE.about_us" | translate}}</a>
         </li>
       </ul>
       <div class="d-flex">

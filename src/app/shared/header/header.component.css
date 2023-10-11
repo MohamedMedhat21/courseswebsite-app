@@ -6,3 +6,8 @@
 nav{
   background-color: #F9F7F7;
 }
+
+nav a.active {
+  font-weight: bold;
+  /* background-color: #d3cfcf; */
+}
