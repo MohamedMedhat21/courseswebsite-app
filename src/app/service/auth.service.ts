@@ -27,8 +27,8 @@ export class AuthService {
   constructor(private http:HttpClient,private router:Router) { }
 
   signup(username:string,password:string,email:string,rolename:string){
-
-    return this.http.post<AuthRes>(`${Constants.apiUrl}/auth/register`,{username,email,password,rolename}).pipe(
+    const enabled = 1;
+    return this.http.post<AuthRes>(`${Constants.apiUrl}/auth/register`,{username,email,password,enabled,rolename}).pipe(
       map(res=>{
         // this.handleAuthentication(resData);
 
