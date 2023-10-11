@@ -5,47 +5,47 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title"><span *ngIf="!data">Add new</span><span *ngIf="data">Update</span> course</h1>
+            <h1 class="modal-title"><span *ngIf="!data">{{"INSTRUCTOR_COURSES.add_courses_btn"|translate}}</span><span *ngIf="data">{{"INSTRUCTOR_COURSES.update_courses_btn"|translate}}</span></h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="closeDialog()"></button>
           </div>
           <div class="modal-body">
             <form #courseForm="ngForm" (ngSubmit)="onSubmit(courseForm)">
               <div class="mb-3">
-                <label for="coursename" class="form-label">Course name <span class="text-danger">*</span></label>
+                <label for="coursename" class="form-label">{{"INSTRUCTOR_COURSES.course_name"|translate}} <span class="text-danger">*</span></label>
                 <input type="text" class="form-control" id="coursename" aria-describedby="usernameHelp" ngModel name="name" required [(ngModel)]="course.name">
               </div>
               <div class="mb-3">
-                <label for="description" class="form-label">Description <span class="text-danger">*</span></label>
+                <label for="description" class="form-label">{{"INSTRUCTOR_COURSES.description"|translate}} <span class="text-danger">*</span></label>
                 <input type="text" class="form-control" id="description"
                 ngModel name="description" required minlength="6" [(ngModel)]="course.description">
               </div>
               <div class="mb-3">
-                <label for="totalHours" class="form-label">Total hours <span class="text-danger">*</span></label>
+                <label for="totalHours" class="form-label">{{"INSTRUCTOR_COURSES.total_hours"|translate}} <span class="text-danger">*</span></label>
                 <input type="text" id="totalHours" class="form-control"
                 ngModel name="totalHours" required [(ngModel)]="course.totalHours"/>
               </div>
               <div class="mb-3">
-                <label for="headline" class="form-label">Headline <span class="text-danger">*</span></label>
+                <label for="headline" class="form-label">{{"INSTRUCTOR_COURSES.headline"|translate}} <span class="text-danger">*</span></label>
                 <input type="text" id="headline" class="form-control"
                 ngModel name="headline" required [(ngModel)]="course.headline"/>
               </div>
               <div class="mb-3">
-                <label for="imagePath" class="form-label">Image path <span class="text-danger">*</span></label>
+                <label for="imagePath" class="form-label">{{"INSTRUCTOR_COURSES.image_path"|translate}} <span class="text-danger">*</span></label>
                 <input type="text" id="imagePath" class="form-control"
                 ngModel name="imagePath" required [(ngModel)]="course.imagePath"/>
               </div>
               <div class="mb-3">
-                <label for="courseLink" class="form-label">Course link <span class="text-danger">*</span></label>
+                <label for="courseLink" class="form-label">{{"INSTRUCTOR_COURSES.course_link"|translate}} <span class="text-danger">*</span></label>
                 <input type="text" id="courseLink" class="form-control"
                 ngModel name="courseLink" required [(ngModel)]="course.courseLink"/>
               </div>
             </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeDialog()">Close</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeDialog()">{{"INSTRUCTOR_COURSES.close_btn"|translate}}</button>
             <button type="submit" form="courseForm" class="btn btn-primary" [disabled]="!courseForm.valid" (click)="onSubmit(courseForm)">
-              <span *ngIf="!this.data">Add course</span>
-              <span *ngIf="this.data">Update course</span>
+              <span *ngIf="!this.data">{{"INSTRUCTOR_COURSES.add_courses_btn"|translate}}</span>
+              <span *ngIf="this.data">{{"INSTRUCTOR_COURSES.update_courses_btn"|translate}}</span>
             </button>
           </div>
         </div>

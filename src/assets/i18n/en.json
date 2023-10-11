@@ -1,53 +1,109 @@
 {
-  "HOME":"Home",
-  "HEADER":{
-    "browse_courses":"Browse courses",
-    "my_courses":"My Courses",
-    "my_learning":"My learning",
-    "join_us":"Join Us",
-    "log_out":"Log Out",
-    "admin_panel":"Administration Panel",
-    "search":"search",
-    "input.placeholder":"search for item"
+  "HOME": "Home",
+  "HEADER": {
+    "browse_courses": "Browse courses",
+    "my_courses": "My Courses",
+    "my_learning": "My learning",
+    "join_us": "Join Us",
+    "log_out": "Log Out",
+    "admin_panel": "Administration Panel",
+    "search": "search",
+    "input.placeholder": "search for item"
   },
-  "HOME_PAGE":{
-    "upper_heading":"Best platform for Online Courses",
-    "heading":"Your learning is our responsibility",
-    "content":"Content",
-    "duration":"Duration",
-    "courses_number":"123+ Courses",
-    "courses_hours":"Hours of learning",
-    "browse_courses_btn":"Browse courses now"
+  "HOME_PAGE": {
+    "upper_heading": "Best platform for Online Courses",
+    "heading": "Your learning is our responsibility",
+    "content": "Content",
+    "duration": "Duration",
+    "courses_number": "123+ Courses",
+    "courses_hours": "Hours of learning",
+    "browse_courses_btn": "Browse courses now"
   },
-  "AUTH_PAGE":{
-    "username":"Username",
-    "password":"Password",
-    "login":"Login",
-    "switch_to":"Switch to",
-    "sign_up":"Sign Up",
-    "create_account":"create account",
-    "email":"E-mail",
-    "role_name":"Role name"
+  "AUTH_PAGE": {
+    "username": "Username",
+    "password": "Password",
+    "login": "Login",
+    "switch_to": "Switch to",
+    "sign_up": "Sign Up",
+    "create_account": "create account",
+    "email": "E-mail",
+    "role_name": "Role name"
   },
   "ABOUT_US_PAGE": {
     "about_us": "About Us",
     "1st_col_1st_p": "We help organizations of all types and sizes prepare for the path ahead — wherever it leads. Our curated collection of business and technical courses help companies, governments, and nonprofits go further by placing learning at the center of their strategies.",
-    "1st_col_2nd_p":"Courses Website fit us like a glove. Their team curates fresh, up-to-date courses from their marketplace and makes them available to customers.",
-    "2nd_col_1st_h":"Work with heart",
-    "2nd_col_1st_p":"In total, it was a big success, I would get emails about what a fantastic resource it was.",
-    "2nd_col_2nd_h":"Reliable services",
-    "2nd_col_2nd_p":"At Courses Website, we’re all learners and instructors. We live out our values every day to create a culture that is diverse, inclusive, and committed to helping employees thrive.",
-    "2nd_col_3rd_h":"Great support",
-    "2nd_col_3rd_p":"Courses Website responds to the needs of the business in an agile and global manner. It’s truly the best solution for our employees and their careers."
+    "1st_col_2nd_p": "Courses Website fit us like a glove. Their team curates fresh, up-to-date courses from their marketplace and makes them available to customers.",
+    "2nd_col_1st_h": "Work with heart",
+    "2nd_col_1st_p": "In total, it was a big success, I would get emails about what a fantastic resource it was.",
+    "2nd_col_2nd_h": "Reliable services",
+    "2nd_col_2nd_p": "At Courses Website, we’re all learners and instructors. We live out our values every day to create a culture that is diverse, inclusive, and committed to helping employees thrive.",
+    "2nd_col_3rd_h": "Great support",
+    "2nd_col_3rd_p": "Courses Website responds to the needs of the business in an agile and global manner. It’s truly the best solution for our employees and their careers."
   },
-  "FOOTER":{
-    "footer_template":"© 2023 Courses Website, Inc",
-    "home":"Home",
-    "Courses":"Courses",
-    "Pricing":"Pricing",
-    "FAQs":"FAQs",
-    "About_us":"About us"
+  "COURSES_PAGE": {
+    "blank_courses_p": "please choose a course to view it's details!",
+    "start_learning_btn": "Start Learning Now",
+    "duration": "Duration",
+    "videos": "Videos",
+    "hours": "Hours",
+    "what_you_will_learn": "What you will Learn",
+    "course_highlight": "Be able to demonstrate your understanding of Java to future employers.",
+    "join_course_btn": "Join Course Now",
+    "enrolled": "Enrolled!",
+    "course_modules": "Course Modules",
+    "enrol_now_btn": "Enrol Now",
+    "meet_the_tutor": "Meet The Tutor",
+    "tutor_exp_p1": "'s been a professional software developer for over 40 years. During his career, he has worked for major companies such as Fujitsu, Mitsubishi, and Saab.",
+    "tutor_exp_p2": "His video courses are used to train developers in major companies such as Mercedes-Benz, Paypal, Pitney Bowes, and IBM just to name a few."
   },
-  "CHANGE_LANGUAGE":"change Language",
-  "COURSES_WEBSITE":"Courses Website"
+  "ADMIN_PANEL_PAGE": {
+    "admin_panel": "Administration Panel",
+    "user_management": "User Management",
+    "role_management": "Role Management",
+    "new_user_btn": "Add new user",
+    "new_role_btn": "Add new role",
+    "export_users_btn": "Export users",
+    "username": "Username",
+    "email": "E-mail",
+    "password": "Password",
+    "role": "Role",
+    "status": "Status",
+    "action": "Action",
+    "enable_user_checkbox": "Enable user",
+    "must_be_unique": "must be unique",
+    "close_btn": "Close",
+    "update_user_btn": "Update user",
+    "add_user_btn": "Add user",
+    "add_role_btn": "Add role",
+    "update_role_btn": "Update role",
+    "confirm_ok_btn": "Ok",
+    "confirm_cancel_btn": "Cancel"
+  },
+  "INSTRUCTOR_COURSES":{
+    "add_courses_btn":"Add course",
+    "update_courses_btn":"Update course",
+    "delete_btn":"Delete",
+    "edit_btn":"Edit",
+    "course_name":"Course name",
+    "description":"Description",
+    "total_hours":"Total hours",
+    "headline":"Headline",
+    "image_path":"Image path",
+    "course_link":"Course link",
+    "close_btn": "Close"
+  },
+  "FOOTER": {
+    "footer_template": "© 2023 Courses Website, Inc",
+    "home": "Home",
+    "Courses": "Courses",
+    "Pricing": "Pricing",
+    "FAQs": "FAQs",
+    "About_us": "About us"
+  },
+  "Shared":{
+    "dropdown_placeholder":"select",
+    "delete_confirm_msg": "are you sure you want to delete this"
+  },
+  "CHANGE_LANGUAGE": "change Language",
+  "COURSES_WEBSITE": "Courses Website"
 }

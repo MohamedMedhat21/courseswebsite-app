@@ -6,6 +6,7 @@ import { CoursesService } from 'src/app/service/courses.service';
 import { CourseAddEditComponent } from '../course-add-edit/course-add-edit.component';
 import { Constants } from 'src/app/utils/Constants';
 import { RouterPaths } from 'src/app/enums/router-paths.enum';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -26,6 +27,7 @@ export class CoursesListComponent {
     private coursesService: CoursesService,
     private route: ActivatedRoute,
     private courseDialog: MatDialog,
+    public translateService:TranslateService
   ) {
   }
 
@@ -61,7 +63,7 @@ export class CoursesListComponent {
   }
 
   onDelete(id: number) {
-    const isDelete = confirm('are you sure you want to delete this course?');
+    const isDelete = confirm(this.translateService.instant('Shared.delete_confirm_msg'));
     if (isDelete) {
       this.coursesService.deleteCourse(id);
     }

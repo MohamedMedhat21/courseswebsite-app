@@ -21,26 +21,26 @@
     </div><!--//hero-mask-->
     <div class="container text-center py-5">
       <div class="single-col-max mx-auto">
-        <div class="hero-heading-upper pt-3 mb-3">Best platform for Online Course</div>
+        <div class="hero-heading-upper pt-3 mb-3">{{ "HOME_PAGE.upper_heading" | translate}}</div>
         <h1 class="hero-heading mb-5">
           <span class="brand mb-4 d-block"><span class="text-highlight pr-2"></span><span
               class="name">{{courseDetails.name}}</span><span class="text-highlight pl-2"></span></span>
           <span class="desc d-block">{{courseDetails.headline}}</span>
         </h1>
         <div class="text-center mb-5" *ngIf="!isUserEnrolled">
-          <a class="btn btn-primary btn-lg" (click)="onEnroll(courseDetails.id)">Start Learning Now</a>
+          <a class="btn btn-primary btn-lg" (click)="onEnroll(courseDetails.id)">{{ "COURSES_PAGE.start_learning_btn" | translate}}</a>
         </div>
 
         <div class="hero-summary">
           <div class="row">
             <div class="item col-4">
-              <div class="summary-desc mb-1"><i class="icon fas fa-video me-2"></i>Content</div>
-              <h4 class="summary-heading">{{courseVideosNumber}}+ <span class="desc">Videos</span></h4>
+              <div class="summary-desc mb-1"><i class="icon fas fa-video me-2"></i>{{ "HOME_PAGE.content" | translate}}</div>
+              <h4 class="summary-heading">{{courseVideosNumber}}+ <span class="desc">{{ "COURSES_PAGE.videos" | translate}}</span></h4>
 
             </div><!--//col-->
             <div class="item col-4">
-              <div class="summary-desc mb-1"><i class="icon fas fa-clock me-2"></i>Duration</div>
-              <h4 class="summary-heading">{{courseDetails.totalHours}} <span class="desc">Hours</span></h4>
+              <div class="summary-desc mb-1"><i class="icon fas fa-clock me-2"></i>{{ "COURSES_PAGE.duration" | translate}}</div>
+              <h4 class="summary-heading">{{courseDetails.totalHours}} <span class="desc">{{ "COURSES_PAGE.hours" | translate}}</span></h4>
 
             </div><!--//col-->
           </div><!--//row-->
@@ -54,21 +54,21 @@
 <div id="section-overview" class="section-overview section pt-md-4 pt-lg-5">
   <div class="container py-5">
     <div class="section-col-max mx-auto">
-      <h3 class="section-title mb-4">What Will You Learn</h3>
+      <h3 class="section-title mb-4">{{ "COURSES_PAGE.what_you_will_learn" | translate}}</h3>
       <p class="mb-4">{{courseDetails.description}}</p>
       <div class="text-center mb-3">
         <ul class="column-list list-unstyled mx-auto d-inline-block">
-          <li><i class="theme-check-icon fas fa-check me-2"></i>Course highlight lorem ipsum</li>
-          <li><i class="theme-check-icon fas fa-check me-2"></i>Course highlight lorem ipsum</li>
-          <li><i class="theme-check-icon fas fa-check me-2"></i>Course highlight lorem ipsum</li>
-          <li><i class="theme-check-icon fas fa-check me-2"></i>Course highlight lorem ipsum</li>
-          <li><i class="theme-check-icon fas fa-check me-2"></i>Course highlight lorem ipsum</li>
-          <li><i class="theme-check-icon fas fa-check me-2"></i>Course highlight lorem ipsum</li>
+          <li><i class="theme-check-icon fas fa-check me-2"></i>{{ "COURSES_PAGE.course_highlight" | translate}}</li>
+          <li><i class="theme-check-icon fas fa-check me-2"></i>{{ "COURSES_PAGE.course_highlight" | translate}}</li>
+          <li><i class="theme-check-icon fas fa-check me-2"></i>{{ "COURSES_PAGE.course_highlight" | translate}}</li>
+          <li><i class="theme-check-icon fas fa-check me-2"></i>{{ "COURSES_PAGE.course_highlight" | translate}}</li>
+          <li><i class="theme-check-icon fas fa-check me-2"></i>{{ "COURSES_PAGE.course_highlight" | translate}}</li>
+          <li><i class="theme-check-icon fas fa-check me-2"></i>{{ "COURSES_PAGE.course_highlight" | translate}}</li>
         </ul>
       </div><!--//text-center-->
       <div class="text-center mb-5">
-        <a *ngIf="!isUserEnrolled" class="btn btn-primary scrollto" (click)="onEnroll(courseDetails.id)">Join Course Now</a>
-        <h3 *ngIf="isUserEnrolled"><i class="pi pi-check-circle text-green-500 me-2"></i>Enrolled!</h3>
+        <a *ngIf="!isUserEnrolled" class="btn btn-primary scrollto" (click)="onEnroll(courseDetails.id)">{{ "COURSES_PAGE.join_course_btn" | translate}}</a>
+        <h3 *ngIf="isUserEnrolled"><i class="pi pi-check-circle text-green-500 me-2"></i>{{ "COURSES_PAGE.enrolled" | translate}}</h3>
       </div>
       <div class="video-container">
         <div class="ratio ratio-16x9">
@@ -86,7 +86,7 @@
 <div id="section-content" class="section-content section">
   <div class="container py-5">
     <div class="section-col-max mx-auto">
-      <h4 class="text-center mb-4">Course Modules</h4>
+      <h4 class="text-center mb-4">{{ "COURSES_PAGE.course_modules" | translate}}</h4>
 
       <div class="accordion module-accordion" id="module-accordion">
         <div class="module-item card">
@@ -95,7 +95,7 @@
               <a class="card-toggle module-toggle" href="#module-1" data-bs-toggle="collapse" data-bs-target="#module-1"
                 aria-expanded="true" aria-controls="module-1">
                 <i class="module-toggle-icon fas fa-minus me-2"></i>
-                Module 1 - Lorem Ipsum Dolor Sit Amet
+                Module 1 - Getting Started
               </a>
             </h4>
           </div><!--//card-header-->
@@ -150,7 +150,7 @@
               <a class="card-toggle module-toggle" href="#module-2" data-bs-toggle="collapse" data-bs-target="#module-2"
                 aria-expanded="true" aria-controls="module-2">
                 <i class="module-toggle-icon fas fa-plus me-2"></i>
-                Module 2 - Lorem Ipsum Dolor Sit Amet
+                Module 2 - Programming Tools Setup
               </a>
             </h4>
           </div><!--//card-header-->
@@ -186,7 +186,7 @@
               <a class="card-toggle module-toggle" href="#module-3" data-bs-toggle="collapse" data-bs-target="#module-3"
                 aria-expanded="true" aria-controls="module-3">
                 <i class="module-toggle-icon fas fa-plus me-2"></i>
-                Module 3 - Lorem ipsum dolor sit amet.
+                Module 3 - First Steps
               </a>
             </h4>
           </div><!--//card-header-->
@@ -223,7 +223,7 @@
               <a class="card-toggle module-toggle" href="#module-4" data-bs-toggle="collapse" data-bs-target="#module-4"
                 aria-expanded="true" aria-controls="module-4">
                 <i class="module-toggle-icon fas fa-plus me-2"></i>
-                Module 4 - Lorem ipsum dolor sit amet.
+                Module 4 - Expressions, Statements & More
               </a>
             </h4>
           </div><!--//card-header-->
@@ -260,7 +260,7 @@
               <a class="card-toggle module-toggle" href="#module-5" data-bs-toggle="collapse" data-bs-target="#module-5"
                 aria-expanded="true" aria-controls="module-5">
                 <i class="module-toggle-icon fas fa-plus me-2"></i>
-                Module 5 - Lorem ipsum dolor sit amet.
+                Module 5 - Control Flow
               </a>
             </h4>
           </div><!--//card-header-->
@@ -297,7 +297,7 @@
               <a class="card-toggle module-toggle" href="#module-6" data-bs-toggle="collapse" data-bs-target="#module-6"
                 aria-expanded="true" aria-controls="module-6">
                 <i class="module-toggle-icon fas fa-plus me-2"></i>
-                Module 6 - Lorem ipsum dolor sit amet.
+                Module 6 - Networking Programming
               </a>
             </h4>
           </div><!--//card-header-->
@@ -328,164 +328,19 @@
           </div><!--//module-content-->
         </div><!--//module-item-->
 
-        <div class="module-item card">
-          <div class="module-header card-header" id="module-heading-7">
-            <h4 class="module-title mb-0">
-              <a class="card-toggle module-toggle" href="#module-7" data-bs-toggle="collapse" data-bs-target="#module-7"
-                aria-expanded="true" aria-controls="module-6">
-                <i class="module-toggle-icon fas fa-plus me-2"></i>
-                Module 7 - Lorem ipsum dolor sit amet.
-              </a>
-            </h4>
-          </div><!--//card-header-->
-
-          <div id="module-7" class="module-content collapse" aria-labelledby="module-heading-7">
-            <div class="card-body p-0">
-              <div class="module-sub-item p-3">
-                <div class="row justify-content-between">
-                  <div class="col-9"><span class="theme-text-secondary me-2">7.1</span>Module Intro Video</div>
-                  <div class="col-3 text-end extra-info">02:30</div>
-                </div>
-              </div><!--//module-sub-item-->
-              <div class="module-sub-item p-3">
-                <div class="row justify-content-between">
-                  <div class="col-9"><span class="theme-text-secondary me-2">7.2</span>Module Lorem Ipsum</div>
-                  <div class="col-3 text-end extra-info">15:20</div>
-                </div>
-              </div><!--//module-sub-item-->
-              <div class="module-sub-item p-3">
-                <div class="row justify-content-between">
-                  <div class="col-9"><span class="theme-text-secondary me-2">7.3</span>Module Suscipit Arcu</div>
-                  <div class="col-3 text-end extra-info">23:15</div>
-                </div>
-              </div><!--//module-sub-item-->
-            </div><!--//card-body-->
-          </div><!--//module-content-->
-        </div><!--//module-item-->
-
-        <div class="module-item card">
-          <div class="module-header card-header" id="module-heading-8">
-            <h4 class="module-title mb-0">
-              <a class="card-toggle module-toggle" href="#module-8" data-bs-toggle="collapse" data-bs-target="#module-8"
-                aria-expanded="true" aria-controls="module-6">
-                <i class="module-toggle-icon fas fa-plus me-2"></i>
-                Module 8 - Lorem ipsum dolor sit amet.
-              </a>
-            </h4>
-          </div><!--//card-header-->
-
-          <div id="module-8" class="module-content collapse" aria-labelledby="module-heading-8">
-            <div class="card-body p-0">
-              <div class="module-sub-item p-3">
-                <div class="row justify-content-between">
-                  <div class="col-9"><span class="theme-text-secondary me-2">8.1</span>Module Intro Video</div>
-                  <div class="col-3 text-end extra-info">02:30</div>
-                </div>
-              </div><!--//module-sub-item-->
-              <div class="module-sub-item p-3">
-                <div class="row justify-content-between">
-                  <div class="col-9"><span class="theme-text-secondary me-2">8.2</span>Module Lorem Ipsum</div>
-                  <div class="col-3 text-end extra-info">15:20</div>
-                </div>
-              </div><!--//module-sub-item-->
-              <div class="module-sub-item p-3">
-                <div class="row justify-content-between">
-                  <div class="col-9"><span class="theme-text-secondary me-2">8.3</span>Module Suscipit Arcu</div>
-                  <div class="col-3 text-end extra-info">23:15</div>
-                </div>
-              </div><!--//module-sub-item-->
-
-
-            </div><!--//card-body-->
-          </div><!--//module-content-->
-        </div><!--//module-item-->
-
-        <div class="module-item card">
-          <div class="module-header card-header" id="module-heading-9">
-            <h4 class="module-title mb-0">
-              <a class="card-toggle module-toggle" href="#module-9" data-bs-toggle="collapse" data-bs-target="#module-9"
-                aria-expanded="true" aria-controls="module-6">
-                <i class="module-toggle-icon fas fa-plus me-2"></i>
-                Module 9 - Lorem ipsum dolor sit amet.
-              </a>
-            </h4>
-          </div><!--//card-header-->
-
-          <div id="module-9" class="module-content collapse" aria-labelledby="module-heading-9">
-            <div class="card-body p-0">
-              <div class="module-sub-item p-3">
-                <div class="row justify-content-between">
-                  <div class="col-9"><span class="theme-text-secondary me-2">9.1</span>Module Intro Video</div>
-                  <div class="col-3 text-end extra-info">02:30</div>
-                </div>
-              </div><!--//module-sub-item-->
-              <div class="module-sub-item p-3">
-                <div class="row justify-content-between">
-                  <div class="col-9"><span class="theme-text-secondary me-2">9.2</span>Module Lorem Ipsum</div>
-                  <div class="col-3 text-end extra-info">15:20</div>
-                </div>
-              </div><!--//module-sub-item-->
-              <div class="module-sub-item p-3">
-                <div class="row justify-content-between">
-                  <div class="col-9"><span class="theme-text-secondary me-2">9.3</span>Module Suscipit Arcu</div>
-                  <div class="col-3 text-end extra-info">23:15</div>
-                </div>
-              </div><!--//module-sub-item-->
-
-
-            </div><!--//card-body-->
-          </div><!--//module-content-->
-        </div><!--//module-item-->
-
-        <div class="module-item card">
-          <div class="module-header card-header" id="module-heading-10">
-            <h4 class="module-title mb-0">
-              <a class="card-toggle module-toggle" href="#module-10" data-bs-toggle="collapse"
-                data-bs-target="#module-10" aria-expanded="true" aria-controls="module-6">
-                <i class="module-toggle-icon fas fa-plus me-2"></i>
-                Module 10 - Lorem ipsum dolor sit amet.
-              </a>
-            </h4>
-          </div><!--//card-header-->
-
-          <div id="module-10" class="module-content collapse" aria-labelledby="module-heading-10">
-            <div class="card-body p-0">
-              <div class="module-sub-item p-3">
-                <div class="row justify-content-between">
-                  <div class="col-9"><span class="theme-text-secondary me-2">10.1</span>Module Intro Video</div>
-                  <div class="col-3 text-end extra-info">02:30</div>
-                </div>
-              </div><!--//module-sub-item-->
-              <div class="module-sub-item p-3">
-                <div class="row justify-content-between">
-                  <div class="col-9"><span class="theme-text-secondary me-2">10.2</span>Module Lorem Ipsum</div>
-                  <div class="col-3 text-end extra-info">15:20</div>
-                </div>
-              </div><!--//module-sub-item-->
-              <div class="module-sub-item p-3">
-                <div class="row justify-content-between">
-                  <div class="col-9"><span class="theme-text-secondary me-2">10.3</span>Module Suscipit Arcu</div>
-                  <div class="col-3 text-end extra-info">23:15</div>
-                </div>
-              </div><!--//module-sub-item-->
-
-
-            </div><!--//card-body-->
-          </div><!--//module-content-->
-        </div><!--//module-item-->
-
       </div><!--//module-accordion-->
 
       <div class="text-center mt-5">
-        <a *ngIf="!isUserEnrolled" class="btn btn-primary scrollto" (click)="onEnroll(courseDetails.id)">Enrol Now</a>
+        <a *ngIf="!isUserEnrolled" class="btn btn-primary scrollto" (click)="onEnroll(courseDetails.id)">{{ "COURSES_PAGE.enrol_now_btn" | translate}}</a>
       </div>
 
       <div>
-        <h3 class="section-title mb-4 text-lg-start">Meet The Tutor</h3>
+        <h3 class="section-title mb-4 text-lg-start">{{ "COURSES_PAGE.meet_the_tutor" | translate}}</h3>
         <h2 class="section-title mb-4 text-lg-start">{{courseDetails.instructorName}}</h2>
+        <p><span *ngIf="translateService.currentLang === 'en'">{{courseDetails.instructorName}}</span>{{ "COURSES_PAGE.tutor_exp_p1" | translate}}<br><br>
+          {{ "COURSES_PAGE.tutor_exp_p2" | translate}}</p>
       </div>
 
     </div>
   </div><!--//container-->
 </div><!--//section-content-->
-

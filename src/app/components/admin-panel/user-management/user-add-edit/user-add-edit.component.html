@@ -1,61 +1,47 @@
 <div class="row">
   <div class="col-xs-12 col-md-6 col-md-offset-3">
 
-    <!-- <div class="alert alert-danger" >
-      <button type="button" class="close" aria-label="Close" (click)="onErrorCloseBtn()">
-        <span aria-hidden="true">&times;</span>
-      </button>
-      <p>{{error}}</p>
-    </div> -->
-
-    <!-- <div class="alert alert-success" *ngIf="globalMSg">
-      <button type="button" class="close" aria-label="Close" (click)="onSuccessCloseBtn()">
-        <span aria-hidden="true">&times;</span>
-      </button>
-      <p>{{globalMSg}}</p>
-    </div> -->
-
     <div class="modal d-block" tabindex="-1" data-toggle="modal">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title"><span *ngIf="!data">Add new</span><span *ngIf="data">Update</span> user</h1>
+            <h1 class="modal-title"><span *ngIf="!data">{{"ADMIN_PANEL_PAGE.new_user_btn" | translate}}</span><span *ngIf="data">{{"ADMIN_PANEL_PAGE.update_user_btn" | translate}}</span></h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="closeDialog()"></button>
           </div>
           <div class="modal-body">
             <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
               <div class="mb-3">
-                <label for="username" class="form-label">User name <span class="text-danger">*</span></label>
+                <label for="username" class="form-label">{{"ADMIN_PANEL_PAGE.username" | translate}} <span class="text-danger">*</span></label>
                 <input type="text" class="form-control" id="username" aria-describedby="usernameHelp" ngModel name="username" required [(ngModel)]="username">
-                <div id="usernameHelp" class="form-text text-secondary">username must be unique</div>
+                <div id="usernameHelp" class="form-text text-secondary">{{"ADMIN_PANEL_PAGE.username" | translate}} {{"ADMIN_PANEL_PAGE.must_be_unique" | translate}}</div>
               </div>
               <div class="mb-3" *ngIf="!this.data">
-                <label for="password" class="form-label">Password <span class="text-danger">*</span></label>
+                <label for="password" class="form-label">{{"ADMIN_PANEL_PAGE.password" | translate}} <span class="text-danger">*</span></label>
                 <input type="password" class="form-control" id="password"
                 ngModel name="password" required minlength="6" [(ngModel)]="password">
               </div>
               <div class="mb-3">
-                <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+                <label for="email" class="form-label">{{"ADMIN_PANEL_PAGE.email" | translate}} <span class="text-danger">*</span></label>
                 <input type="email" id="email" class="form-control"
                 ngModel name="email" required email [(ngModel)]="email"/>
               </div>
               <div class="mb-3">
-                <label for="roleName" class="form-label">Role name</label>
-                <p-dropdown id="roleName" class="form-control" [options]="roles" optionLabel="name" name="role" ngModel [(ngModel)]="role" [required]="true" placeholder="Select a Role"></p-dropdown>
+                <label for="roleName" class="form-label">{{"ADMIN_PANEL_PAGE.role" | translate}}</label>
+                <p-dropdown id="roleName" class="form-control" [options]="roles" optionLabel="name" name="role" ngModel [(ngModel)]="role" [required]="true" [placeholder]="'Shared.dropdown_placeholder' | translate"></p-dropdown>
               </div>
               <div class="mb-3 form-check">
                 <input type="checkbox" class="form-check-input" id="enabled"
                 ngModel name="enabledCheckbox" [(ngModel)]="enabled"/>
-                <label class="form-check-label" for="enabled">Enable this user</label>
+                <label class="form-check-label" for="enabled">{{"ADMIN_PANEL_PAGE.enable_user_checkbox" | translate}}</label>
               </div>
               <!-- <button type="submit" class="btn btn-primary" [disabled]="!userForm.valid">Add user</button> -->
             </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeDialog()">Close</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeDialog()">{{"ADMIN_PANEL_PAGE.close_btn" | translate}}</button>
             <button type="submit" form="userForm" class="btn btn-primary" [disabled]="!userForm.valid" (click)="onSubmit(userForm)">
-              <span *ngIf="!this.data">Add user</span>
-              <span *ngIf="this.data">Update user</span>
+              <span *ngIf="!this.data">{{"ADMIN_PANEL_PAGE.add_user_btn" | translate}}</span>
+              <span *ngIf="this.data">{{"ADMIN_PANEL_PAGE.update_user_btn" | translate}}</span>
             </button>
           </div>
         </div>

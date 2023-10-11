@@ -1,5 +1,5 @@
-<div class="row">
-  <div class="col-lg-6 offset-lg-3 mt-5">
+<div>
+  <div class="col-lg-6 mx-auto mt-8">
 
     <div *ngIf="isLoading" class="text-center">
       <app-loading-spinner></app-loading-spinner>
@@ -36,8 +36,8 @@
         ngModel name="password" required minlength="5">
       </div>
       <div>
-        <button class="btn btn-primary me-2" type="submit" [disabled]="!authForm.valid"> {{isLoginMode ? ('AUTH_PAGE.login' | translate) : ('AUTH_PAGE.sign_up' | translate)}}</button>
-        <button class="btn btn-primary" (click)="onSwitchMode()" type="button" >{{ "AUTH_PAGE.switch_to" | translate}} {{!isLoginMode ? ('AUTH_PAGE.login' | translate) : ('AUTH_PAGE.create_account' | translate)}}</button>
+        <button class="btn btn-primary mx-2" (click)="onSwitchMode()" type="button" >{{ "AUTH_PAGE.switch_to" | translate}} {{!isLoginMode ? ('AUTH_PAGE.login' | translate) : ('AUTH_PAGE.create_account' | translate)}}</button>
+        <button class="btn btn-primary" type="submit" [disabled]="!authForm.valid"> {{isLoginMode ? ('AUTH_PAGE.login' | translate) : ('AUTH_PAGE.sign_up' | translate)}}</button>
       </div>
     </form>
 

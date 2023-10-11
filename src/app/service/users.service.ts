@@ -43,10 +43,12 @@ export class UsersService {
   }
 
   deleteUser(index: number) {
-    this.usersApiService.deleteUserApi(index).subscribe((res) => console.log(res));
-    const localUserId = this.users.findIndex((user) => user.id == index);
-    this.users.splice(localUserId, 1);
-    this.usersChanged.next(this.users.slice());
+    this.usersApiService.deleteUserApi(index).subscribe((res) => {
+      console.log(res);
+      const localUserId = this.users.findIndex((user) => user.id == index);
+      this.users.splice(localUserId, 1);
+      this.usersChanged.next(this.users.slice());
+    });
   }
 
   exportUsers() {

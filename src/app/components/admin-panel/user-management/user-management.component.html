@@ -1,10 +1,9 @@
 <div class="container">
   <div class="mb-3 mt-3 ms-3 d-flex align-items-start justify-content-between">
-    <h1 class="section-title fw-medium">User management</h1>
+    <h1 class="section-title fw-medium">{{"ADMIN_PANEL_PAGE.user_management" | translate}}</h1>
     <div>
-      <p-button class="me-3" label="Add new user" (click)="openUserDialog()"></p-button>
-      <p-button label="Export users" [loading]="isExportBtnLoading" (click)="onExportUsers()"></p-button>
-      <!-- <button class="btn btn-primary me-3" type="button" (click)="onExportUsers()">Export users</button> -->
+      <p-button class="mx-3" [label]="'ADMIN_PANEL_PAGE.new_user_btn' | translate" (click)="openUserDialog()"></p-button>
+      <p-button [label]="'ADMIN_PANEL_PAGE.export_users_btn' | translate" [loading]="isExportBtnLoading" (click)="onExportUsers()"></p-button>
     </div>
   </div>
 </div>
@@ -14,19 +13,19 @@
     <ng-template pTemplate="header">
       <tr>
         <th>#</th>
-        <th>Username</th>
-        <th>Email</th>
-        <th>Role</th>
-        <th>Status</th>
-        <th>Action</th>
+        <th>{{"ADMIN_PANEL_PAGE.username" | translate}}</th>
+        <th>{{"ADMIN_PANEL_PAGE.email" | translate}}</th>
+        <th>{{"ADMIN_PANEL_PAGE.role" | translate}}</th>
+        <th>{{"ADMIN_PANEL_PAGE.status" | translate}}</th>
+        <th>{{"ADMIN_PANEL_PAGE.action" | translate}}</th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-user let-rowIndex="rowIndex">
       <tr>
         <td>{{user.id}}</td>
         <td>
-          <div class="d-flex">
-            <i class="pi pi-user me-2"></i>
+          <div class="flex" [ngClass]="translateService.currentLang === 'en'?'justify-content-start':'justify-content-center'">
+            <i class="pi pi-user mx-2"></i>
             <span>{{user.username}}</span>
           </div>
         </td>

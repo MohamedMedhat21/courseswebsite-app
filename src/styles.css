@@ -6,6 +6,7 @@
 
 html:lang(ar) {
   text-align: right;
+  direction: rtl;
 }
 
 html, body { height: 100%; }

@@ -1,13 +1,13 @@
 
-<p-sidebar [(visible)]="sidebarVisible">
-  <h1>Admin panel</h1>
+<p-sidebar [(visible)]="sidebarVisible" [position]="translateService.currentLang === 'en' ? 'left':'right'">
+  <h1>{{"ADMIN_PANEL_PAGE.admin_panel" | translate}}</h1>
   <ng-template pTemplate="content">
     <ul class="list-group list-group-flush mt-5">
-      <a href="" class="list-group-item list-group-item-action mb-2" (click)="userManagementVisible = true; roleManagementVisible=false;sidebarVisible=false;">User management</a>
-      <a href="" class="list-group-item list-group-item-action" (click)="userManagementVisible = false;roleManagementVisible=true;sidebarVisible=false;">Role management</a>
+      <a href="" class="list-group-item list-group-item-action mb-2" (click)="userManagementVisible = true; roleManagementVisible=false;sidebarVisible=false;">{{"ADMIN_PANEL_PAGE.user_management" | translate}}</a>
+      <a href="" class="list-group-item list-group-item-action" (click)="userManagementVisible = false;roleManagementVisible=true;sidebarVisible=false;">{{"ADMIN_PANEL_PAGE.role_management" | translate}}</a>
     </ul>
   </ng-template>
-  <ng-template pTemplate="footer">Courses website</ng-template>
+  <ng-template pTemplate="footer">{{"COURSES_WEBSITE" | translate}}</ng-template>
 </p-sidebar>
 
 <div class="mt-2">

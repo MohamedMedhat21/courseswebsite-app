@@ -5,23 +5,23 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title"><span *ngIf="!data">Add new</span><span *ngIf="data">Update</span> role</h1>
+            <h1 class="modal-title"><span *ngIf="!data">{{"ADMIN_PANEL_PAGE.new_role_btn" | translate}}</span><span *ngIf="data">{{"ADMIN_PANEL_PAGE.update_role_btn" | translate}}</span></h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="closeDialog()"></button>
           </div>
           <div class="modal-body">
             <form #roleForm="ngForm" (ngSubmit)="onSubmit(roleForm)">
               <div class="mb-3">
-                <label for="rolename" class="form-label">role name <span class="text-danger">*</span></label>
+                <label for="rolename" class="form-label">{{"ADMIN_PANEL_PAGE.role" | translate}} <span class="text-danger">*</span></label>
                 <input type="text" class="form-control" id="rolename" aria-describedby="rolenameHelp" ngModel name="roleName" required [(ngModel)]="roleName">
-                <div id="rolenameHelp" class="form-text text-secondary">role name must be unique</div>
+                <div id="rolenameHelp" class="form-text text-secondary">{{"ADMIN_PANEL_PAGE.role" | translate}} {{"ADMIN_PANEL_PAGE.must_be_unique" | translate}}</div>
               </div>
             </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeDialog()">Close</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeDialog()">{{"ADMIN_PANEL_PAGE.close_btn" | translate}}</button>
             <button type="submit" form="roleForm" class="btn btn-primary" [disabled]="!roleForm.valid" (click)="onSubmit(roleForm)">
-              <span *ngIf="!this.data">Add role</span>
-              <span *ngIf="this.data">Update role</span>
+              <span *ngIf="!this.data">{{"ADMIN_PANEL_PAGE.add_role_btn" | translate}}</span>
+              <span *ngIf="this.data">{{"ADMIN_PANEL_PAGE.update_role_btn" | translate}}</span>
             </button>
           </div>
         </div>

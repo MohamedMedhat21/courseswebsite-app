@@ -7,6 +7,7 @@ import { Role } from 'src/app/model/role.model';
 import { RolesService } from 'src/app/service/roles.service';
 import { Constants } from 'src/app/utils/Constants';
 import { Utils } from 'src/app/utils/utils';
+import { TranslateService } from '@ngx-translate/core';
 
 // interface PageEvent {
 //   first: number;
@@ -29,7 +30,7 @@ export class UserManagementComponent {
   isExportBtnLoading = false;
 
 
-  constructor(private userService:UsersService,private userDialog:MatDialog){
+  constructor(private userService:UsersService,private userDialog:MatDialog,public translateService:TranslateService){
   }
 
   ngOnInit(){
@@ -60,7 +61,7 @@ export class UserManagementComponent {
   }
 
   onDelete(id:number){
-    const isDelete = confirm("are you sure you want to delete this user?")
+    const isDelete = confirm(this.translateService.instant('Shared.delete_confirm_msg'))
     if(isDelete){
       this.userService.deleteUser(id);
     }

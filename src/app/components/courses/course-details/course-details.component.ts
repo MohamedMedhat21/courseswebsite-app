@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { MessageService } from 'primeng/api';
 import { Course } from 'src/app/model/course.model';
 import { CoursesService } from 'src/app/service/courses.service';
@@ -27,7 +28,8 @@ export class CourseDetailsComponent {
     private domSanitizer: DomSanitizer,
     private studentCoursesService: StudentCoursesService,
     private studentCoursesApiService: StudentCoursesAPiService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    public translateService:TranslateService
   ) {}
 
   ngOnInit() {
