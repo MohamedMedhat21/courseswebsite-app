@@ -19,7 +19,7 @@
             <div>
               <a mat-button [matMenuTriggerFor]="menu" title="Edit" data-toggle="tooltip" type="button" ><i class="pi pi-ellipsis-v"></i></a>
               <mat-menu #menu="matMenu">
-                <button mat-menu-item (click)="onUnenroll(i,studentCourse.id)">Unenroll</button>
+                <button mat-menu-item (click)="onUnenroll(i,studentCourse.id)">{{"ENROLLMENTS.unenroll_btn"|translate}}</button>
               </mat-menu>
             </div>
           </div>

@@ -92,6 +92,12 @@
     "course_link":"رابط الدورة",
     "close_btn": "إغلاق"
   },
+  "ENROLLMENTS":{
+    "unenroll_btn":"إلغاء التسجيل"
+  },
+  "NOT_FOUND_PAGE":{
+    "not_found_p":"الصفحة التي طلبتها لم يتم العثور عليها"
+  },
   "FOOTER": {
     "footer_template": "كورسات 2023",
     "home": "الصفحة الرئيسية",

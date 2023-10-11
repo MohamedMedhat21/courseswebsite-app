@@ -92,6 +92,12 @@
     "course_link":"Course link",
     "close_btn": "Close"
   },
+  "ENROLLMENTS":{
+    "unenroll_btn":"Unenroll"
+  },
+  "NOT_FOUND_PAGE":{
+    "not_found_p":"THE PAGE YOU REQUESTED COULD NOT FOUND"
+  },
   "FOOTER": {
     "footer_template": "© 2023 Courses Website, Inc",
     "home": "Home",

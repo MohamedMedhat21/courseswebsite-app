@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Params } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { Course } from 'src/app/model/course.model';
 import { StudentCoursesData } from 'src/app/model/student-courses-data.model';
 import { CoursesService } from 'src/app/service/courses.service';
@@ -20,7 +21,8 @@ export class EnrollmentDetailsComponent {
 
   constructor( private coursesService: CoursesService,private route: ActivatedRoute,
     private domSanitizer: DomSanitizer,
-    private studentCourseData:StudentCoursesService
+    private studentCourseData:StudentCoursesService,
+    public translateService:TranslateService
   ) {}
 
   ngOnInit() {
