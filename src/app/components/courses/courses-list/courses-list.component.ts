@@ -7,7 +7,7 @@ import { CourseAddEditComponent } from '../course-add-edit/course-add-edit.compo
 import { Constants } from 'src/app/utils/Constants';
 import { RouterPaths } from 'src/app/enums/router-paths.enum';
 import { TranslateService } from '@ngx-translate/core';
-
+import { Local } from 'src/app/interface/local.interface';
 
 @Component({
   selector: 'app-courses-list',
@@ -21,6 +21,7 @@ export class CoursesListComponent {
   currID: number;
   currentPath: string;
   routerPaths = RouterPaths;
+  currLang = this.translateService.currentLang as keyof Local;
 
 
   constructor(
@@ -44,7 +45,10 @@ export class CoursesListComponent {
     Constants.courseFilter.subscribe(query => {
       this.filterData(query);
     });
-
+    
+    this.translateService.onLangChange.subscribe(()=>{
+      this.currLang = this.translateService.currentLang as keyof Local;
+    })
   }
 
   openCourseDialog() {
@@ -71,6 +75,9 @@ export class CoursesListComponent {
 
   getData(courses:Course[]) {
     this.courses = courses;
+    this.courses.forEach(crs =>{
+      crs.name = crs.courseName[this.translateService.currentLang as keyof Local]!;
+    })
     if (this.currentPath === RouterPaths.PUBLISHED_COURSES) {
       this.filteredCourses = this.courses.filter((value) => {
         return value.instructorId === Constants.CurrentLoggedUser.id;

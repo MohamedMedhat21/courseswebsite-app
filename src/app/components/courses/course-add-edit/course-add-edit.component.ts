@@ -15,6 +15,8 @@ export class CourseAddEditComponent {
   course: Course = {
     id: 0,
     name: '',
+    nameAr:'',
+    courseName:{en:'',ar:''},
     description: '',
     headline: '',
     instructorId: 0,

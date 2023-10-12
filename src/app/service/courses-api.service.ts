@@ -4,6 +4,7 @@ import { Course } from '../model/course.model';
 import { HttpClient } from '@angular/common/http';
 import { Constants } from '../utils/Constants';
 import { Utils } from '../utils/utils';
+import { TranslateService } from '@ngx-translate/core';
 
 @Injectable({
   providedIn: 'root',
@@ -57,6 +58,10 @@ export class CoursesApiService {
           map((res) => {
             res.courses.forEach((course: Course) => {
               course.creationDateFormatted = Utils.formatDate(course.creationDate);
+              course.courseName={
+                en:course.name,
+                ar:course.nameAr
+              }
             });
             return res.courses;
           }),
