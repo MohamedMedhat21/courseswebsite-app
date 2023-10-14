@@ -6,14 +6,12 @@ import {
   HttpInterceptor
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { AuthService } from '../service/auth.service';
 import { Constants } from '../utils/Constants';
-import { Utils } from '../utils/utils';
 
 @Injectable()
-export class TokenCheckInterceptor implements HttpInterceptor {
+export class RequestInterceptor implements HttpInterceptor {
 
-  constructor(private authService:AuthService) {}
+  constructor() {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     if(request.url.includes('http://localhost:8080/api/courses?')
@@ -25,7 +23,6 @@ export class TokenCheckInterceptor implements HttpInterceptor {
         Authorization: `Bearer ${Constants.CurrentLoggedUser.jwtToken}`
       }
     });
-    // console.log(request);
     // this.authService.checkToken('',Constants.CurrentLoggedUser).subscribe();
     return next.handle(modifiedRequest);
   }

@@ -138,15 +138,15 @@ export class AuthService {
           roleId:0
         }
 
-        // Constants.setOptions('');
-
         this.user.next(null!);
 
         localStorage.removeItem('userData');
 
-        window.location.reload()
+        this.router.navigate(['/auth']);
 
-        // this.router.navigate(['/auth']);
+        setTimeout(() => {
+          window.location.reload()
+        }, 500);
 
 
         // if(this.tokenExpirationTimer)

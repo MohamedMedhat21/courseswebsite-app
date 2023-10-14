@@ -3,6 +3,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { MessageService } from 'primeng/api';
+import { Local } from 'src/app/interface/local.interface';
 import { Course } from 'src/app/model/course.model';
 import { CoursesService } from 'src/app/service/courses.service';
 import { StudentCoursesAPiService } from 'src/app/service/student-courses-api.service';
@@ -20,6 +21,7 @@ export class CourseDetailsComponent {
   courseVideosNumber: number;
   sanitizedCourseLink: any;
   isUserEnrolled = false;
+  currLang = this.translateService.currentLang as keyof Local;
 
   constructor(
     private coursesService: CoursesService,
@@ -48,6 +50,10 @@ export class CourseDetailsComponent {
           ? false
           : true;
     });
+
+    this.translateService.onLangChange.subscribe(()=>{
+      this.currLang = this.translateService.currentLang as keyof Local;
+    })
   }
 
   onEnroll(courseId: number) {

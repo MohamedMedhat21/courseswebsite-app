@@ -24,7 +24,7 @@
         <div class="hero-heading-upper pt-3 mb-3">{{ "HOME_PAGE.upper_heading" | translate}}</div>
         <h1 class="hero-heading mb-5">
           <span class="brand mb-4 d-block"><span class="text-highlight pr-2"></span><span
-              class="name">{{courseDetails.name}}</span><span class="text-highlight pl-2"></span></span>
+              class="name">{{courseDetails.courseName[currLang]}}</span><span class="text-highlight pl-2"></span></span>
           <span class="desc d-block">{{courseDetails.headline}}</span>
         </h1>
         <div class="text-center mb-5" *ngIf="!isUserEnrolled">
