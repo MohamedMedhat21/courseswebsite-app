@@ -142,11 +142,11 @@ export class AuthService {
 
         localStorage.removeItem('userData');
 
-        this.router.navigate(['/auth']);
+        // this.router.navigate(['/auth']);
 
-        setTimeout(() => {
-          window.location.reload()
-        }, 500);
+        // setTimeout(() => {
+        //   window.location.reload()
+        // }, 500);
 
 
         // if(this.tokenExpirationTimer)
