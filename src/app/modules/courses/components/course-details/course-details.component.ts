@@ -9,6 +9,7 @@ import { Course } from '../../models/course.model';
 import { CoursesService } from '../../services/courses.service';
 import { StudentCoursesService } from 'src/app/modules/enrollment/services/student-courses.service';
 import { StudentCoursesAPiService } from 'src/app/modules/enrollment/services/student-courses-api.service';
+import { RouterPaths } from 'src/app/core/enums/router-paths.enum';
 
 
 @Component({
@@ -40,7 +41,7 @@ export class CourseDetailsComponent {
       this.id = +params['id'];
       const crs = this.coursesService.getCourse(this.id);
       if(!crs){
-        this.router.navigate(['/courses']);
+        this.router.navigate(['/'+RouterPaths.NOT_FOUND]);
         return
       }
       this.courseDetails = crs;
@@ -65,7 +66,7 @@ export class CourseDetailsComponent {
   onEnroll(courseId: number) {
     const isAuthenticated = Constants.CurrentLoggedUser.id === 0 ? false : true;
     if(!isAuthenticated){
-      this.router.navigate(['/auth']);
+      this.router.navigate(['/'+RouterPaths.AUTH]);
       return;
     }
     const res = this.studentCoursesService.enrollInCourse(courseId);

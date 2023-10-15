@@ -4,44 +4,43 @@ import { Router } from '@angular/router';
 import { UserRoles } from 'src/app/core/enums/user-roles.enum';
 import { Role } from '../admin-panel/models/role.model';
 import { AuthService } from './services/auth.service';
+import { RouterPaths } from 'src/app/core/enums/router-paths.enum';
 
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
-  styleUrls: ['./auth.component.css']
+  styleUrls: ['./auth.component.css'],
 })
 export class AuthComponent {
   isLoginMode = true;
   isLoading = false;
   error = null;
-  roles:Role[];
+  roles: Role[];
 
-  constructor(private authService: AuthService,private router:Router) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
-  ngOnInit(){
+  ngOnInit() {
     this.roles = [
       {
-        id:UserRoles.INSTRUCTOR,
-        name:'INSTRUCTOR'
+        id: UserRoles.INSTRUCTOR,
+        name: 'INSTRUCTOR',
       },
       {
-        id:UserRoles.STUDENT,
-        name:'STUDENT'
-      }
-    ]
+        id: UserRoles.STUDENT,
+        name: 'STUDENT',
+      },
+    ];
   }
 
-  onErrorCloseBtn(){
-    this.error=null;
+  onErrorCloseBtn() {
+    this.error = null;
   }
 
   onSwitchMode() {
     this.isLoginMode = !this.isLoginMode;
   }
 
-
   onSubmit(authForm: NgForm) {
-
     this.error = null;
 
     if (!authForm.valid) return;
@@ -53,38 +52,35 @@ export class AuthComponent {
 
     this.isLoading = true;
 
-    if(this.isLoginMode){
-      this.authService.login(username,password).subscribe(res => {
-        // console.log(res)
-        this.isLoading = false;
-        this.router.navigate(['/home']);
-      }
-      ,errorRes =>{
-        this.isLoading=false;
-        console.log(errorRes);
-        throw Error(errorRes)
-      }
-      )
-    }
-    else{
-      this.authService.signup(username,password,email,role.name).subscribe( res => {
-        // console.log(res);
-        this.isLoading=false;
-        this.router.navigate(['/home']);
-      }
-      ,errorRes =>{
-        this.isLoading=false;
-        console.log(errorRes);
-        throw Error(errorRes);
-      }
-      );
+    if (this.isLoginMode) {
+      this.authService.login(username, password).subscribe({
+        next:()=>{
+          this.isLoading = false;
+          this.router.navigate(['/' + RouterPaths.HOME]);
+        },
+        error:(err)=>{
+          this.isLoading = false;
+          console.log(err);
+          throw Error(err);
+        }
+      });
+    } else {
+      this.authService.signup(username, password, email, role.name).subscribe({
+        next: () => {
+          this.isLoading = false;
+          this.router.navigate(['/' + RouterPaths.HOME]);
+        },
+        error: (err) => {
+          this.isLoading = false;
+          console.log(err);
+          throw Error(err);
+        },
+      });
     }
     authForm.reset();
-
   }
 
-  onHandleError(){
-    this.error=null;
+  onHandleError() {
+    this.error = null;
   }
-
 }

@@ -5,6 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Course } from 'src/app/modules/courses/models/course.model';
 import { CoursesService } from 'src/app/modules/courses/services/courses.service';
 import { StudentCoursesService } from '../../services/student-courses.service';
+import { RouterPaths } from 'src/app/core/enums/router-paths.enum';
 
 @Component({
   selector: 'app-enrollment-details',
@@ -30,7 +31,7 @@ export class EnrollmentDetailsComponent {
       this.id = +params['id'];
       const crs = this.studentCourseData.getStudentCourseData(this.id);
       if(!crs){
-        this.router.navigate(['/enrollments']);
+        this.router.navigate(['/'+RouterPaths.NOT_FOUND]);
         return
       }
       this.crsId = crs.courseId;

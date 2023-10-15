@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StudentCoursesData } from '../../models/student-courses-data.model';
 import { StudentCoursesService } from '../../services/student-courses.service';
+import { RouterPaths } from 'src/app/core/enums/router-paths.enum';
 
 @Component({
   selector: 'app-enrollment-list',
@@ -30,7 +31,7 @@ export class EnrollmentListComponent {
     const isDelete = confirm("are you sure you want to unenroll from this course?")
     if(isDelete){
       this.studentCoursesDataService.unenroll(localIndex,id,this.studentCoursesData[localIndex].userId);
-      this.router.navigate(['/enrollments'])
+      this.router.navigate(['/'+RouterPaths.ENROLLMENTS]);
     }
   }
 }
