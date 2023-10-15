@@ -9,7 +9,6 @@ import { HeaderComponent } from './header/header.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 
 import { TranslateModule } from '@ngx-translate/core';
-import { MatMenuModule } from '@angular/material/menu';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
@@ -43,11 +42,9 @@ import { SharedRoutingModule } from './shared-routing.module';
     SharedRoutingModule,
     FormsModule,
     ToastModule,
-    MatMenuModule,
     CardModule,
     ButtonModule,
     MatDialogModule,
-    MatMenuModule,
     SidebarModule,
     MenuModule,
     TableModule,
@@ -69,11 +66,9 @@ import { SharedRoutingModule } from './shared-routing.module';
     BrowserAnimationsModule,
     FormsModule,
     ToastModule,
-    MatMenuModule,
     CardModule,
     ButtonModule,
     MatDialogModule,
-    MatMenuModule,
     SidebarModule,
     MenuModule,
     TableModule,

@@ -14,13 +14,10 @@
           <a class="list-group-item-action w-50" [routerLink]="[i]">
             <h4 class="mb-1">{{studentCourse.courseName}}</h4>
           </a>
-          <div class="d-flex">
-            <!-- <small class="me-2">enrolled from {{studentCourse.enrollmentDateFormatted}}</small> -->
-            <div>
-              <a mat-button [matMenuTriggerFor]="menu" title="Edit" data-toggle="tooltip" type="button" ><i class="pi pi-ellipsis-v"></i></a>
-              <mat-menu #menu="matMenu">
-                <button mat-menu-item (click)="onUnenroll(i,studentCourse.id)">{{"ENROLLMENTS.unenroll_btn"|translate}}</button>
-              </mat-menu>
+          <div>
+            <div class="flex justify-content-center">
+              <a (click)="coursesMenu.toggle($event);getCourseIndexes(i,studentCourse.id)" title="Edit" data-toggle="tooltip" type="button" ><i class="pi pi-ellipsis-v"></i></a>
+              <p-menu #coursesMenu [model]="items" [popup]="true" appendTo="body" styleClass="max-w-9rem"></p-menu>
             </div>
           </div>
         </div>

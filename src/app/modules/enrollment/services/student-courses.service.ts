@@ -42,7 +42,7 @@ export class StudentCoursesService {
     return this.studentCoursesAPiService.enrollInCourseApi(courseId)
   }
 
-  unenroll(localIndex:number,courseId:number,userId:number){
+  unenroll(courseId:number,userId:number){
     this.studentCoursesAPiService.unenrollCourseApi(userId,courseId).subscribe((res) => {
       if(res.status === 204){
         window.location.reload()
