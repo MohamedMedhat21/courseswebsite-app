@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
-import { AuthService } from './service/auth.service';
-import { BehaviorSubject } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
 import { Message, MessageService } from 'primeng/api';
-import { Utils } from './utils/utils';
 import { TranslateService } from '@ngx-translate/core';
-import { Lang } from './interface/lang';
-import { Constants } from './utils/Constants';
+import { Lang } from './core/interface/lang';
+import { Constants } from './core/utils/Constants';
+import { Utils } from './core/utils/utils';
+import { AuthService } from './modules/auth/services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -26,6 +24,12 @@ export class AppComponent {
     Utils.errorMessage.subscribe(msg =>{
       this.globalMessage = [
         { severity: 'error', summary: 'Error', detail: msg }
+      ];
+    })
+
+    Utils.warningMessage.subscribe(msg =>{
+      this.globalMessage = [
+        { severity: 'warn', summary: 'Waning', detail: msg }
       ];
     })
     this.authService.autoLogin();

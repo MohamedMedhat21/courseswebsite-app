@@ -2,29 +2,29 @@ import { NgModule } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AboutUsComponent } from './components/about-us/about-us.component';
-import { AuthComponent } from './components/auth/auth.component';
-import { SettingsComponent } from './components/settings/settings.component';
-import { StartPageComponent } from './components/start-page/start-page.component';
-import { httpInterceptorProviders } from './interceptors';
-import { CoursesModule } from './components/courses/courses.module';
 import { SharedModule } from './shared/shared.module';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { AdminPanelModule } from './components/admin-panel/admin-panel.module';
+import { AboutUsComponent } from './core/components/about-us/about-us.component';
+import { SettingsComponent } from './core/components/settings/settings.component';
+import { StartPageComponent } from './core/components/start-page/start-page.component';
+import { httpInterceptorProviders } from './core/interceptor';
+import { AdminPanelModule } from './modules/admin-panel/admin-panel.module';
+import { CoursesModule } from './modules/courses/courses.module';
+import { AuthModule } from './modules/auth/auth.module';
+import { EnrollmentModule } from './modules/enrollment/enrollment.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     StartPageComponent,
     AboutUsComponent,
-    AuthComponent,
     SettingsComponent,
   ],
   imports: [
     CoursesModule,
     AdminPanelModule,
-    AppRoutingModule,
+    AuthModule,
     TranslateModule.forRoot({
       defaultLanguage: 'en',
       loader: {
@@ -34,6 +34,8 @@ import { AdminPanelModule } from './components/admin-panel/admin-panel.module';
       },
     }),
     SharedModule,
+    EnrollmentModule,
+    AppRoutingModule,
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent],

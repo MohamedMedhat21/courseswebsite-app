@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { NavigationStart, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { RouterPaths } from 'src/app/enums/router-paths.enum';
-import { UserRoles } from 'src/app/enums/user-roles.enum';
-import { Lang } from 'src/app/interface/lang';
-import { AuthService } from 'src/app/service/auth.service';
-import { Constants } from 'src/app/utils/Constants';
+import { RouterPaths } from 'src/app/core/enums/router-paths.enum';
+import { UserRoles } from 'src/app/core/enums/user-roles.enum';
+import { Lang } from 'src/app/core/interface/lang';
+import { Constants } from 'src/app/core/utils/Constants';
+import { AuthService } from 'src/app/modules/auth/services/auth.service';
 
 @Component({
   selector: 'app-header',
