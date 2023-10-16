@@ -21,6 +21,7 @@ import { PaginatorModule } from 'primeng/paginator';
 import { SidebarModule } from 'primeng/sidebar';
 import { TableModule } from 'primeng/table';
 import { TabMenuModule } from 'primeng/tabmenu';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { NoopAnimationsModule, BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { SharedRoutingModule } from './shared-routing.module';
@@ -55,6 +56,7 @@ import { SharedRoutingModule } from './shared-routing.module';
     MessagesModule,
     TranslateModule,
     TabMenuModule,
+    DynamicDialogModule,
   ],
   exports:[
     LoadingSpinnerComponent,
@@ -80,6 +82,7 @@ import { SharedRoutingModule } from './shared-routing.module';
     MessagesModule,
     TranslateModule,
     TabMenuModule,
+    DynamicDialogModule,
   ]
 })
 export class SharedModule { }

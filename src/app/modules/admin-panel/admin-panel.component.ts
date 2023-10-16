@@ -29,7 +29,6 @@ export class AdminPanelComponent {
   constructor(public translateService: TranslateService) {}
 
   ngOnInit() {
-    console.log('hep');
     this.translateService.onLangChange.subscribe((event: LangChangeEvent) => {
       this.items = [
         {

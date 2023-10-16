@@ -1,52 +1,69 @@
 import { Component } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { RoleAddEditComponent } from './role-add-edit/role-add-edit.component';
 import { Role } from '../../models/role.model';
 import { RolesService } from '../../services/roles.service';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-role-management',
   templateUrl: './role-management.component.html',
-  styleUrls: ['./role-management.component.css']
+  styleUrls: ['./role-management.component.css'],
+  providers: [DialogService],
 })
 export class RoleManagementComponent {
+  roles: Role[];
+  dialogRef: DynamicDialogRef | undefined;
 
-  roles:Role[];
+  constructor(
+    private roleService: RolesService,
+    public dialogService: DialogService,
+    private translateService: TranslateService
+  ) {}
 
-  constructor(private roleService:RolesService,private roleDialog:MatDialog){
-
-  }
-
-  ngOnInit(){
-    this.roleService.rolesChanged.subscribe(roles =>{
+  ngOnInit() {
+    this.roleService.rolesChanged.subscribe((roles) => {
       this.roles = roles;
-    })
+    });
 
     this.roles = this.roleService.getRoles();
   }
 
-  openRoleDialog(){
-    const roleDialogRef = this.roleDialog.open(RoleAddEditComponent);
+
+  openRoleDialog() {
+    this.dialogRef = this.dialogService.open(RoleAddEditComponent, {
+      header: this.translateService.instant('ADMIN_PANEL_PAGE.new_role_btn'),
+      width: '30%',
+      contentStyle: { overflow: 'auto' },
+      baseZIndex: 10000,
+    });
   }
 
-  onDelete(id:number){
-    const isDelete = confirm("are you sure you want to delete this role?")
-    if(isDelete){
+  onDelete(id: number) {
+    const isDelete = confirm('are you sure you want to delete this role?');
+    if (isDelete) {
       this.roleService.deleteRole(id);
     }
   }
 
-  onEdit(localIndex:number,id:number){
-
+  onEdit(localIndex: number, id: number) {
     const data = {
-      roleDetails:this.roles[localIndex],
-      localIndex:localIndex
-    }
+      roleDetails: this.roles[localIndex],
+      localIndex: localIndex,
+    };
 
-    const roleDialogRef = this.roleDialog.open(RoleAddEditComponent,{
-      data: data
+    this.dialogRef = this.dialogService.open(RoleAddEditComponent, {
+      header: this.translateService.instant('ADMIN_PANEL_PAGE.update_role_btn'),
+      width: '30%',
+      contentStyle: { overflow: 'auto' },
+      baseZIndex: 10000,
+      data: data,
     });
   }
 
-
+  ngOnDestroy() {
+    if (this.dialogRef) {
+      this.dialogRef.close();
+    }
+  }
 }
