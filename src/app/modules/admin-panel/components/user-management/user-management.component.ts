@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { UserAddEditComponent } from './user-add-edit/user-add-edit.component';
-
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../models/user.model';
 import { UsersService } from '../../services/users.service';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 
 // interface PageEvent {
 //   first: number;
@@ -16,7 +15,8 @@ import { UsersService } from '../../services/users.service';
 @Component({
   selector: 'app-user-management',
   templateUrl: './user-management.component.html',
-  styleUrls: ['./user-management.component.css']
+  styleUrls: ['./user-management.component.css'],
+  providers: [DialogService],
 })
 export class UserManagementComponent {
 
@@ -25,9 +25,10 @@ export class UserManagementComponent {
   itemsPerPage = 3;
   currentPage = 1;
   isExportBtnLoading = false;
+  userDialogRef: DynamicDialogRef | undefined;
 
 
-  constructor(private userService:UsersService,private userDialog:MatDialog,public translateService:TranslateService){
+  constructor(private userService:UsersService,public userDialogService: DialogService,public translateService:TranslateService){
   }
 
   ngOnInit(){
@@ -51,10 +52,12 @@ export class UserManagementComponent {
   }
 
   openUserDialog(){
-    const userDialogRef = this.userDialog.open(UserAddEditComponent);
-    // dia.afterClosed().subscribe(result => {
-    //   console.log('Dialog closed:', result);
-    // });
+    this.userDialogRef = this.userDialogService.open(UserAddEditComponent, {
+      header: this.translateService.instant('ADMIN_PANEL_PAGE.new_user_btn'),
+      width: '30%',
+      contentStyle: { overflow: 'auto' },
+      baseZIndex: 10000,
+    });
   }
 
   onDelete(id:number){
@@ -66,15 +69,18 @@ export class UserManagementComponent {
 
   onEdit(localIndex:number,id:number){
 
-    // console.log(localIndex)
     const data = {
       userDetails:this.users[localIndex],
       localIndex:localIndex
     }
-    // console.log(data)
+    // console.log(this.users[localIndex])
 
-    const userDialogRef = this.userDialog.open(UserAddEditComponent,{
-      data: data
+    this.userDialogRef = this.userDialogService.open(UserAddEditComponent, {
+      header: this.translateService.instant('ADMIN_PANEL_PAGE.update_user_btn'),
+      width: '30%',
+      contentStyle: { overflow: 'auto' },
+      baseZIndex: 10000,
+      data: data,
     });
   }
 
@@ -85,7 +91,6 @@ export class UserManagementComponent {
   }
 
   onPageChange(event: any){
-    // console.log(event)
     this.currentPage = event.page + 1;
     this.usersPaginatedList = this.users.slice(
       event.first,

@@ -34,7 +34,7 @@
         <input type="password" class="form-control" id="password"
         ngModel name="password" required minlength="5">
       </div>
-      <div>
+      <div class="d-flex justify-content-end">
         <button class="btn btn-primary mx-2" (click)="onSwitchMode()" type="button" >{{ "AUTH_PAGE.switch_to" | translate}} {{!isLoginMode ? ('AUTH_PAGE.login' | translate) : ('AUTH_PAGE.create_account' | translate)}}</button>
         <button class="btn btn-primary" type="submit" [disabled]="!authForm.valid"> {{isLoginMode ? ('AUTH_PAGE.login' | translate) : ('AUTH_PAGE.sign_up' | translate)}}</button>
       </div>

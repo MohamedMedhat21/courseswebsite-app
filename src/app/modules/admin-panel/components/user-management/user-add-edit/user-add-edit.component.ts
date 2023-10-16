@@ -1,9 +1,9 @@
 import { Component, Inject } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Role } from '../../../models/role.model';
 import { RolesService } from '../../../services/roles.service';
 import { UsersService } from '../../../services/users.service';
+import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 
 @Component({
   selector: 'app-user-add-edit',
@@ -16,23 +16,23 @@ export class UserAddEditComponent {
   username : string;
   password : string;
   email :string;
-  enabled :boolean;
+  enabled = true;
   role :Role;
   roles:Role[];
 
   constructor(
     private userService: UsersService,
     private roleService:RolesService,
-    public dialogRef: MatDialogRef<UserAddEditComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    public dialogRef: DynamicDialogRef,
+    public config: DynamicDialogConfig,
   ) {}
 
   ngOnInit() {
-    if (this.data){
-      this.username = this.data.userDetails.username;
-      this.email = this.data.userDetails.email;
-      this.enabled = this.data.userDetails.enabled;
-      this.role = this.data.userDetails.role;
+    if (this.config.data){
+      this.username = this.config.data.userDetails.username;
+      this.email = this.config.data.userDetails.email;
+      this.enabled = this.config.data.userDetails.enabled;
+      this.role = this.config.data.userDetails.role;
     }
 
     this.roleService.rolesChanged.subscribe(roles =>{
@@ -55,10 +55,10 @@ export class UserAddEditComponent {
     this.enabled = userForm.value.enabledCheckbox;
     this.role = userForm.value.role;
 
-    const enabledString = this.enabled === true ? 1 : 0;
+    const enabledString = Number(userForm.value.enabledCheckbox);
 
-    if (this.data){
-      this.id = this.data.userDetails.id;
+    if (this.config.data){
+      this.id = this.config.data.userDetails.id;
     }
     else{
       this.password = userForm.value.password;
@@ -73,15 +73,14 @@ export class UserAddEditComponent {
       rolename: this.role.name,
     };
 
-    if (this.data){
-      this.userService.updateUser(this.data.localIndex,user);
+    if (this.config.data){
+      this.userService.updateUser(this.config.data.localIndex,user,this.role);
     }
     else{
       this.userService.addUser(user);
     }
 
-
-    userForm.reset();
+    // userForm.reset();
     this.closeDialog();
   }
 }

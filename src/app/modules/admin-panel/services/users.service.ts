@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { UsersApiService } from './users-api.service';
 import { User } from '../models/user.model';
+import { Role } from '../models/role.model';
 
 @Injectable({
   providedIn: 'root',
@@ -32,11 +33,11 @@ export class UsersService {
     });
   }
 
-  updateUser(index: number, editedUser: any) {
+  updateUser(index: number, editedUser: any, role:Role) {
     this.usersApiService.updateUserApi(editedUser).subscribe((res) => {
       this.users[index].email = editedUser.email;
       this.users[index].enabled = editedUser.enabled;
-      this.users[index].role.name = editedUser.rolename;
+      this.users[index].role = role;
 
       this.usersChanged.next(this.users.slice());
     });
