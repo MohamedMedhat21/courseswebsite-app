@@ -80,7 +80,6 @@ export class UserAddEditComponent {
       this.userService.addUser(user);
     }
 
-    // userForm.reset();
     this.closeDialog();
   }
 }

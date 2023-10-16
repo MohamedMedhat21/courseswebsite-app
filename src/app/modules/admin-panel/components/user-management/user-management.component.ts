@@ -73,7 +73,6 @@ export class UserManagementComponent {
       userDetails:this.users[localIndex],
       localIndex:localIndex
     }
-    // console.log(this.users[localIndex])
 
     this.userDialogRef = this.userDialogService.open(UserAddEditComponent, {
       header: this.translateService.instant('ADMIN_PANEL_PAGE.update_user_btn'),

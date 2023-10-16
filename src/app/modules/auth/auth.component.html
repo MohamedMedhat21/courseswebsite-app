@@ -26,8 +26,10 @@
         ngModel name="email" required email />
       </div>
       <div class="mb-3" *ngIf="!isLoginMode">
-        <label for="role" class="form-label">{{ "AUTH_PAGE.role_name" | translate}} <span class="text-danger">*</span></label>
-        <p-dropdown id="rolename" class="form-control" [options]="roles" optionLabel="name" name="role" ngModel [required]="true" [placeholder]="'Shared.dropdown_placeholder' | translate"></p-dropdown>
+        <div>
+          <label for="role" class="form-label">{{ "AUTH_PAGE.role_name" | translate}} <span class="text-danger">*</span></label>
+        </div>
+        <p-dropdown id="rolename" [options]="roles" optionLabel="name" name="role" ngModel [required]="true" [placeholder]="'Shared.dropdown_placeholder' | translate"></p-dropdown>
       </div>
       <div class="mb-3">
         <label for="password" class="form-label">{{ "AUTH_PAGE.password" | translate}} <span class="text-danger">*</span></label>
