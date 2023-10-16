@@ -4,7 +4,7 @@
       <app-loading-spinner></app-loading-spinner>
     </div>
 
-    <div class="mt-2 mb-3" *ngIf="currentPath === routerPaths.PUBLISHED_COURSES">
+    <div class="mt-2 d-flex justify-content-end" *ngIf="currentPath === routerPaths.PUBLISHED_COURSES">
       <button class="btn btn-primary me-3" type="button" (click)="openCourseDialog()">{{"INSTRUCTOR_COURSES.add_courses_btn"|translate}}</button>
     </div>
 

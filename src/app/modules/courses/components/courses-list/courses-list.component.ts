@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { CourseAddEditComponent } from '../course-add-edit/course-add-edit.component';
 import { TranslateService } from '@ngx-translate/core';
@@ -8,11 +7,13 @@ import { Local } from 'src/app/core/interface/local.interface';
 import { Constants } from 'src/app/core/utils/Constants';
 import { Course } from '../../models/course.model';
 import { CoursesService } from '../../services/courses.service';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 
 @Component({
   selector: 'app-courses-list',
   templateUrl: './courses-list.component.html',
   styleUrls: ['./courses-list.component.css'],
+  providers: [DialogService],
 })
 export class CoursesListComponent {
   courses: Course[];
@@ -22,13 +23,14 @@ export class CoursesListComponent {
   currentPath: string;
   routerPaths = RouterPaths;
   currLang = this.translateService.currentLang as keyof Local;
+  coursesDialogRef: DynamicDialogRef | undefined;
 
 
   constructor(
     private coursesService: CoursesService,
     private route: ActivatedRoute,
-    private courseDialog: MatDialog,
-    public translateService:TranslateService
+    public translateService:TranslateService,
+    public courseDialogService: DialogService,
   ) {
   }
 
@@ -52,7 +54,12 @@ export class CoursesListComponent {
   }
 
   openCourseDialog() {
-    const courseDialogRef = this.courseDialog.open(CourseAddEditComponent);
+    this.coursesDialogRef = this.courseDialogService.open(CourseAddEditComponent, {
+      header: this.translateService.instant('INSTRUCTOR_COURSES.add_courses_btn'),
+      width: '30%',
+      contentStyle: { overflow: 'auto' },
+      baseZIndex: 10000,
+    });
   }
 
   onEdit(localIndex: number, id: number) {
@@ -61,7 +68,11 @@ export class CoursesListComponent {
       localIndex: localIndex,
     };
 
-    const userDialogRef = this.courseDialog.open(CourseAddEditComponent, {
+    this.coursesDialogRef = this.courseDialogService.open(CourseAddEditComponent, {
+      header: this.translateService.instant('INSTRUCTOR_COURSES.update_courses_btn'),
+      width: '30%',
+      contentStyle: { overflow: 'auto' },
+      baseZIndex: 10000,
       data: data,
     });
   }

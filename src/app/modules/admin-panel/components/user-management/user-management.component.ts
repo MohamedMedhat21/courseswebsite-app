@@ -28,7 +28,9 @@ export class UserManagementComponent {
   userDialogRef: DynamicDialogRef | undefined;
 
 
-  constructor(private userService:UsersService,public userDialogService: DialogService,public translateService:TranslateService){
+  constructor(private userService:UsersService,
+    public userDialogService: DialogService,
+    public translateService:TranslateService){
   }
 
   ngOnInit(){
@@ -60,12 +62,6 @@ export class UserManagementComponent {
     });
   }
 
-  onDelete(id:number){
-    const isDelete = confirm(this.translateService.instant('Shared.delete_confirm_msg'))
-    if(isDelete){
-      this.userService.deleteUser(id);
-    }
-  }
 
   onEdit(localIndex:number,id:number){
 
@@ -83,6 +79,13 @@ export class UserManagementComponent {
     });
   }
 
+  onDelete(id:number){
+    const isDelete = confirm(this.translateService.instant('Shared.delete_confirm_msg'))
+    if(isDelete){
+      this.userService.deleteUser(id);
+    }
+  }
+  
   onExportUsers(){
     this.isExportBtnLoading = true;
     this.userService.exportUsers();

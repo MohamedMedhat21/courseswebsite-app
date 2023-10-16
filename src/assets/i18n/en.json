@@ -85,6 +85,7 @@
     "delete_btn":"Delete",
     "edit_btn":"Edit",
     "course_name":"Course name",
+    "course_nameAr":"Course Arabic name",
     "description":"Description",
     "total_hours":"Total hours",
     "headline":"Headline",

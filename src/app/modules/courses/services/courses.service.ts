@@ -33,10 +33,14 @@ export class CoursesService {
     })[0];
   }
 
-  addCourse(course: Course) {
-    this.coursesApiService.addCourseApi(course).subscribe((course) => {
+  addCourse(coursee: Course) {
+    this.coursesApiService.addCourseApi(coursee).subscribe((course) => {
       course.creationDateFormatted = Utils.formatDate(course.creationDate);
       course.instructorName = Constants.CurrentLoggedUser.username
+      course.courseName={
+        en:coursee.courseName.en,
+        ar:coursee.courseName.ar
+      }
       this.courses.push(course);
       this.coursesChanged.next(this.courses.slice());
     });

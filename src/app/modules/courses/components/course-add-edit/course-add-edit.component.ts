@@ -1,10 +1,10 @@
-import { Component, Inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Constants } from 'src/app/core/utils/Constants';
 import { Utils } from 'src/app/core/utils/utils';
 import { Course } from '../../models/course.model';
 import { CoursesService } from '../../services/courses.service';
+import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 
 @Component({
   selector: 'app-course-add-edit',
@@ -29,13 +29,13 @@ export class CourseAddEditComponent {
 
   constructor(
     private courseService: CoursesService,
-    public dialogRef: MatDialogRef<CourseAddEditComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    public dialogRef: DynamicDialogRef,
+    public config: DynamicDialogConfig,
   ) {}
 
   ngOnInit() {
-    if (this.data) {
-      this.setData(this.data.courseDetails);
+    if (this.config.data) {
+      this.setData(this.config.data.courseDetails);
     }
   }
 
@@ -49,12 +49,12 @@ export class CourseAddEditComponent {
     this.setData(courseForm.value);
 
     this.course.instructorName = Constants.CurrentLoggedUser.username;
-    if(this.data)
-      this.course.creationDate = this.data.courseDetails.creationDate;
+    if(this.config.data)
+      this.course.creationDate = this.config.data.courseDetails.creationDate;
     this.course.creationDateFormatted = Utils.formatDate(this.course.creationDate);
 
-    if (this.data) {
-      this.courseService.updateCourse(this.data.localIndex, this.course);
+    if (this.config.data) {
+      this.courseService.updateCourse(this.config.data.localIndex, this.course);
     } else {
       this.courseService.addCourse(this.course);
     }
@@ -66,12 +66,12 @@ export class CourseAddEditComponent {
   private setData(data: any) {
     if(data.id)
       this.course.id = data.id;
-    if(data.courseName){
-      this.course.courseName.en = data.courseName.en;
-      this.course.courseName.ar = data.courseName.ar;
-    }
-    this.course.name = this.course.courseName.en!;
-    this.course.nameAr = this.course.courseName.ar!;
+
+      this.course.courseName.en = data.name;
+      this.course.courseName.ar = data.nameAr;
+    // }
+    this.course.name = data.name;
+    this.course.nameAr = data.nameAr;
     this.course.description = data.description;
     this.course.totalHours = data.totalHours;
     this.course.headline = data.headline;
