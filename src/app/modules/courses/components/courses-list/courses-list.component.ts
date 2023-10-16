@@ -86,9 +86,6 @@ export class CoursesListComponent {
 
   getData(courses:Course[]) {
     this.courses = courses;
-    this.courses.forEach(crs =>{
-      crs.name = crs.courseName[this.translateService.currentLang as keyof Local]!;
-    })
     if (this.currentPath === RouterPaths.PUBLISHED_COURSES) {
       this.filteredCourses = this.courses.filter((value) => {
         return value.instructorId === Constants.CurrentLoggedUser.id;

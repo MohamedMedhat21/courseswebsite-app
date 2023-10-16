@@ -9,7 +9,6 @@ import { HeaderComponent } from './header/header.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 
 import { TranslateModule } from '@ngx-translate/core';
-import { MatDialogModule } from '@angular/material/dialog';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { ToastModule } from 'primeng/toast';
@@ -21,7 +20,6 @@ import { PaginatorModule } from 'primeng/paginator';
 import { SidebarModule } from 'primeng/sidebar';
 import { TableModule } from 'primeng/table';
 import { TabMenuModule } from 'primeng/tabmenu';
-import { CheckboxModule } from 'primeng/checkbox';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { NoopAnimationsModule, BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
@@ -47,7 +45,6 @@ import { SharedRoutingModule } from './shared-routing.module';
     ToastModule,
     CardModule,
     ButtonModule,
-    MatDialogModule,
     SidebarModule,
     MenuModule,
     TableModule,
@@ -58,7 +55,6 @@ import { SharedRoutingModule } from './shared-routing.module';
     TranslateModule,
     TabMenuModule,
     DynamicDialogModule,
-    CheckboxModule,
   ],
   exports:[
     LoadingSpinnerComponent,
@@ -74,7 +70,6 @@ import { SharedRoutingModule } from './shared-routing.module';
     ToastModule,
     CardModule,
     ButtonModule,
-    MatDialogModule,
     SidebarModule,
     MenuModule,
     TableModule,
@@ -85,7 +80,6 @@ import { SharedRoutingModule } from './shared-routing.module';
     TranslateModule,
     TabMenuModule,
     DynamicDialogModule,
-    CheckboxModule,
   ]
 })
 export class SharedModule { }
