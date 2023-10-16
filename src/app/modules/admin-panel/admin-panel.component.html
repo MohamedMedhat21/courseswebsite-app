@@ -1,23 +1,11 @@
-
-<p-sidebar [(visible)]="sidebarVisible" [position]="translateService.currentLang === 'en' ? 'left':'right'">
-  <h1>{{"ADMIN_PANEL_PAGE.admin_panel" | translate}}</h1>
-  <ng-template pTemplate="content">
-    <ul class="list-group list-group-flush mt-5">
-      <a href="" class="list-group-item list-group-item-action mb-2" (click)="userManagementVisible = true; roleManagementVisible=false;sidebarVisible=false;">{{"ADMIN_PANEL_PAGE.user_management" | translate}}</a>
-      <a href="" class="list-group-item list-group-item-action" (click)="userManagementVisible = false;roleManagementVisible=true;sidebarVisible=false;">{{"ADMIN_PANEL_PAGE.role_management" | translate}}</a>
-    </ul>
-  </ng-template>
-  <ng-template pTemplate="footer">{{"COURSES_WEBSITE" | translate}}</ng-template>
-</p-sidebar>
-
-<div class="mt-2">
-  <p-button class="ms-3 mt-2" (click)="sidebarVisible = true" icon="pi pi-bars"></p-button>
+<div class="container mt-2">
+  <p-tabMenu [model]="items" [activeItem]="activeItem" (activeItemChange)="onActiveItemChange($event)"></p-tabMenu>
 </div>
 
-<div *ngIf="userManagementVisible">
+<div *ngIf="activeItem === items[0]">
   <app-user-management></app-user-management>
 </div>
 
-<div *ngIf="roleManagementVisible">
+<div *ngIf="activeItem === items[1]">
   <app-role-management></app-role-management>
 </div>
