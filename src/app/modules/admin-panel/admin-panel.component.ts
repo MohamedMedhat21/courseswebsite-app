@@ -8,7 +8,7 @@ import { MenuItem } from 'primeng/api';
   styleUrls: ['./admin-panel.component.css'],
 })
 export class AdminPanelComponent {
-  
+
   items: MenuItem[]=[
     {
       label: this.translateService.instant(
@@ -24,11 +24,12 @@ export class AdminPanelComponent {
     },
   ];;
 
-  activeItem: MenuItem;
+  activeItem: MenuItem=this.items[0];
 
   constructor(public translateService: TranslateService) {}
 
   ngOnInit() {
+    console.log('hep');
     this.translateService.onLangChange.subscribe((event: LangChangeEvent) => {
       this.items = [
         {
