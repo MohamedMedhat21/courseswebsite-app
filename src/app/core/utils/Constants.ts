@@ -21,6 +21,8 @@ export class Constants {
 
   static courseFilter = new Subject<string>();
 
+  static DialogWidth = '40%';
+
   static langs:Lang[] = [
     {name:'العربية',code:'ar'},
     {name:'English',code:'en'},

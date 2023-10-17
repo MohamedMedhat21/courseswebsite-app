@@ -4,6 +4,7 @@ import { Role } from '../../models/role.model';
 import { RolesService } from '../../services/roles.service';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { TranslateService } from '@ngx-translate/core';
+import { Constants } from 'src/app/core/utils/Constants';
 
 @Component({
   selector: 'app-role-management',
@@ -33,7 +34,7 @@ export class RoleManagementComponent {
   openRoleDialog() {
     this.dialogRef = this.dialogService.open(RoleAddEditComponent, {
       header: this.translateService.instant('ADMIN_PANEL_PAGE.new_role_btn'),
-      width: '30%',
+      width: Constants.DialogWidth,
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
     });
@@ -54,7 +55,7 @@ export class RoleManagementComponent {
 
     this.dialogRef = this.dialogService.open(RoleAddEditComponent, {
       header: this.translateService.instant('ADMIN_PANEL_PAGE.update_role_btn'),
-      width: '30%',
+      width: Constants.DialogWidth,
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
       data: data,

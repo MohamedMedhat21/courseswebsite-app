@@ -56,7 +56,7 @@ export class CoursesListComponent {
   openCourseDialog() {
     this.coursesDialogRef = this.courseDialogService.open(CourseAddEditComponent, {
       header: this.translateService.instant('INSTRUCTOR_COURSES.add_courses_btn'),
-      width: '30%',
+      width: Constants.DialogWidth,
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
     });
@@ -70,7 +70,7 @@ export class CoursesListComponent {
 
     this.coursesDialogRef = this.courseDialogService.open(CourseAddEditComponent, {
       header: this.translateService.instant('INSTRUCTOR_COURSES.update_courses_btn'),
-      width: '30%',
+      width: Constants.DialogWidth,
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
       data: data,

@@ -4,6 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../models/user.model';
 import { UsersService } from '../../services/users.service';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { Constants } from 'src/app/core/utils/Constants';
 
 // interface PageEvent {
 //   first: number;
@@ -56,7 +57,7 @@ export class UserManagementComponent {
   openUserDialog(){
     this.userDialogRef = this.userDialogService.open(UserAddEditComponent, {
       header: this.translateService.instant('ADMIN_PANEL_PAGE.new_user_btn'),
-      width: '30%',
+      width: Constants.DialogWidth,
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
     });
@@ -72,7 +73,7 @@ export class UserManagementComponent {
 
     this.userDialogRef = this.userDialogService.open(UserAddEditComponent, {
       header: this.translateService.instant('ADMIN_PANEL_PAGE.update_user_btn'),
-      width: '30%',
+      width: Constants.DialogWidth,
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
       data: data,
@@ -85,7 +86,7 @@ export class UserManagementComponent {
       this.userService.deleteUser(id);
     }
   }
-  
+
   onExportUsers(){
     this.isExportBtnLoading = true;
     this.userService.exportUsers();
