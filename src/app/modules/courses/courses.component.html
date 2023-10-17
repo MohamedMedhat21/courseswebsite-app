@@ -1,8 +1,8 @@
-<div class="grid" *ngIf="currentPath === routerPaths.COURSES">
-  <div class="col-3">
+<div class="row" *ngIf="currentPath === routerPaths.COURSES">
+  <div class="col-md-3 scrollspy-example max-h-screen">
     <app-courses-list></app-courses-list>
   </div>
-  <div class="col-9 max-h-screen overflow-scroll">
+  <div class="col-md-9 max-h-screen overflow-scroll">
     <router-outlet></router-outlet>
   </div>
 </div>

@@ -5,11 +5,11 @@
 
 <div class="list-group ms-3 mt-3" *ngFor="let studentCourse of studentCoursesData;let i = index">
   <div class="list-group-item  mb-2" aria-current="true">
-    <div class="row">
-      <div class="col-5 p-0">
+    <div class="d-flex justify-content-between">
+      <div class="">
         <img [src]="studentCourse.imagePath">
       </div>
-      <div class="col-7">
+      <div class="mx-2">
         <div class="d-flex w-100 justify-content-between">
           <a class="list-group-item-action w-50" [routerLink]="[i]">
             <h4 class="mb-1">{{studentCourse.courseName}}</h4>
