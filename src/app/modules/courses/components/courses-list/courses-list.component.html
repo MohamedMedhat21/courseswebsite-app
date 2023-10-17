@@ -8,7 +8,7 @@
       <button class="btn btn-primary me-3" type="button" (click)="openCourseDialog()">{{"INSTRUCTOR_COURSES.add_courses_btn"|translate}}</button>
     </div>
 
-    <div class="grid">
+    <div class="d-flex flex-wrap">
       <div class="ms-3 mt-3 col" *ngFor="let course of filteredCourses;let i = index">
         <p-card header={{course.courseName[currLang]}} subheader={{course.headline}} [style]="{ width: '320px' }">
           <ng-template pTemplate="header">

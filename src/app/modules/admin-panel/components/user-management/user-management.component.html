@@ -23,7 +23,7 @@
       <tr>
         <td>{{user.id}}</td>
         <td>
-          <div class="flex" [ngClass]="translateService.currentLang === 'en'?'justify-content-start':'justify-content-center'">
+          <div class="d-flex" [ngClass]="translateService.currentLang === 'en'?'justify-content-start':'justify-content-center'">
             <i class="pi pi-user mx-2"></i>
             <span>{{user.username}}</span>
           </div>
@@ -34,7 +34,7 @@
           <span *ngIf="user.enabled == '1'"> Active</span> <span *ngIf="user.enabled == '0'"> Inactive</span> </td>
         <td>
           <button pButton pRipple type="button" icon="pi pi-pencil" (click)="onEdit(rowIndex + (currentPage - 1) * itemsPerPage ,user.id)" class="p-button-rounded p-button-text" title="Settings" data-toggle="tooltip"></button>
-          <button pButton type="button" icon="pi pi-times" (click)="onDelete(user.id)" class="p-button-rounded p-button-text text-red-500" title="Delete" data-toggle="tooltip"></button>
+          <button pButton type="button" icon="pi pi-times" (click)="onDelete(user.id)" class="p-button-rounded p-button-text text-danger" title="Delete" data-toggle="tooltip"></button>
         </td>
       </tr>
     </ng-template>

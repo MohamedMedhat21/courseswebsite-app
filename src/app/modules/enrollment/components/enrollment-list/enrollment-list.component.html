@@ -15,7 +15,7 @@
             <h4 class="mb-1">{{studentCourse.courseName}}</h4>
           </a>
           <div>
-            <div class="flex justify-content-center">
+            <div class="d-flex justify-content-center">
               <a (click)="coursesMenu.toggle($event);getCourseIndexes(i,studentCourse.id)" title="Edit" data-toggle="tooltip" type="button" ><i class="pi pi-ellipsis-v"></i></a>
               <p-menu #coursesMenu [model]="items" [popup]="true" appendTo="body" styleClass="max-w-9rem"></p-menu>
             </div>
