@@ -1,76 +1,48 @@
-* {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+
+.center {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  max-width: 50em;
+  margin: 0 auto;
 }
 
-#notfound {
-  position: relative;
-  height: 80.8vh;
-  background: #f6f6f6;
+.error__title {
+  background: linear-gradient(#00bcd4, #9575cd);
+  -webkit-background-clip: text;
+          background-clip: text;
+  font-family: "Montserrat";
+  font-size: 18rem;
+  font-weight: 200;
+  margin: 0;
+  -webkit-text-fill-color: transparent;
 }
-
-#notfound .notfound {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%);
-      -ms-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-}
-
-.notfound {
-  max-width: 767px;
-  width: 100%;
-  line-height: 1.4;
-  padding: 110px 40px;
-  text-align: center;
-  background: #fff;
-  -webkit-box-shadow: 0 15px 15px -10px rgba(0, 0, 0, 0.1);
-          box-shadow: 0 15px 15px -10px rgba(0, 0, 0, 0.1);
-}
-
-.notfound .notfound-404 {
-  position: relative;
-  height: 180px;
-}
-
-.notfound .notfound-404 h1 {
-  font-family: 'Roboto', sans-serif;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%);
-      -ms-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-  font-size: 165px;
-  font-weight: 700;
-  margin: 0px;
-  color: #262626;
+.error__type {
+  color: #112D4E;
+  font-weight: 600;
+  font-size: 2.75rem;
+  letter-spacing: 0.125em;
+  margin: 0;
   text-transform: uppercase;
 }
-
-.notfound .notfound-404 h1>span {
-  color: #00b7ff;
+.error__cta {
+  color: #112D4E;
+  font-family: "Source Sans Pro";
+  font-size: 1.25rem;
+  font-weight: 300;
+  line-height: 2;
 }
 
-.notfound h2 {
-  font-family: 'Roboto', sans-serif;
-  font-size: 22px;
-  font-weight: 400;
-  text-transform: uppercase;
-  color: #151515;
-  margin-top: 0px;
-  margin-bottom: 25px;
-}
 
-@media only screen and (max-width: 767px) {
-  .notfound h2 {
-    font-size: 18px;
+@media (max-width: 40em) {
+  .error__title {
+    font-size: 10rem;
   }
-}
-
-@media only screen and (max-width: 480px) {
-  .notfound .notfound-404 h1 {
-    font-size: 141px;
+  .error__type {
+    font-size: 1.25rem;
+  }
+  .error__cta {
+    font-size: 1rem;
   }
 }
